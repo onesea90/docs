@@ -1,0 +1,338 @@
+---
+title: "Agent System Architecture"
+description: "Learn about Siya's adaptive multi-agent system and specialized capabilities"
+icon: "users"
+---
+
+
+## Overview
+
+Siya employs a sophisticated multi-agent architecture that adapts based on your chosen execution mode. At the core is the main Siya agent, which either directly handles tasks using tools and sub-agents (Chat Mode) or orchestrates specialized agent modules (Task Mode).
+
+## Architecture by Mode
+
+### Chat Mode Architecture
+
+In Chat Mode, Siya operates as an intelligent assistant with direct access to:
+
+**Tools & Capabilities**:
+- File operations (read, write, edit)
+- Search tools (glob, grep, semantic search)
+- Execution tools (bash commands, terminal)
+- Web tools (browser automation, web search)
+- Planning tools (todo management)
+- MCP integration for extended capabilities
+
+**Sub-Agents Available**:
+- **SWE Agent** - Software engineering tasks
+- **Search Agent** - Information gathering
+- **Browser Agent** - Web automation
+- **Automation Agent** - Workflow automation
+
+These sub-agents can be spawned multiple times as needed, with auto-compacting enabled for efficient memory management.
+
+### Task Mode Architecture
+
+In Task Mode, Siya transforms into an autonomous orchestrator managing dedicated agent modules:
+
+**Agent Modules**:
+- **Planning Module** - Creates and manages execution plans
+- **SWE Agent Module** - Handles all software engineering (with MCP access)
+- **Browser Agent Module** - Web interaction and automation
+- **Search Agent Module** - Research and information gathering
+- **Automation Agent Module** - Complex workflow execution
+
+These modules work together autonomously without direct tool access, coordinated by Siya's orchestration layer.
+
+## The Main Siya Agent
+
+### Core Capabilities
+
+Siya is your primary interface and the intelligence behind all operations:
+
+**In Chat Mode**:
+- Interactive conversation with context preservation
+- Direct tool usage for immediate tasks
+- Spawns specialized sub-agents when needed
+- Manages memory with auto-compacting
+- Provides real-time responses
+
+**In Task Mode**:
+- Analyzes complex requirements
+- Creates comprehensive execution plans
+- Coordinates agent modules
+- Monitors progress and handles errors
+- Delivers complete solutions
+
+### Intelligent Decision Making
+
+Siya automatically determines:
+- Which tools or agents to use
+- When to spawn sub-agents
+- How to coordinate multiple operations
+- When to switch approaches
+- How to optimize for efficiency
+
+## Sub-Agents (Chat Mode)
+
+### 🧑‍💻 SWE (Software Engineering) Agent
+
+**Capabilities**:
+- Code generation in any language
+- Debugging and error fixing
+- Code refactoring and optimization
+- Test creation and execution
+- Documentation generation
+- Architecture design
+- Code review and improvements
+
+**When Spawned**:
+- Complex coding tasks
+- Multi-file projects
+- Code analysis needs
+- Testing requirements
+
+### 🔍 Search Agent
+
+**Capabilities**:
+- Multi-source web search
+- Information verification
+- Research compilation
+- Academic paper retrieval
+- News and current events
+- Technical documentation search
+- Fact-checking
+
+**When Spawned**:
+- Research tasks
+- Information gathering
+- Fact verification
+- Current events queries
+
+### 🌐 Browser Agent
+
+**Capabilities**:
+- Visual web interaction
+- Form filling and submission
+- Data extraction from websites
+- Screenshot capture
+- Navigation automation
+- JavaScript execution
+- Session management
+
+**When Spawned**:
+- Web scraping needs
+- Online form completion
+- Visual verification required
+- Complex web workflows
+
+### 🤖 Automation Agent
+
+**Capabilities**:
+- Workflow automation
+- Scheduled task execution
+- Multi-step process handling
+- Integration workflows
+- Batch operations
+- Recurring task management
+
+**When Spawned**:
+- Repetitive tasks
+- Scheduled operations
+- Complex workflows
+- Integration needs
+
+## Agent Modules (Task Mode)
+
+### Planning Module
+
+**Responsibilities**:
+- Analyzes task requirements
+- Creates structured execution plans
+- Identifies dependencies
+- Allocates resources
+- Tracks progress
+- Adapts plans based on results
+
+**Key Features**:
+- Multi-phase planning
+- Dependency management
+- Resource optimization
+- Progress monitoring
+
+### SWE Agent Module
+
+**Responsibilities**:
+- All software development tasks
+- Code implementation
+- Testing and debugging
+- Documentation
+- MCP server integration
+
+**Special Access**:
+- Direct MCP server access
+- Extended tool capabilities
+- Custom integrations
+- Enterprise connections
+
+### Browser Agent Module
+
+**Responsibilities**:
+- Web automation tasks
+- Data extraction
+- Visual interactions
+- Multi-page workflows
+
+**Capabilities**:
+- Headless operation
+- Parallel browsing
+- Session persistence
+- Error recovery
+
+### Search Agent Module
+
+**Responsibilities**:
+- Comprehensive research
+- Information synthesis
+- Source verification
+- Report generation
+
+**Features**:
+- Multi-engine search
+- Result aggregation
+- Quality filtering
+- Citation management
+
+### Automation Agent Module
+
+**Responsibilities**:
+- Complex workflow execution
+- Process automation
+- System integration
+- Scheduled operations
+
+**Strengths**:
+- Reliability
+- Scalability
+- Error handling
+- State management
+
+## Memory Management
+
+### Auto-Compacting System
+
+Siya includes sophisticated memory management:
+
+**Features**:
+- Automatic memory optimization
+- Context preservation
+- Efficient token usage
+- Intelligent pruning
+- Cache management
+
+**Benefits**:
+- Longer conversations
+- Better performance
+- Reduced costs
+- Maintained context
+
+### Shared Knowledge
+
+All agents and modules share:
+- Conversation context
+- Discovered information
+- Task progress
+- Error history
+- Optimization data
+
+## MCP Integration
+
+### Model Context Protocol
+
+Siya integrates with MCP servers for extended capabilities:
+
+**In Chat Mode**:
+- Direct MCP tool access
+- Dynamic capability discovery
+- Real-time integration
+
+**In Task Mode**:
+- SWE Agent Module has MCP access
+- Enterprise integrations
+- Custom tool usage
+- Extended functionality
+
+### Available MCP Servers
+
+- File system operations
+- Database connections
+- API integrations
+- Custom enterprise tools
+- Specialized services
+
+## Choosing Between Modes
+
+### When to Use Chat Mode
+
+**Best for**:
+- Interactive exploration
+- Quick questions
+- Iterative development
+- Learning and debugging
+- Real-time assistance
+
+**Advantages**:
+- Immediate responses
+- Direct tool access
+- Flexible interaction
+- Quick iterations
+
+### When to Use Task Mode
+
+**Best for**:
+- Complex projects
+- Multi-step operations
+- Production work
+- Automated workflows
+- Hands-off execution
+
+**Advantages**:
+- Comprehensive planning
+- Autonomous execution
+- Optimized coordination
+- Consistent results
+
+## Performance Optimization
+
+### Efficient Agent Usage
+
+**Chat Mode**:
+- Sub-agents spawn only when needed
+- Auto-compacting maintains efficiency
+- Direct tool usage for simple tasks
+- Parallel sub-agent execution
+
+**Task Mode**:
+- Dedicated modules for each domain
+- Optimized inter-module communication
+- Parallel execution where possible
+- Resource-aware scheduling
+
+### Best Practices
+
+1. **Choose the Right Mode**: Match mode to task complexity
+2. **Provide Clear Context**: More information = better results
+3. **Trust the System**: Let Siya decide on agent usage
+4. **Monitor Progress**: Watch for status updates
+5. **Save Important Work**: Export valuable outputs
+
+## Next Steps
+
+- Learn about [Execution Modes](./execution-modes.mdx) in detail
+- Explore [Tools & Capabilities](./tools-capabilities.mdx)
+- Understand [Memory System](./memory-system.mdx)
+- Review [Configuration](./configuration.mdx) options
+
+---
+
+*Siya's intelligent agent system - Adapting to your needs, delivering exceptional results!*

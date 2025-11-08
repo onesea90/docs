@@ -1,0 +1,83 @@
+export const HeroPattern = () => {
+  return (
+    <div style={{
+      position: 'relative',
+      marginBottom: '3rem',
+      paddingTop: '2rem',
+      paddingBottom: '2rem',
+      background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)',
+      borderRadius: '24px',
+      overflow: 'hidden'
+    }}>
+      {/* Decorative elements */}
+      <div style={{
+        position: 'absolute',
+        top: '-50px',
+        right: '-50px',
+        width: '200px',
+        height: '200px',
+        background: 'radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(40px)'
+      }} />
+      
+      <div style={{
+        position: 'absolute',
+        bottom: '-80px',
+        left: '-80px',
+        width: '300px',
+        height: '300px',
+        background: 'radial-gradient(circle, rgba(118, 75, 162, 0.1) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(60px)'
+      }} />
+      
+      <div style={{
+        position: 'relative',
+        textAlign: 'center',
+        padding: '2rem',
+        zIndex: 1
+      }}>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          color: 'white',
+          padding: '0.5rem 1rem',
+          borderRadius: '9999px',
+          fontSize: '0.875rem',
+          fontWeight: '600',
+          marginBottom: '1.5rem',
+          boxShadow: '0 4px 14px rgba(102, 126, 234, 0.3)'
+        }}>
+          <span>✨</span>
+          <span>AI-Powered Intelligence</span>
+        </div>
+        
+        <h1 style={{
+          fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+          fontWeight: '800',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          marginBottom: '1rem',
+          lineHeight: '1.2'
+        }}>
+          Transform Your Workflow
+        </h1>
+        
+        <p style={{
+          fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
+          color: '#6B7280',
+          maxWidth: '800px',
+          margin: '0 auto',
+          lineHeight: '1.6'
+        }}>
+          Experience the future of work with SIYA's advanced AI capabilities
+        </p>
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@mintlify/cli": "^4.0.676"
+  },
+  "name": "siya-public-documentation",
+  "version": "1.0.0",
+  "description": "Welcome to the SIYA documentation repository! This site is built with [Mintlify](https://mintlify.com), providing beautiful, interactive documentation for the SIYA multi-agent AI system.",
+  "main": "navbar-enhancements.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syia-ai/siya-public-documentation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syia-ai/siya-public-documentation/issues"
+  },
+  "homepage": "https://github.com/syia-ai/siya-public-documentation#readme"
+}

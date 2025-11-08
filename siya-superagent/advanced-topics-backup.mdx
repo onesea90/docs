@@ -1,0 +1,368 @@
+---
+title: "Advanced Topics"
+description: "Power user features and advanced techniques"
+icon: "graduation-cap"
+---
+
+
+## Unlock Siya's Full Potential
+
+This guide covers advanced features and techniques for power users who want to maximize their productivity with Siya. These capabilities go beyond basic usage to provide sophisticated workflows and integrations.
+
+## Advanced Agent Techniques
+
+### Agent Specialization in Chat Mode
+
+**Direct Agent Requests**
+Leverage specific sub-agents for specialized tasks:
+- "Use the SWE agent to refactor this codebase"
+- "Have the browser agent extract data from these websites"
+- "Get the search agent to research recent developments"
+- "Use the automation agent to set up this workflow"
+
+**Agent Spawning Strategies**
+- Multiple instances of the same agent can run in parallel
+- Auto-compacting ensures efficient memory usage
+- Agents share context through Siya's memory system
+- Optimal for complex, multi-faceted tasks
+
+### Module Coordination in Task Mode
+
+**Orchestration Patterns**
+- Planning module creates comprehensive strategies
+- Agent modules execute in optimal sequence
+- Parallel execution where dependencies allow
+- SWE module leverages MCP for extended capabilities
+
+**Advanced Planning**
+- Multi-phase execution plans
+- Conditional branching based on results
+- Resource optimization across modules
+- Adaptive replanning when needed
+
+## MCP Server Integration
+
+### Advanced MCP Configuration
+
+**Dynamic Server Loading**
+```json
+{
+    "mcpServers": {
+        "dynamic-loader": {
+            "command": "node",
+            "args": ["mcp-loader.js"],
+            "env": {
+                "CONFIG_PATH": "./servers/",
+                "AUTO_DISCOVER": "true"
+            }
+        }
+    }
+}
+```
+
+**Chained MCP Servers**
+Connect multiple MCP servers for complex workflows:
+```json
+{
+    "mcpServers": {
+        "data-pipeline": {
+            "command": "python",
+            "args": ["pipeline-server.py"],
+            "env": {
+                "SOURCE_DB": "postgres://source",
+                "TARGET_API": "https://api.target.com",
+                "TRANSFORM_RULES": "./rules.json"
+            }
+        }
+    }
+}
+```
+
+**Enterprise Integration**
+```json
+{
+    "mcpServers": {
+        "enterprise-suite": {
+            "command": "java",
+            "args": ["-jar", "enterprise-mcp.jar"],
+            "env": {
+                "SAP_ENDPOINT": "https://sap.company.com",
+                "SALESFORCE_INSTANCE": "na1.salesforce.com",
+                "AZURE_AD_TENANT": "company.onmicrosoft.com"
+            },
+            "maskedFields": ["env.SAP_ENDPOINT", "env.AZURE_AD_TENANT"]
+        }
+    }
+}
+```
+
+### Custom MCP Development
+
+**Creating Your Own MCP Server**
+1. Implement the MCP protocol
+2. Define available tools
+3. Handle tool execution
+4. Return structured results
+
+**Best Practices**:
+- Implement proper error handling
+- Use streaming for long operations
+- Cache frequently accessed data
+- Implement rate limiting
+- Secure sensitive operations
+
+## Memory Optimization
+
+### Auto-Compacting Strategies
+
+**Memory Efficiency in Chat Mode**
+- Automatic compression of older messages
+- Intelligent context preservation
+- Priority-based retention
+- Seamless sub-agent memory sharing
+
+**Optimization Techniques**:
+- Clear unnecessary context periodically
+- Use focused conversations for specific tasks
+- Leverage workspace isolation
+- Monitor memory usage in preferences
+
+### Context Management
+
+**Workspace Contexts**
+Maintain separate contexts for different projects:
+- Project-specific knowledge
+- Custom configurations
+- Isolated memory spaces
+- Quick context switching
+
+**Cross-Session Intelligence**
+- Persistent learning across sessions
+- Preference recognition
+- Pattern identification
+- Workflow optimization
+
+## Workflow Automation
+
+### Complex Workflow Patterns
+
+**Multi-Stage Pipelines**
+Create sophisticated automation workflows:
+
+1. **Data Collection Stage**
+   - Web scraping with Browser agent
+   - API calls through MCP servers
+   - File system operations
+
+2. **Processing Stage**
+   - Data transformation
+   - Analysis and insights
+   - Report generation
+
+3. **Distribution Stage**
+   - Email notifications
+   - Dashboard updates
+   - System integrations
+
+**Conditional Workflows**
+Implement intelligent branching:
+- If-then-else logic
+- Error handling paths
+- Fallback strategies
+- Dynamic routing
+
+### Scheduled Automation
+
+**Recurring Tasks**
+Set up automated recurring operations:
+- Daily reports
+- Weekly summaries
+- Monthly analyses
+- Triggered workflows
+
+**Event-Driven Automation**
+React to external events:
+- File changes
+- API webhooks
+- System alerts
+- User triggers
+
+## Performance Optimization
+
+### Speed Techniques
+
+**Parallel Processing**
+- Spawn multiple sub-agents in Chat Mode
+- Leverage parallel module execution in Task Mode
+- Distribute independent operations
+- Optimize critical paths
+
+**Caching Strategies**
+- Cache MCP server responses
+- Reuse analysis results
+- Store processed data
+- Implement smart invalidation
+
+### Resource Management
+
+**Efficient Mode Selection**
+- Use Chat Mode for exploration and iteration
+- Switch to Task Mode for production execution
+- Combine modes for optimal workflows
+- Monitor resource usage
+
+**MCP Server Optimization**
+- Limit active servers to those needed
+- Implement connection pooling
+- Use batch operations
+- Monitor server performance
+
+## Advanced Integration Patterns
+
+### Enterprise Workflows
+
+**Complex System Integration**
+Combine multiple MCP servers and agents:
+1. Extract data from enterprise systems
+2. Process through Siya's agents
+3. Transform and validate
+4. Update multiple targets
+5. Generate compliance reports
+
+**Cross-Platform Automation**
+- Connect cloud services
+- Integrate on-premise systems
+- Bridge different protocols
+- Maintain data consistency
+
+### Development Workflows
+
+**CI/CD Integration**
+- Automated code review
+- Test generation and execution
+- Deployment automation
+- Performance monitoring
+
+**Code Migration Projects**
+- Analyze existing codebase
+- Plan migration strategy
+- Execute transformation
+- Validate results
+- Generate documentation
+
+## Security Best Practices
+
+### MCP Security
+
+**Credential Management**
+- Use environment variables
+- Implement secret rotation
+- Mask sensitive fields
+- Audit access logs
+
+**Network Security**
+- Use secure connections
+- Implement firewalls
+- Monitor traffic
+- Regular security updates
+
+### Data Protection
+
+**Sensitive Data Handling**
+- Encrypt at rest
+- Secure transmission
+- Access controls
+- Audit trails
+
+**Compliance Features**
+- Data retention policies
+- Privacy controls
+- Regulatory compliance
+- Security scanning
+
+## Debugging & Monitoring
+
+### Advanced Debugging
+
+**MCP Server Debugging**
+- Enable verbose logging
+- Monitor server health
+- Track performance metrics
+- Debug connection issues
+
+**Agent Coordination**
+- Trace execution flow
+- Monitor inter-agent communication
+- Identify bottlenecks
+- Optimize workflows
+
+### Performance Monitoring
+
+**Metrics Collection**
+- Execution times
+- Resource usage
+- Success rates
+- Error patterns
+
+**Optimization Insights**
+- Identify slow operations
+- Find resource bottlenecks
+- Optimize workflows
+- Improve efficiency
+
+## Expert Tips
+
+### Productivity Maximizers
+
+**Workflow Templates**
+- Create reusable patterns
+- Build command libraries
+- Develop prompt templates
+- Share configurations
+
+**Keyboard Mastery**
+- Learn all shortcuts
+- Create custom bindings
+- Use quick commands
+- Master navigation
+
+### Quality Improvements
+
+**Best Practices**
+- Document workflows
+- Version control configs
+- Test integrations
+- Monitor performance
+
+**Continuous Improvement**
+- Analyze usage patterns
+- Optimize common tasks
+- Refine workflows
+- Update configurations
+
+## Community Resources
+
+### Sharing & Learning
+
+**MCP Server Library**
+- Browse community servers
+- Share your creations
+- Contribute improvements
+- Learn from others
+
+**Workflow Exchange**
+- Share automation patterns
+- Learn best practices
+- Collaborate on solutions
+- Build on others' work
+
+## Next Steps
+
+- Experiment with MCP servers
+- Build complex workflows
+- Optimize performance
+- Share your discoveries
+
+---
+
+*Master these advanced features to become a Siya power user - The only limit is your imagination!*

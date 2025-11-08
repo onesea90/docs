@@ -1,0 +1,189 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows, backgrounds, fit, decorations.pathreplacing}
+
+% Define colors
+\definecolor{primaryblue}{RGB}{21, 101, 192}
+\definecolor{lightblue}{RGB}{227, 242, 253}
+\definecolor{orange}{RGB}{255, 152, 0}
+\definecolor{lightorange}{RGB}{255, 243, 224}
+\definecolor{green}{RGB}{76, 175, 80}
+\definecolor{lightgreen}{RGB}{232, 245, 233}
+\definecolor{purple}{RGB}{156, 39, 176}
+\definecolor{lightpurple}{RGB}{243, 229, 245}
+\definecolor{gray}{RGB}{158, 158, 158}
+\definecolor{lightgray}{RGB}{245, 245, 245}
+\definecolor{darkgray}{RGB}{66, 66, 66}
+
+% Define styles
+\tikzstyle{mainbox} = [rectangle, rounded corners=8pt, minimum width=3cm, minimum height=1.5cm, text centered, draw=black!80, line width=1.5pt, font=\sffamily]
+\tikzstyle{agentbox} = [rectangle, rounded corners=6pt, minimum width=2.5cm, minimum height=1.2cm, text centered, draw=black!60, line width=1pt, font=\sffamily\small]
+\tikzstyle{componentbox} = [rectangle, rounded corners=4pt, minimum width=2cm, minimum height=0.8cm, text centered, draw=black!50, font=\sffamily\footnotesize]
+\tikzstyle{arrow} = [thick,->,>=stealth,color=primaryblue]
+\tikzstyle{dashedarrow} = [thick,->,>=stealth,dashed,color=gray]
+
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm]
+
+% Title
+\node[font=\sffamily\bfseries\LARGE] at (0,12) {SIYA TASK MODE ARCHITECTURE};
+\node[font=\sffamily\large,color=gray] at (0,11.3) {Autonomous Task Execution \& Orchestration};
+
+% Layer 1 - Task Initiation
+\node[mainbox, fill=lightgray, minimum width=12cm, minimum height=1.5cm] (tasklayer) at (0,9.5) {};
+\node[componentbox, fill=lightblue, draw=primaryblue] (taskinput) at (-4,9.5) {📋 Task Input};
+\node[componentbox, fill=lightorange, draw=orange] (analysis) at (0,9.5) {🔍 Requirement Analysis};
+\node[componentbox, fill=lightgreen, draw=green] (planning) at (4,9.5) {📊 Strategy Planning};
+
+% Arrows between task components
+\draw[arrow] (taskinput) -- (analysis);
+\draw[arrow] (analysis) -- (planning);
+
+% Layer 2 - Orchestration Engine
+\node[mainbox, fill=lightblue!30, draw=primaryblue, line width=2pt, minimum width=14cm, minimum height=4cm, drop shadow] (orchestrator) at (0,5) {};
+\node[font=\sffamily\bfseries\large] at (0,6.8) {🎯 SIYA TASK ORCHESTRATOR};
+\node[font=\sffamily,color=gray] at (0,6.3) {Intelligent Autonomous Execution Controller};
+
+% Orchestrator components
+\node[componentbox, fill=lightblue, draw=primaryblue] (planner) at (-4.5,5.3) {🧠 Planning Engine};
+\node[componentbox, fill=lightorange, draw=orange] (executor) at (-1.5,5.3) {⚡ Execution Controller};
+\node[componentbox, fill=lightgreen, draw=green] (state) at (1.5,5.3) {🔄 State Manager};
+\node[componentbox, fill=lightpurple, draw=purple] (selector) at (4.5,5.3) {🎨 Agent Selector};
+\node[componentbox, fill=lightorange!70, draw=orange!80] (monitor) at (-3,3.7) {📈 Monitor \& Logger};
+\node[componentbox, fill=red!20, draw=red!60] (error) at (3,3.7) {⚠️ Error Handler};
+
+% Layer 3 - Specialized Agents
+% Top row of agents
+\node[agentbox, fill=green!20, draw=green!80, drop shadow] (codeagent) at (-5.5,1) {
+    \begin{tabular}{c}
+    🔧 Code Agent\\
+    \footnotesize Write, refactor, debug
+    \end{tabular}
+};
+\node[agentbox, fill=blue!20, draw=blue!80, drop shadow] (researchagent) at (-2.8,1) {
+    \begin{tabular}{c}
+    🔍 Research Agent\\
+    \footnotesize Information gathering
+    \end{tabular}
+};
+\node[agentbox, fill=orange!20, draw=orange!80, drop shadow] (testagent) at (0,1) {
+    \begin{tabular}{c}
+    🧪 Test Agent\\
+    \footnotesize Quality assurance
+    \end{tabular}
+};
+\node[agentbox, fill=purple!20, draw=purple!80, drop shadow] (buildagent) at (2.8,1) {
+    \begin{tabular}{c}
+    📦 Build Agent\\
+    \footnotesize Compilation
+    \end{tabular}
+};
+\node[agentbox, fill=cyan!20, draw=cyan!80, drop shadow] (dataagent) at (5.5,1) {
+    \begin{tabular}{c}
+    📊 Data Agent\\
+    \footnotesize Data processing
+    \end{tabular}
+};
+
+% Bottom row of agents
+\node[agentbox, fill=red!20, draw=red!80, drop shadow] (webagent) at (-5.5,-1.5) {
+    \begin{tabular}{c}
+    🌐 Web Agent\\
+    \footnotesize Frontend dev
+    \end{tabular}
+};
+\node[agentbox, fill=gray!30, draw=gray!80, drop shadow] (securityagent) at (-2.8,-1.5) {
+    \begin{tabular}{c}
+    🔐 Security Agent\\
+    \footnotesize Security scan
+    \end{tabular}
+};
+\node[agentbox, fill=brown!20, draw=brown!80, drop shadow] (docagent) at (0,-1.5) {
+    \begin{tabular}{c}
+    📝 Doc Agent\\
+    \footnotesize Documentation
+    \end{tabular}
+};
+\node[agentbox, fill=indigo!20, draw=indigo!80, drop shadow] (devopsagent) at (2.8,-1.5) {
+    \begin{tabular}{c}
+    🚀 DevOps Agent\\
+    \footnotesize Infrastructure
+    \end{tabular}
+};
+\node[agentbox, fill=pink!30, draw=pink!80, drop shadow] (aiagent) at (5.5,-1.5) {
+    \begin{tabular}{c}
+    🤖 AI Agent\\
+    \footnotesize ML integration
+    \end{tabular}
+};
+
+% Layer 4 - Infrastructure & Results
+\node[mainbox, fill=lightpurple!30, draw=purple, minimum width=6.5cm, minimum height=2cm] (infrastructure) at (-3.5,-4) {};
+\node[font=\sffamily\bfseries] at (-3.5,-3.3) {🏗️ FOUNDATION SERVICES};
+\node[componentbox, fill=lightpurple, draw=purple] (workspace) at (-5.5,-4.3) {💾 Workspace};
+\node[componentbox, fill=lightpurple, draw=purple] (memory) at (-3.5,-4.3) {🧠 Memory};
+\node[componentbox, fill=lightpurple, draw=purple] (mcp) at (-1.5,-4.3) {🔌 MCP};
+
+\node[mainbox, fill=lightgreen!30, draw=green, minimum width=6.5cm, minimum height=2cm] (results) at (3.5,-4) {};
+\node[font=\sffamily\bfseries] at (3.5,-3.3) {📤 TASK COMPLETION};
+\node[componentbox, fill=lightgreen, draw=green] (success) at (1.5,-4.3) {✅ Success};
+\node[componentbox, fill=lightgreen, draw=green] (report) at (3.5,-4.3) {📊 Report};
+\node[componentbox, fill=lightgreen, draw=green] (deliver) at (5.5,-4.3) {🎁 Deliverables};
+
+% Connections
+% From planning to orchestrator
+\draw[arrow, line width=2pt] (planning) -- (orchestrator.north);
+
+% From orchestrator to agents
+\foreach \agent in {codeagent,researchagent,testagent,buildagent,dataagent,webagent,securityagent,docagent,devopsagent,aiagent}
+    \draw[arrow] (orchestrator.south) -- (\agent);
+
+% From agents to infrastructure
+\foreach \agent in {codeagent,researchagent,testagent,webagent,securityagent,docagent}
+    \draw[dashedarrow] (\agent) -- (infrastructure.north);
+
+% From agents to results
+\foreach \agent in {buildagent,dataagent,devopsagent,aiagent}
+    \draw[dashedarrow] (\agent) -- (results.north);
+
+% Side panels
+% Left panel - Execution Pipeline
+\begin{scope}[on background layer]
+    \node[rectangle, fill=lightgray!50, rounded corners=8pt, minimum width=2.5cm, minimum height=8cm] at (-8,3) {};
+\end{scope}
+\node[font=\sffamily\bfseries,rotate=90] at (-8.5,3) {EXECUTION PIPELINE};
+\node[componentbox, fill=white] (step1) at (-8,6) {📥 Task Reception};
+\node[componentbox, fill=white] (step2) at (-8,4.5) {🔍 Analysis};
+\node[componentbox, fill=white] (step3) at (-8,3) {📋 Planning};
+\node[componentbox, fill=white] (step4) at (-8,1.5) {🚀 Execution};
+\node[componentbox, fill=white] (step5) at (-8,0) {✅ Validation};
+\draw[arrow] (step1) -- (step2);
+\draw[arrow] (step2) -- (step3);
+\draw[arrow] (step3) -- (step4);
+\draw[arrow] (step4) -- (step5);
+
+% Right panel - Performance Metrics
+\begin{scope}[on background layer]
+    \node[rectangle, fill=lightgray!50, rounded corners=8pt, minimum width=2.5cm, minimum height=8cm] at (8,3) {};
+\end{scope}
+\node[font=\sffamily\bfseries,rotate=270] at (8.5,3) {PERFORMANCE METRICS};
+\node[componentbox, fill=white] at (8,6) {⚡ Speed: 95\%};
+\node[componentbox, fill=white] at (8,4.5) {📊 Usage: 72\%};
+\node[componentbox, fill=white] at (8,3) {✅ Success: 98\%};
+\node[componentbox, fill=white] at (8,1.5) {🔄 Active: 12};
+\node[componentbox, fill=white] at (8,0) {📈 Throughput};
+
+% Add decorative elements
+\begin{scope}[on background layer]
+    % Grid pattern
+    \draw[step=0.5cm,gray!10,very thin] (-9,-5.5) grid (9,10.5);
+\end{scope}
+
+% Footer
+\node[font=\sffamily\footnotesize,color=gray] at (-6,-5.8) {Powered by SIYA AI};
+\node[font=\sffamily\footnotesize,color=gray] at (0,-5.8) {Enterprise-Grade Autonomous Development};
+\node[font=\sffamily\footnotesize,color=gray] at (6,-5.8) {v2.0};
+
+\end{tikzpicture}
+\end{document}

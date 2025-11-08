@@ -1,0 +1,6 @@
+/* Custom styles for SIYA documentation */
+
+/* Remove any default text alignment that might interfere */
+.mdx-content * {
+  text-align: inherit;
+}

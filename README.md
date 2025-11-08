@@ -1,43 +1,72 @@
-# Mintlify Starter Kit
+# SIYA Documentation Guidelines
 
-Use the starter kit to get your docs deployed and ready to customize.
+Welcome to the SIYA documentation repository! This site is built with [Mintlify](https://mintlify.com), providing beautiful, interactive documentation for the SIYA multi-agent AI system.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## 🚀 Quick Start
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+### Prerequisites
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+Before you begin, ensure you have the following installed:
 
-## Development
+- **Node.js** (version 16 or higher)
+- **npm** package manager
+- **Git**
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+### Installation
 
-```
-npm i -g mint
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/syia-ai/siya-public-documentation.git
+   cd siya-public-documentation
+   ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+2. **Install Mintlify CLI globally**
+   ```bash
+   npm install -g mint
+   ```
 
-```
-mint dev
-```
+3. **Verify installation**
+   ```bash
+   mint --version
+   ```
 
-View your local preview at `http://localhost:3000`.
+### Local Development
 
-## Publishing changes
+1. **Start the development server**
+   ```bash
+   mint dev
+   ```
+   
+   This will start a local server at `http://localhost:3000`
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+2. **Open your browser**
+   Navigate to `http://localhost:3000` to view the documentation
 
-## Need help?
+3. **Make changes**
+   - Edit any `.mdx` files
+   - Changes will automatically reload in the browser
+   - Configuration changes in `docs.json` may require a server restart
 
-### Troubleshooting
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+## 🔧 Configuration
+
+### Main Configuration (`docs.json`)
+
+ 
+### Update Navigation tab
+- Open `docs.json`.
+- Locate the **navigation** section.
+- Inside the relevant group, add the path of your `.mdx` file to the `path` array.
+
+---
+
+
+## 🚀 Deployment
+
+### Automatic Deployment
+
+This site is configured for automatic deployment when changes are pushed to the main branch.
+
+
+✅ You can now preview your changes live in the browser while you work.

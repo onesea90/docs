@@ -1,0 +1,122 @@
+/* Responsive styles for Explore SIYA section */
+
+/* Ensure the auto-fit grid works properly */
+div[style*="gridTemplateColumns: 'repeat(auto-fit"] {
+  display: grid !important;
+  width: 100% !important;
+}
+
+/* Ensure consistent card heights within rows */
+.bg-white.dark\:bg-gray-800.border.rounded-2xl {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Make the description grow to fill available space */
+.bg-white.dark\:bg-gray-800.border.rounded-2xl > p {
+  flex-grow: 1;
+}
+
+/* Mobile adjustments for Explore SIYA cards */
+@media (max-width: 767px) {
+  /* Reduce gap on mobile for better spacing */
+  div[style*="gap: '24px'"] {
+    gap: 16px !important;
+  }
+  
+  /* Ensure full width on very small screens */
+  div[style*="minmax(280px"] {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  }
+}
+
+/* Ensure the grid container doesn't overflow on mobile */
+@media (max-width: 480px) {
+  div[style*="maxWidth: '1200px'"] {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+}
+
+/* Card styling improvements for mobile */
+@media (max-width: 767px) {
+  /* Explore SIYA cards */
+  .bg-white.dark\:bg-gray-800.border.border-gray-200 {
+    padding: 1rem !important;
+    margin-bottom: 0;
+  }
+  
+  /* Card icon container */
+  .bg-white.dark\:bg-gray-800 .w-10.h-10 {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  /* Card title */
+  .bg-white.dark\:bg-gray-800 h3 {
+    font-size: 1.125rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Card description */
+  .bg-white.dark\:bg-gray-800 p.text-xs {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Arrow indicator */
+  .bg-white.dark\:bg-gray-800 .mt-4.text-gray-400 {
+    margin-top: 1rem !important;
+  }
+}
+
+/* Ensure proper spacing between sections on mobile */
+@media (max-width: 767px) {
+  .mt-20.md\:mt-32 {
+    margin-top: 3rem !important;
+  }
+  
+  h2.text-3xl.md\:text-4xl {
+    font-size: 1.875rem !important;
+    margin-bottom: 2rem !important;
+  }
+}
+
+/* Fix for hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .bg-white.dark\:bg-gray-800.border:hover {
+    box-shadow: none !important;
+  }
+  
+  .bg-white.dark\:bg-gray-800.border:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Ensure cards maintain aspect ratio */
+.bg-white.dark\:bg-gray-800.border.rounded-2xl {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bg-white.dark\:bg-gray-800.border.rounded-2xl > p {
+  flex-grow: 1;
+}
+
+/* Improve readability on very small screens */
+@media (max-width: 375px) {
+  .bg-white.dark\:bg-gray-800.border.rounded-2xl {
+    padding: 0.875rem !important;
+  }
+  
+  .bg-white.dark\:bg-gray-800 h3 {
+    font-size: 1rem !important;
+  }
+  
+  .bg-white.dark\:bg-gray-800 p.text-xs {
+    font-size: 0.8125rem !important;
+  }
+}

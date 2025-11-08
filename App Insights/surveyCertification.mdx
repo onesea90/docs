@@ -1,0 +1,553 @@
+---
+title: "Survey Management"
+description: "SIYA's Survey & Certification module transforms vessel compliance with an intelligent, automated solution. By centralizing data and leveraging AI-powered analytics, we ensure your entire fleet remains compliant, operational, and ahead of deadlines, 24/7."
+icon: "certificate"
+---
+
+{/* NOTE: This import path uses an alias '@'.
+  If this fails, check your project's path configuration (e.g., jsconfig.json or tsconfig.json).
+  You might need to use a relative path instead, like:
+  import { Info } from '../../components/Callouts';
+*/ }
+import { Info } from '@components/Callouts';
+
+export const IntegrationMethodsFlowchart = () => {
+    const styles = `
+      .integration-flowchart-root { 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+        background-color: #f9fafb; 
+        color: #1f2937; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        padding: 40px 20px; 
+        box-sizing: border-box; 
+      }
+      .integration-flowchart-container { 
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-around; 
+        align-items: flex-start; 
+        gap: 20px; 
+        width: 100%; 
+        max-width: 1100px; 
+      }
+      .flowchart-stage { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center; 
+        flex: 1; 
+        padding: 20px; 
+        background-color: rgba(255, 255, 255, 0.8); 
+        border: 1px solid rgba(0, 0, 0, 0.05); 
+        border-radius: 12px; 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+        backdrop-filter: blur(8px); 
+        -webkit-backdrop-filter: blur(8px); 
+        min-height: 220px; 
+      }
+      .stage-icon { 
+        width: 36px; 
+        height: 36px; 
+        color: #2563eb; 
+        margin-bottom: 15px; 
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .group-title { 
+        font-size: 0.9rem; 
+        font-weight: 600; 
+        color: #6b7280; 
+        margin: 0 0 20px 0; 
+        text-transform: uppercase; 
+        letter-spacing: 0.5px; 
+      }
+      .node-cluster { 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 12px; 
+      }
+      .node { 
+        background-color: #fff; 
+        border: 1px solid #d1d5db; 
+        border-radius: 8px; 
+        padding: 8px 16px; 
+        font-size: 0.85rem; 
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+        text-align: center; 
+      }
+      .node.siya-engine { 
+        background-color: #2563eb; 
+        color: #fff; 
+        border-color: #2563eb; 
+      }
+      .node.risk-assessment { 
+        background-color: #16a34a; 
+        color: #fff; 
+        border-color: #16a34a; 
+      }
+      .flowchart-connector { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        color: #9ca3af; 
+        flex-shrink: 0; 
+        margin-top: 80px; 
+      }
+      .arrow-icon {
+        width: 32px;
+        height: 32px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      
+      @media (max-width: 800px) {
+        .integration-flowchart-container { 
+          flex-direction: column; 
+          gap: 30px; 
+          align-items: center; 
+        }
+        .flowchart-connector { 
+          transform: rotate(90deg); 
+          margin: -15px 0; 
+        }
+      }
+    `;
+
+    return (
+        <div className="integration-flowchart-root">
+            <style dangerouslySetInnerHTML={{__html: styles}} />
+            <div className="integration-flowchart-container">
+                
+                <section className="flowchart-stage">
+                    <svg className="stage-icon" viewBox="0 0 24 24">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    <h2 className="group-title">Data Collection</h2>
+                    <div className="node-cluster">
+                        <div className="node">Web Scraping</div>
+                        <div className="node">API Integration</div>
+                        <div className="node">PDF Parsing</div>
+                        <div className="node">Real-time Monitoring</div>
+                    </div>
+                </section>
+                
+                <div className="flowchart-connector">
+                    <svg className="arrow-icon" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+                
+                <section className="flowchart-stage">
+                    <svg className="stage-icon" viewBox="0 0 24 24">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                        <line x1="9" y1="1" x2="9" y2="4"></line>
+                        <line x1="15" y1="1" x2="15" y2="4"></line>
+                        <line x1="9" y1="20" x2="9" y2="23"></line>
+                        <line x1="15" y1="20" x2="15" y2="23"></line>
+                        <line x1="20" y1="9" x2="23" y2="9"></line>
+                        <line x1="20" y1="14" x2="23" y2="14"></line>
+                        <line x1="1" y1="9" x2="4" y2="9"></line>
+                        <line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                    <h2 className="group-title">SIYA AI Processing</h2>
+                    <div className="node-cluster">
+                        <div className="node siya-engine">Intelligence Engine</div>
+                        <div className="node">Data Harmonization</div>
+                        <div className="node">AI Analysis</div>
+                    </div>
+                </section>
+                
+                <div className="flowchart-connector">
+                    <svg className="arrow-icon" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+
+                <section className="flowchart-stage">
+                    <svg className="stage-icon" viewBox="0 0 24 24">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <h2 className="group-title">Intelligent Delivery</h2>
+                    <div className="node-cluster">
+                        <div className="node">Survey Alerts</div>
+                        <div className="node">Certificate Reminders</div>
+                        <div className="node">Mobile Notifications</div>
+                    </div>
+                </section>
+                
+            </div>
+        </div>
+    );
+};
+
+export const Alert = ({ type = 'info', children }) => (
+  <div style={{ padding: '1rem', borderRadius: '8px', marginBottom: '1rem', backgroundColor: type === 'warning' ? '#FEF3C7' : type === 'error' ? '#FEE2E2' : type === 'success' ? '#D1FAE5' : '#DBEAFE', borderLeft: `4px solid ${ type === 'warning' ? '#FBBF24' : type === 'error' ? '#F87171' : type === 'success' ? '#34D399' : '#60A5FA' }`, color: '#111827' }}>
+    <strong>{type.charAt(0).toUpperCase() + type.slice(1)}:</strong> {children}
+  </div>
+);
+
+export const SurveyTypes = () => {
+  const [selectedSurvey, setSelectedSurvey] = React.useState(0);
+  const surveys = [
+    { type: 'Annual Survey', description: 'Yearly comprehensive vessel inspection covering safety equipment, structural integrity, and operational systems.', frequency: 'Every 12 months', duration: '1-2 days' },
+    { type: 'Intermediate Survey', description: 'Mid-period inspection between special surveys, focusing on critical safety systems and structural elements.', frequency: 'Every 2.5 years', duration: '2-3 days' },
+    { type: 'Special Survey', description: 'Comprehensive five-year survey including dry-docking, detailed structural examination, and system overhauls.', frequency: 'Every 5 years', duration: '1-2 weeks' },
+    { type: 'Continuous Survey', description: 'Ongoing survey program spreading inspection requirements over the survey cycle.', frequency: 'Continuous', duration: 'Ongoing' },
+    { type: 'Docking Survey', description: 'Underwater hull examination and maintenance during dry-dock periods.', frequency: 'As required', duration: '3-5 days' }
+  ];
+  return (
+    <div style={{ margin: '20px 0' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', marginBottom: '20px' }}>
+        {surveys.map((survey, index) => (
+          <div key={index} onClick={() => setSelectedSurvey(selectedSurvey === index ? null : index)} style={{ backgroundColor: selectedSurvey === index ? '#eff6ff' : 'white', border: '1px solid', borderColor: selectedSurvey === index ? '#3b82f6' : '#e5e7eb', borderRadius: '8px', padding: '16px', cursor: 'pointer', transition: 'all 0.2s ease', boxShadow: selectedSurvey === index ? '0 4px 6px -1px rgba(0,0,0,0.1)' : '0 1px 3px 0 rgba(0,0,0,0.1)' }}>
+            <h3 style={{ margin: '0 0 12px 0', color: '#1f2937' }}>{survey.type}</h3>
+            <p style={{fontSize: '0.9rem', color: '#4b5563', margin: 0, lineHeight: 1.5}}>{survey.description.substring(0, 70)}...</p>
+          </div>
+        ))}
+      </div>
+      {selectedSurvey !== null && (
+        <div style={{ backgroundColor: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '20px', marginTop: '16px' }}>
+          <h4 style={{ margin: '0 0 12px 0', color: '#1f2937' }}>{surveys[selectedSurvey].type} Details</h4>
+          <p style={{ margin: '0 0 16px 0', color: '#374151', lineHeight: '1.6' }}>{surveys[selectedSurvey].description}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', fontSize: '0.9rem', color: '#4b5563' }}>
+            <div><strong>Frequency:</strong> {surveys[selectedSurvey].frequency}</div>
+            <div><strong>Duration:</strong> {surveys[selectedSurvey].duration}</div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+{/* NOTE: The image source path '/assets/class.png' assumes the 'assets' folder is at the root of your site.
+  If the image is in the same folder as this MDX file, you might use a relative path like './class.png'.
+  Please verify the correct path to your image.
+*/}
+
+## The Challenge of Manual Compliance
+
+Managing a vessel's survey and certification lifecycle is a high-stakes, labor-intensive process. Teams often struggle with scattered data across PDFs, emails, and various class society portals. This manual approach is prone to error, leading to missed deadlines, costly operational delays, and significant compliance risks.
+
+## How SIYA Automates Compliance
+
+SIYA Analytics replaces manual tracking with a seamless, automated workflow. We integrate all your compliance data into a single source of truth and use AI to provide actionable intelligence, transforming complex data into a clear path to action.
+
+<div style={{ display: 'flex', justifyContent: 'center', margin: '2em 0' }}>
+  <img src="/assets/class.png" alt="SIYA Analytics workflow for survey and certification" width="800" />
+</div>
+
+Our automated engine operates on a continuous three-step cycle:
+1.  **Data Integration:** The system automatically aggregates data from classification societies, vessel documents, and maritime databases into a centralized platform.
+2.  **AI-Powered Analysis:** SIYA's intelligent engine processes the unified data, validating certificate statuses, identifying upcoming deadlines, and generating prioritized alerts.
+3.  **Actionable Output:** Clear, on-demand reports and dashboard visualizations are delivered to stakeholders, highlighting what needs to be done, by whom, and when.
+
+## SIYA Survey Management Workflow
+
+<IntegrationMethodsFlowchart />
+
+## Core Features & Benefits
+
+### Eliminate Manual Data Entry
+Our system automatically pulls and normalizes data from numerous maritime sources, including leading classification societies (e.g., DNV, ClassNK, ABS), official PDFs, and secure websites. This saves hundreds of hours and removes the risk of human error.
+
+### Achieve Total Fleet Visibility
+Gain a single, unified dashboard view of all critical compliance data for your entire fleet. Drill down from a fleet-level overview to a specific vessel's certificate or machinery item status in seconds.
+
+### Never Miss a Deadline
+Our intelligent alert system provides proactive notifications for all critical events, ensuring you are always ahead of schedule.
+- **Periodical Survey Alerts:** Timely notifications for upcoming Annual, Intermediate, and Special Surveys.
+- **Certificate & Crew Compliance:** Actively tracks expiry dates for all vessel certificates, crew Certificates of Competency (CoC), and dispensations.
+- **Flag State Intelligence:** The system incorporates specific flag state logic. For example, for a **Panama-flagged vessel**, it automatically understands that a new certificate is re-issued directly by the flag authority upon expiry, preventing false alerts.
+
+
+
+### Generate Instant, Actionable Reports
+Instantly generate a detailed **Survey Status Report** with one click. The report doesn't just list dates—it actively highlights all upcoming and overdue items, providing a clear action plan for your team.
+
+<Info>
+  **Real-World Application:** A vessel superintendent generates their daily status report. The SIYA-powered report automatically flags an expiring CoC for the Chief Engineer on Vessel A and an upcoming annual survey for Vessel B. The superintendent can forward this actionable report directly to the respective ship masters to ensure timely completion.
+</Info>
+
+<Alert type="success">
+  **Automated Intelligence:** SIYA's system processes compliance data points daily across multiple classification societies, reducing manual oversight and preventing missed deadlines.
+</Alert>
+
+### Maritime Survey Types & Classification Society Requirements
+
+Our system handles the complete spectrum of maritime surveys required by international classification societies:
+
+**Periodical Surveys:**
+- **Annual Survey:** Yearly inspection of safety equipment, structural integrity, and operational systems
+- **Intermediate Survey:** Mid-period comprehensive inspection between special surveys (2.5-year cycle)
+- **Special Survey:** Complete five-year survey including dry-docking and detailed structural examination
+- **Continuous Survey:** Ongoing survey program spreading inspection requirements throughout the survey cycle
+- **Docking Survey:** Underwater hull examination during dry-dock periods
+
+**Certificate Management:**
+- **Safety Management Certificate (SMC):** ISM Code compliance for individual vessels
+- **Document of Compliance (DOC):** Company-level ISM certification
+- **Maritime Labour Certificate (MLC):** Crew living and working conditions compliance
+- **International Safety Management (ISM):** Safety management system certification
+- **ISSC (International Ship Security Certificate):** Maritime security compliance
+
+<Alert type="warning">
+  **Classification Society Integration:** SIYA connects directly to 9+ major classification societies with multiple DOC (Document of Compliance) company credentials, ensuring comprehensive coverage across the global fleet.
+</Alert>
+
+---
+
+## Technical Deep Dive: The SIYA Classification Society Engine
+
+The core of our Survey Management module is a sophisticated backend built with Python that connects directly to major classification societies including **DNV, ABS, ClassNK (NK), Bureau Veritas (BV), China Classification Society (CCS), Lloyd's Register (LR), Korean Register (KR), Indian Register of Shipping (IRS), and RINA**. The system processes real maritime compliance data for active vessels worldwide.
+
+### Multi-Classification Society Integration
+
+Our system maintains secure connections to each classification society through their official APIs and web portals, supporting multiple shipping companies and vessel management organizations:
+
+```python
+# Vessel Data Processing Pipeline
+def process_fleet_compliance():
+    """
+    Main processing pipeline for fleet-wide compliance monitoring
+    """
+    # Retrieve active vessel fleet
+    active_vessels = get_active_vessel_fleet()
+    
+    # Process each classification society
+    for society in ['DNV', 'ABS', 'NK', 'BV', 'CCS', 'LR', 'KR', 'IRS', 'RINA']:
+        society_vessels = filter_vessels_by_class(active_vessels, society)
+        
+        # Extract compliance data for each vessel
+        for vessel in society_vessels:
+            survey_data = extract_survey_status(vessel, society)
+            certificate_data = extract_certificate_status(vessel, society)
+            
+            # Process and analyze compliance status
+            compliance_status = analyze_compliance(survey_data, certificate_data)
+            
+            # Update vessel compliance database
+            update_vessel_compliance(vessel['imo'], compliance_status)
+    
+    return generate_fleet_compliance_report()
+
+# Fetch active vessel fleet
+active_vessel_fleet = pd.DataFrame(
+    list(vessel_database.find(
+        {"status": "ACTIVE"}, 
+        {"_id": 0, "imo": 1, "vesselName": 1, "class": 1, "flag": 1}
+    ))
+)
+```
+
+### Advanced Survey Status Processing
+
+The system processes multiple types of maritime surveys with intelligent priority logic and date handling:
+
+```python
+def select_next_survey(periodic_surveys_df):
+    """
+    Selects the next survey with maritime industry priority logic:
+    Special Survey > Intermediate Survey > Annual Survey
+    """
+    if periodic_surveys_df.empty:
+        return None
+
+    # Group surveys by due date
+    grouped = periodic_surveys_df.groupby("periodical_date")
+    sorted_dates = sorted(grouped.groups.keys())
+
+    for date in sorted_dates:
+        same_date_surveys = grouped.get_group(date)
+        survey_names = same_date_surveys["surveyName"].tolist()
+
+        # Maritime industry priority hierarchy
+        if "Special Survey" in survey_names:
+            return same_date_surveys[same_date_surveys["surveyName"] == "Special Survey"].iloc[0]
+        elif "Intermediate Survey" in survey_names:
+            return same_date_surveys[same_date_surveys["surveyName"] == "Intermediate Survey"].iloc[0]
+        elif "Annual Survey" in survey_names:
+            return same_date_surveys[same_date_surveys["surveyName"] == "Annual Survey"].iloc[0]
+        else:
+            return same_date_surveys.iloc[0]
+
+    return periodic_surveys_df.sort_values(by='periodical_date').iloc[0]
+
+def parse_maritime_dates(date_field):
+    """
+    Handles multiple date formats from different classification societies
+    """
+    try:
+        if date_field and date_field != "--":
+            if isinstance(date_field, str):
+                if "-" in date_field and len(date_field.split("-")) == 3:
+                    return pd.to_datetime(date_field)  # ISO format
+                elif "T" in date_field and "+" in date_field:
+                    return pd.to_datetime(date_field, format="%Y-%m-%dT%H:%M:%S.%f%z")  # MongoDB format
+                else:
+                    return pd.to_datetime(date_field, format='%d %b %Y')  # Maritime standard
+            elif isinstance(date_field, dict) and '$date' in date_field:
+                return pd.to_datetime(date_field['$date'])  # MongoDB date object
+            else:
+                return pd.to_datetime(date_field)
+        return None
+    except Exception:
+        return None
+```
+
+### Certificate Management System
+
+The system tracks multiple certificate types with class-specific validation logic:
+
+```python
+def calculate_certificate_status(vessel_class, cms_details):
+    """
+    Calculates certificate status with class-specific logic for:
+    - Safety Management Certificate (SMC)
+    - Document of Compliance (DOC)  
+    - International Safety Management (ISM)
+    - Maritime Labour Certificate (MLC)
+    """
+    if not isinstance(cms_details, list) or len(cms_details) == 0:
+        return {"status": "In Order", "color": "green", "order": 4}
+
+    for detail in cms_details:
+        due_date = detail.get('dueDate')
+        postponed_date = detail.get('extendedDate')
+        done_date = detail.get('doneDate')
+        last_date = detail.get('lastDate')
+
+        # Check for recently completed certificates (within 365 days)
+        if last_date and 1 <= (datetime.now() - last_date).days <= 365:
+            return {"status": "Credited", "color": "green", "order": 3}
+        if done_date and 1 <= (datetime.now() - done_date).days <= 365:
+            return {"status": "Credited", "color": "green", "order": 3}
+
+        # Class-specific date handling
+        dates = {
+            "NK": [due_date, postponed_date],
+            "LR": [due_date, postponed_date], 
+            "CCS": [due_date, postponed_date],
+            "IRS": [due_date, postponed_date],
+            "BV": [due_date, postponed_date],
+            "ABS": [due_date, postponed_date],
+            "RINA": [due_date],  # RINA only uses due_date
+            "KR": [due_date, postponed_date],
+            "DNV": [due_date, postponed_date]
+        }.get(vessel_class, [due_date, postponed_date])
+
+        valid_dates = [d for d in dates if pd.notnull(d)]
+        if not valid_dates:
+            continue
+
+        max_date = max(valid_dates)
+        days_diff = (max_date - datetime.now()).days
+
+        if days_diff <= 0:
+            return {"status": "Overdue", "color": "red", "order": 1}
+        elif days_diff <= 90:
+            return {"status": f"Due in {days_diff} days", "color": "orange", "order": 2}
+
+    return {"status": "In Order", "color": "green", "order": 4}
+```
+
+### AWS S3 Document Management
+
+The system automatically uploads and organizes maritime documents in AWS S3 with class-specific folder structures:
+
+```python
+def upload_to_s3_certificate(file_content, file_name, imo_number):
+    """
+    Uploads certificates to S3 with organized folder structure:
+    CLASS/{ClassificationSociety}/Certificates/{IMO}/
+    """
+    s3_client = boto3.client("s3", 
+        aws_access_key_id=aws_access_key,
+        aws_secret_access_key=aws_secret_key,
+        region_name=aws_region)
+    
+    folder_path = f"CLASS/NK/Certificates/{imo_number}/"
+    
+    # Determine content type for maritime documents
+    content_type = "application/pdf"
+    if file_name.lower().endswith((".tif", ".tiff")):
+        content_type = "image/tiff"
+    elif file_name.lower().endswith(".pdf"):
+        content_type = "application/pdf"
+    
+    s3_client.put_object(
+        Bucket=bucket_name,
+        Key=folder_path + file_name,
+        Body=file_content,
+        ContentType=content_type
+    )
+    
+def upload_survey_status(file_content, file_name, imo):
+    """
+    Uploads survey status reports with date-organized structure:
+    CLASS/{Society}/Survey_Status/{IMO}/{Year}/{Month}/
+    """
+    folder_path = f"CLASS/ABS/Survey_Status/{imo}/{datetime.now().year}/{datetime.now().month}.{datetime.now().strftime('%b')}/"
+    # Upload logic...
+```
+
+### Intelligent Notification System
+
+The system delivers targeted compliance alerts through multiple channels based on organizational hierarchy and vessel management structure:
+
+```python
+def generate_compliance_notifications(vessel_compliance_data):
+    """
+    Generates intelligent notifications based on compliance status and urgency
+    """
+    notifications = []
+    
+    for vessel in vessel_compliance_data:
+        compliance_status = vessel['compliance_status']
+        vessel_info = vessel['vessel_info']
+        
+        # Determine notification priority and recipients
+        if compliance_status['has_overdue_items']:
+            priority = 'HIGH'
+            notification_type = 'URGENT_COMPLIANCE_ALERT'
+        elif compliance_status['items_due_within_30_days']:
+            priority = 'MEDIUM'
+            notification_type = 'UPCOMING_DEADLINE_ALERT'
+        else:
+            priority = 'LOW'
+            notification_type = 'STATUS_UPDATE'
+        
+        # Create notification package
+        notification = {
+            'vessel_imo': vessel_info['imo'],
+            'vessel_name': vessel_info['name'],
+            'priority': priority,
+            'type': notification_type,
+            'compliance_summary': compliance_status['summary'],
+            'action_items': compliance_status['action_required'],
+            'deadline_info': compliance_status['next_deadline']
+        }
+        
+        notifications.append(notification)
+    
+    # Route notifications through appropriate channels
+    route_notifications(notifications)
+    
+    return notifications
+```
+
+This comprehensive system processes real maritime compliance data from major classification societies, handling thousands of vessels with automated survey tracking, certificate management, and intelligent alerting for the global shipping industry.

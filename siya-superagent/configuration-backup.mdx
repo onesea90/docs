@@ -1,0 +1,327 @@
+---
+title: "Configuration Guide"
+description: "Customize Siya settings and preferences for your workflow"
+icon: "gear"
+---
+
+
+## Customize Siya to Your Needs
+
+Siya offers extensive configuration options to tailor its behavior to your preferences and requirements. From appearance settings to advanced AI parameters, you can fine-tune every aspect of your experience.
+
+## Accessing Configuration
+
+### macOS Desktop App
+
+**Main Preferences**
+- Siya menu → Preferences (⌘,)
+- Or use the settings icon in the toolbar
+
+**Quick Settings**
+- Right-click in chat area
+- Use keyboard shortcuts
+- Access from status bar
+
+## General Settings
+
+### Account & Subscription
+- **Profile Information** - Your account details
+- **Subscription Status** - Current plan and features
+- **Usage Statistics** - Track your usage
+- **Billing** - Manage payment methods
+
+### Updates
+- **Automatic Updates** - Enable/disable auto-update
+- **Update Channel** - Stable or beta releases
+- **Check Now** - Manual update check
+- **Release Notes** - View what's new
+
+## AI Model Settings
+
+### Model Selection
+- **Default Model** - Primary AI model for new chats
+- **Available Models**:
+  - Claude (Opus, Sonnet, Haiku)
+  - OpenAI (GPT-4, GPT-4 Turbo, GPT-3.5)
+  - Google (Gemini Pro, PaLM 2)
+  - Local Models (Llamafile support)
+- **Quick Switch** - Change models mid-conversation
+- **Task-Based Selection** - Different models for different tasks
+
+### Model Configuration
+- **Temperature** - Creativity level (0.0-1.0)
+- **Max Tokens** - Response length limit
+- **Top P** - Nucleus sampling parameter
+- **Frequency Penalty** - Reduce repetition
+
+### API Keys
+- **Anthropic API Key** - For Claude models
+- **OpenAI API Key** - For GPT models
+- **Google API Key** - For Gemini/PaLM
+- **Custom Endpoints** - For enterprise/local models
+
+### Local Models
+- **Models Directory** - `~/.siya/local-models/`
+- **Auto-Detection** - Finds llamafiles automatically
+- **Performance Settings** - Thread count, memory usage
+- **Model Management** - Add/remove local models
+
+## Appearance
+
+### Theme Options
+- **Light Mode** - Clean, bright interface
+- **Dark Mode** - Easy on the eyes
+- **Auto** - Match system preference
+- **Custom Themes** - Coming soon
+
+### Display Settings
+- **Font Size** - Adjust text size (10-20pt)
+- **Font Family** - Choose preferred font
+- **Line Spacing** - Comfortable reading
+- **Code Font** - Monospace options
+
+### Layout
+- **Sidebar Position** - Left or right
+- **Sidebar Width** - Adjustable size
+- **Compact Mode** - Minimize UI elements
+- **Full Screen** - Distraction-free mode
+
+## Behavior
+
+### Conversation Settings
+- **Auto-Save** - Save conversations automatically
+- **Save Location** - Choose where to store files
+- **History Length** - How many chats to keep
+- **Clear on Exit** - Privacy option
+
+### Input Preferences
+- **Enter Key** - Send or new line
+- **Smart Quotes** - Auto-formatting
+- **Spell Check** - Enable/disable
+- **Auto-Complete** - Suggestion behavior
+
+### Notifications
+- **Desktop Alerts** - Task completion notices
+- **Sound Effects** - Audio feedback
+- **Badge Count** - Show on dock icon
+- **Do Not Disturb** - Scheduled quiet times
+
+## Execution Preferences
+
+### Mode Settings
+- **Default Mode** - Chat or Task
+- **Mode Switching** - Allow mid-conversation changes
+- **Confirmation** - Require approval for task mode
+- **Progress Detail** - Verbosity level
+
+### Agent Configuration
+- **Sub-Agent Spawning** - Auto or manual
+- **Parallel Execution** - Max concurrent agents
+- **Memory Limits** - Per-agent memory caps
+- **Timeout Settings** - Max execution time
+
+## Privacy & Security
+
+### Data Handling
+- **Local Storage** - Keep data on device
+- **Encryption** - Secure your data
+- **Analytics** - Opt in/out of telemetry
+- **Data Export** - Download your data
+
+### Privacy Controls
+- **Clear History** - Remove conversations
+- **Reset Preferences** - Start fresh
+- **Anonymize** - Remove personal info
+- **Delete Account** - Complete removal
+
+### Security Settings
+- **Auto-Lock** - Require password after idle
+- **Secure Input** - Protected text entry
+- **Network Security** - Connection settings
+- **Two-Factor** - Extra account protection
+
+## Advanced Settings
+
+### Performance
+- **Memory Usage** - Set limits
+- **CPU Priority** - Resource allocation
+- **GPU Acceleration** - Enable/disable
+- **Cache Size** - Temporary storage
+
+### Cost Management
+- **Usage Tracking** - Monitor API costs
+- **Budget Alerts** - Set spending limits
+- **Model Routing** - Cost-optimized selection
+- **Local Model Priority** - Use free models when possible
+
+### Developer Options
+- **Console Output** - View logs
+- **Debug Mode** - Detailed information
+- **API Endpoints** - Custom servers
+- **Experimental** - Try new features
+
+### Keyboard Shortcuts
+
+**Customizable Shortcuts**
+- **Send Message** - Default: ⌘Enter
+- **New Chat** - Default: ⌘N
+- **Clear Chat** - Default: ⌘⇧K
+- **Toggle Mode** - Default: ⌘M
+- **Switch Model** - Default: ⌘⇧M
+
+**Create Your Own**
+1. Open Preferences
+2. Go to Shortcuts tab
+3. Click on action to modify
+4. Press new key combination
+
+## Workspace Configuration
+
+### Project Settings
+- **Default Directory** - Where to create files
+- **File Organization** - Structure preference
+- **Naming Convention** - File naming rules
+- **Git Integration** - Version control
+
+### Templates
+- **Code Templates** - Starting points
+- **Project Structures** - Common layouts
+- **Prompt Templates** - Reusable requests
+- **Export Formats** - Output preferences
+
+## Integration Settings
+
+### MCP Servers
+- **Configuration File** - `~/.siya/siya-desktop-config.json`
+- **Auto-Discovery** - Find available servers
+- **Connection Management** - Active servers
+- **Performance Monitoring** - Server metrics
+
+### Hooks Configuration
+- **Settings Files** - Multiple locations supported
+- **Event Filtering** - Choose which events to hook
+- **Command Execution** - Security settings
+- **Logging** - Hook execution logs
+
+### External Tools
+- **Code Editor** - Default editor choice
+- **Terminal** - Preferred terminal app
+- **Browser** - Default web browser
+- **File Manager** - Finder integration
+
+## Profiles
+
+### Multiple Configurations
+- **Work Profile** - Professional settings
+- **Personal Profile** - Casual use
+- **Development** - Coding focused
+- **Research** - Academic settings
+- **Offline** - Local models only
+
+### Profile Management
+- **Create Profile** - New configuration set
+- **Switch Profiles** - Quick change
+- **Export Profile** - Share settings
+- **Import Profile** - Use shared config
+
+## Backup & Restore
+
+### Backup Options
+- **Automatic Backup** - Regular saves
+- **Backup Location** - Where to store
+- **Include History** - Save conversations
+- **Encryption** - Secure backups
+
+### Restore Process
+1. Open Preferences
+2. Go to Backup tab
+3. Select backup file
+4. Choose what to restore
+5. Confirm restoration
+
+## Troubleshooting Settings
+
+### Reset Options
+- **Reset Preferences** - Default settings
+- **Clear Cache** - Remove temporary files
+- **Reset AI State** - Fresh start
+- **Factory Reset** - Complete reset
+
+### Diagnostic Tools
+- **Connection Test** - Check network
+- **Performance Test** - Benchmark system
+- **Model Test** - Verify AI access
+- **Log Collection** - For support
+
+## Best Practices
+
+### Optimization Tips
+1. **Model Selection** - Choose appropriate models for tasks
+2. **Local Models** - Use for privacy and cost savings
+3. **Memory Management** - Regular cleanup
+4. **Profile Usage** - Different settings for different work
+
+### Security Recommendations
+1. **API Key Security** - Use system keychain
+2. **Regular Backups** - Prevent data loss
+3. **Strong Authentication** - Secure your account
+4. **Review Permissions** - Check app access
+
+## Configuration Examples
+
+### For Developers
+- Default Model: Claude Opus
+- Dark theme
+- Monospace fonts
+- Git integration enabled
+- Local models for testing
+- Hooks for automation
+
+### For Writers
+- Default Model: GPT-4 Turbo
+- Light theme
+- Serif fonts
+- Grammar checking
+- Export to markdown
+- Focus on creativity
+
+### For Researchers
+- Default Model: Gemini Pro
+- Auto-save enabled
+- Detailed responses
+- Source citations
+- History preservation
+- Academic language
+
+### For Privacy-Conscious Users
+- Default Model: Local Llama
+- No telemetry
+- Local storage only
+- Encrypted backups
+- Offline mode
+- No cloud sync
+
+## Import/Export
+
+### Exporting Configuration
+1. Open Preferences
+2. Click Export Settings
+3. Choose what to include
+4. Save configuration file
+
+### Importing Configuration
+1. Open Preferences
+2. Click Import Settings
+3. Select configuration file
+4. Review and apply
+
+## Next Steps
+
+- Configure [Model Selection](./model-selection.mdx) for your needs
+- Set up [MCP Integration](./mcp-integration.mdx)
+- Configure [Hooks](./hooks-automation.mdx) for automation
+- Explore [Advanced Features](./advanced-topics.mdx)
+
+---
+
+*Configure Siya exactly how you want it - your AI, your way!*

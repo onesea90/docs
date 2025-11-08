@@ -1,0 +1,1198 @@
+---
+title: "Desktop Application"
+description: "Native Siya experience on macOS with powerful features"
+icon: "desktop"
+---
+
+
+<Card title="Siya Desktop - Your AI Companion, Always Ready" icon="apple" color="#000000">
+  Experience Siya's full power through our native macOS application. Built with performance and privacy in mind, the desktop app provides instant access to AI assistance with deep system integration, offline capabilities, and a beautiful native interface.
+</Card>
+
+## Download & Installation
+
+<Card title="Get Started in Minutes" icon="download" color="#4CAF50">
+  Simple installation process with automatic updates
+</Card>
+
+<Steps>
+  <Step title="Download Siya">
+    <Card title="macOS (Apple Silicon)" icon="apple" href="https://app.siya.com/join-waitlist.html">
+      **Download for Mac with M1/M2/M3**
+      
+      Version: 0.4.41 | Size: 125MB | Requires: macOS 12.0+
+    </Card>
+    
+    <Info>
+      Intel Mac and Windows versions coming soon!
+    </Info>
+  </Step>
+  
+  <Step title="Install Application">
+    <Columns cols={2}>
+      <div>
+        1. Open the downloaded DMG file
+        2. Drag Siya to Applications folder
+        3. Right-click and select "Open" first time
+        4. Grant necessary permissions when prompted
+      </div>
+      
+      <Frame caption="Simple drag-and-drop installation">
+        ```mermaid
+        graph LR
+            DMG[SIYA.dmg] --> Drag[Drag Siya.app]
+            Drag --> Apps[Applications Folder]
+            Apps --> Launch[Launch Siya]
+            Launch --> Ready[Ready to Use!]
+            
+            style DMG fill:#FFE082,stroke:#333
+            style Ready fill:#4CAF50,stroke:#333
+        ```
+      </Frame>
+    </Columns>
+  </Step>
+  
+  <Step title="Initial Setup">
+    <AccordionGroup>
+      <Accordion title="API Key Configuration" icon="key" defaultOpen>
+        Enter your API keys for cloud models:
+        - **Anthropic**: For Claude models
+        - **OpenAI**: For GPT models
+        - **Google**: For Gemini models
+        
+        <Tip>
+          API keys are stored securely in macOS Keychain
+        </Tip>
+      </Accordion>
+      
+      <Accordion title="Permissions" icon="shield">
+        Grant these permissions for full functionality:
+        - **Accessibility**: For system automation
+        - **Files and Folders**: For project access
+        - **Notifications**: For alerts and updates
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+</Steps>
+
+## Interface Overview
+
+<Card title="Beautiful, Native, Powerful" icon="palette" color="#9C27B0">
+  Designed specifically for macOS with attention to every detail
+</Card>
+
+<Tabs>
+  <Tab title="Main Window">
+    <Frame caption="Clean, focused interface optimized for productivity">
+      ```mermaid
+      graph TB
+          subgraph "Siya Desktop Interface"
+              subgraph "Top Bar"
+                  Menu[☰ Menu]
+                  |||
+                  subgraph "Workspace Group"
+                      Workspaces[📁 Workspaces]
+                      Folder[📂 Folder]
+                      Casefiles[📋 Casefiles]
+                  end
+                  |||
+                  subgraph "AI Features"
+                      Tasks[🤖 AI Tasks]
+                      Insights[📊 App Insights]
+                  end
+              end
+              
+              subgraph "Chat Area"
+                  Messages[Conversation View]
+                  subgraph "Input Controls"
+                      Attach[📎 Attach File]
+                      MCP[🔌 MCP Servers]
+                      Mode[💬 Chat / 📋 Task Mode]
+                      Model[🧠 Model Selection]
+                      Voice[🎤 Voice Input]
+                  end
+                  Input[Message Input Field]
+                  Send[➤ Send Button]
+              end
+              
+              subgraph "Model Options"
+                  Claude[Claude Sonnet 4]
+                  Opus[Claude Opus 4]
+                  Gemini[Gemini 2.5 Pro]
+                  GPT[GPT-5]
+                  Local[Local Models]
+              end
+          end
+          
+          style Menu fill:#2196F3,stroke:#fff,color:#fff
+          style Mode fill:#4CAF50,stroke:#fff,color:#fff
+          style Model fill:#9C27B0,stroke:#fff,color:#fff
+      ```
+    </Frame>
+    
+    <Columns cols={2}>
+      <Card title="Enhanced Input Area" icon="keyboard">
+        - **File Attachments**: Drag & drop or click to attach
+        - **MCP Servers**: Quick access to connected servers
+        - **Mode Toggle**: Switch between Chat and Task modes
+        - **Voice Input**: Speak your queries naturally
+        - **Smart Send**: Context-aware submission
+      </Card>
+      
+      <Card title="Top Bar Features" icon="layout">
+        - **Side Menu**: Navigation and settings
+        - **App Insights**: Usage stats and performance
+        - **Workspaces**: Project management
+        - **Folder Access**: Browse local files
+        - **AI Tasks**: View and manage automated tasks
+        - **Casefiles**: Access saved contexts
+      </Card>
+    </Columns>
+    
+    <Card title="Model Selection" icon="brain" color="#9C27B0">
+      <CardGroup cols={2}>
+        <Card title="Claude Models">
+          - **Claude Sonnet 4**: Fast, efficient responses
+          - **Claude Opus 4**: Advanced reasoning
+        </Card>
+        <Card title="Other Models">
+          - **Gemini 2.5 Pro**: Google's latest
+          - **GPT-5**: OpenAI's flagship
+          - **Local Models**: Ollama, LM Studio, etc.
+        </Card>
+      </CardGroup>
+    </Card>
+  </Tab>
+  
+  <Tab title="Quick Access">
+    <Card title="Always Available When You Need It" icon="bolt" color="#FFE082">
+      Multiple ways to access Siya instantly
+    </Card>
+    
+    <AccordionGroup>
+      <Accordion title="Global Hotkey" icon="keyboard" defaultOpen>
+        <Steps>
+          <Step title="Default Shortcut">
+            Press `⌘ + Shift + S` anywhere to open Siya
+          </Step>
+          <Step title="Custom Shortcuts">
+            Configure your preferred key combination in Settings
+          </Step>
+          <Step title="Context Aware">
+            Siya understands the context of your current application
+          </Step>
+        </Steps>
+        
+        <CodeGroup>
+          ```json Custom Hotkeys
+          {
+            "shortcuts": {
+              "toggleWindow": "Cmd+Shift+S",
+              "newChat": "Cmd+N",
+              "quickCommand": "Cmd+Space+S",
+              "floatingMode": "Cmd+Shift+F"
+            }
+          }
+          ```
+          
+          ```text Popular Shortcuts
+          ⌘ + N         New chat
+          ⌘ + K         Clear memory
+          ⌘ + ,         Open settings
+          ⌘ + /         Focus input
+          ⌘ + ↑/↓       Navigate history
+          ```
+        </CodeGroup>
+      </Accordion>
+      
+      <Accordion title="Menu Bar Access" icon="bars">
+        <Columns cols={2}>
+          <div>
+            **Menu Bar Features:**
+            - Click for quick access
+            - Shows current status
+            - Recent conversations
+            - Quick actions menu
+            - Memory usage indicator
+          </div>
+          
+          <Card title="Menu Options" icon="menu">
+            - New Chat
+            - Open Main Window
+            - Recent Projects
+            - Quick Commands
+            - Settings
+            - Quit Siya
+          </Card>
+        </Columns>
+      </Accordion>
+      
+      <Accordion title="Dock Integration" icon="th-large">
+        <Info>
+          Right-click Siya in the dock for quick actions and recent projects
+        </Info>
+        
+        **Dock Menu:**
+        - Recent conversations
+        - Favorite projects
+        - New chat window
+        - Show all windows
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
+  
+  <Tab title="Window Modes">
+    <Card title="Flexible Window Management" icon="window-restore" color="#0000FF">
+      Work the way you want with multiple window modes
+    </Card>
+    
+    <Columns cols={3}>
+      <Card title="Standard Mode" icon="window-maximize">
+        **Full Interface**
+        - Complete sidebar
+        - All features visible
+        - Best for extended work
+        - Multi-tab support
+      </Card>
+      
+      <Card title="Compact Mode" icon="compress">
+        **Focused View**
+        - Hidden sidebar
+        - Minimal chrome
+        - Keyboard focused
+        - Space efficient
+      </Card>
+      
+      <Card title="Floating Mode" icon="layer-group">
+        **Always on Top**
+        - Transparent background
+        - Resizable window
+        - Stays above other apps
+        - Perfect for reference
+      </Card>
+    </Columns>
+    
+    <Tip>
+      Press `⌘ + Shift + F` to toggle floating mode
+    </Tip>
+  </Tab>
+</Tabs>
+
+## Chat Interface Details
+
+<Card title="Intelligent Input System" icon="message-square" color="#2196F3">
+  Advanced chat interface with context-aware features
+</Card>
+
+<Tabs>
+  <Tab title="Input Area Components">
+    <CardGroup cols={2}>
+      <Card title="📎 File Attachment" icon="paperclip">
+        - **Drag & Drop**: Drop files directly into chat
+        - **Multi-file Support**: Attach multiple files at once
+        - **Image Preview**: See thumbnails before sending
+        - **Code Files**: Syntax highlighting preview
+        - **Size Limit**: Up to 10MB per file
+      </Card>
+      
+      <Card title="🔌 MCP Servers" icon="plug">
+        - **Quick Access**: Dropdown list of available servers
+        - **Status Indicators**: Green = connected, Gray = disconnected
+        - **One-click Connect**: Enable servers on demand
+        - **Custom Servers**: Add your own MCP integrations
+        - **Auto-reconnect**: Maintains connections
+      </Card>
+      
+      <Card title="🎯 Mode Selection" icon="toggle-on">
+        - **Chat Mode** (Default): Interactive conversation
+        - **Task Mode**: Autonomous task execution
+        - **Visual Indicator**: Clear mode display
+        - **Keyboard Shortcut**: `⌘ + M` to toggle
+        - **Context Preservation**: Maintains context on switch
+      </Card>
+      
+      <Card title="🧠 Model Selector" icon="brain">
+        - **Quick Switch**: Dropdown with all models
+        - **Model Info**: Speed/capability indicators
+        - **Recent Models**: Quick access to last used
+        - **Custom Models**: Add local model endpoints
+        - **Auto-select**: Based on task complexity
+      </Card>
+    </CardGroup>
+  </Tab>
+  
+  <Tab title="Voice & Send Controls">
+    <Columns cols={2}>
+      <Card title="🎤 Voice Input" icon="microphone" color="#4CAF50">
+        **Features:**
+        - Real-time transcription
+        - Multiple language support
+        - Push-to-talk or toggle mode
+        - Noise cancellation
+        - Voice commands support
+        
+        **Usage:**
+        - Click mic icon or press `Space` (hold)
+        - Visual feedback during recording
+        - Auto-punctuation and formatting
+      </Card>
+      
+      <Card title="➤ Smart Send Button" icon="send" color="#9C27B0">
+        **Behavior:**
+        - `Enter` to send (default)
+        - `Shift + Enter` for new line
+        - Loading state during processing
+        - Cancel option while sending
+        - Retry failed messages
+        
+        **Smart Features:**
+        - Warns about large contexts
+        - Suggests mode based on input
+        - Auto-formats code blocks
+      </Card>
+    </Columns>
+  </Tab>
+  
+  <Tab title="Top Bar Navigation">
+    <Frame caption="Organized menu groups for better workflow">
+      <Columns cols={3}>
+        <Card title="☰ Main Menu" icon="bars" color="#2196F3">
+          **Navigation & Settings**
+          - Quick navigation
+          - Account settings
+          - Preferences
+          - Keyboard shortcuts
+          - Help & documentation
+          - About SIYA
+        </Card>
+        
+        <Card title="Workspace Management" icon="layer-group" color="#4CAF50">
+          **📁 Workspaces** | **📂 Folder** | **📋 Casefiles**
+          
+          **Workspaces:**
+          - Switch between projects
+          - Create new workspace
+          - Import/export settings
+          
+          **Folder Browser:**
+          - File system navigation
+          - Recent locations
+          - Quick bookmarks
+          
+          **Casefiles:**
+          - Saved contexts
+          - Version history
+          - Quick load/share
+        </Card>
+        
+        <Card title="AI Features" icon="sparkles" color="#9C27B0">
+          **🤖 AI Tasks** | **📊 App Insights**
+          
+          **AI Tasks:**
+          - Active task queue
+          - Scheduled automations
+          - Task history & logs
+          - Performance metrics
+          
+          **App Insights:**
+          - Token usage analytics
+          - Response time graphs
+          - Model performance
+          - Cost tracking
+          - Usage patterns
+        </Card>
+      </Columns>
+      
+      <Info>
+        **Visual Grouping**: The top bar uses subtle separators and background shading to visually group related functions, making navigation more intuitive.
+      </Info>
+    </Frame>
+  </Tab>
+</Tabs>
+
+<Info>
+  **Pro Tip**: Use `⌘ + K` to open the command palette for quick access to any feature!
+</Info>
+
+## Core Features
+
+<Card title="Everything You Need, Nothing You Don't" icon="star" color="#FFD700">
+  Powerful features designed for developers
+</Card>
+
+<AccordionGroup>
+  <Accordion title="Project Management" icon="folder" defaultOpen>
+    <Frame caption="Intelligent project organization and switching">
+      ```mermaid
+      graph LR
+          subgraph "Project System"
+              Detector[Auto-Detection]
+              
+              subgraph "Project Types"
+                  Git[Git Repos]
+                  NPM[Node Projects]
+                  Python[Python Projects]
+                  Generic[Other Projects]
+              end
+              
+              subgraph "Features"
+                  Context[Project Context]
+                  History[Separate History]
+                  Config[Project Config]
+                  Memory[Isolated Memory]
+              end
+              
+              Switch[Quick Switcher<br/>⌘ + P]
+          end
+          
+          Detector --> Git & NPM & Python & Generic
+          Git & NPM & Python & Generic --> Context
+          Context --> History & Config & Memory
+          History & Config & Memory --> Switch
+          
+          style Detector fill:#4CAF50,stroke:#333
+          style Switch fill:#0000FF,stroke:#fff,color:#fff
+      ```
+    </Frame>
+    
+    <Columns cols={2}>
+      <Card title="Auto-Detection" icon="magic">
+        Siya automatically detects:
+        - Git repositories
+        - Package.json projects
+        - Python environments
+        - Project configurations
+        - Build systems
+      </Card>
+      
+      <Card title="Project Features" icon="cog">
+        Each project maintains:
+        - Separate chat history
+        - Custom configurations
+        - Isolated memory context
+        - Project-specific tools
+        - Saved workflows
+      </Card>
+    </Columns>
+    
+    <Info>
+      Use `⌘ + P` to quickly switch between projects
+    </Info>
+  </Accordion>
+  
+  <Accordion title="System Integration" icon="plug">
+    <Tabs>
+      <Tab title="File System">
+        <Card title="Deep File System Integration" icon="folder-open">
+          Native file handling with preview and quick actions
+        </Card>
+        
+        **Features:**
+        - Drag & drop files into chat
+        - Quick look preview (Space key)
+        - Context menu integration
+        - Finder extension
+        - Recent files tracking
+        
+        <CodeGroup>
+          ```text Supported Operations
+          - Drag files to analyze
+          - Drop folders to explore
+          - Paste images directly
+          - Quick actions menu
+          - Open in editor
+          ```
+          
+          ```text File Types
+          - Code files (syntax highlighted)
+          - Images (with OCR)
+          - Documents (PDF, Word, etc.)
+          - Archives (list contents)
+          - Data files (CSV, JSON, etc.)
+          ```
+        </CodeGroup>
+      </Tab>
+      
+      <Tab title="Clipboard">
+        <Card title="Smart Clipboard Integration" icon="clipboard">
+          Intelligent clipboard monitoring and actions
+        </Card>
+        
+        <Steps>
+          <Step title="Auto-Detection">
+            Siya detects code, errors, and commands in clipboard
+          </Step>
+          <Step title="Smart Paste">
+            `⌘ + V` intelligently formats pasted content
+          </Step>
+          <Step title="History">
+            Access clipboard history with `⌘ + Shift + V`
+          </Step>
+        </Steps>
+        
+        <Warning>
+          Clipboard monitoring can be disabled in privacy settings
+        </Warning>
+      </Tab>
+      
+      <Tab title="Notifications">
+        <Card title="Native Notification System" icon="bell">
+          Stay informed without interruption
+        </Card>
+        
+        <Columns cols={2}>
+          <Card title="Notification Types" icon="list">
+            - Task completion
+            - Long operation status
+            - Error alerts
+            - Update available
+            - Memory warnings
+          </Card>
+          
+          <Card title="Customization" icon="sliders">
+            - Sound on/off
+            - Banner style
+            - Notification grouping
+            - Do not disturb
+            - Priority levels
+          </Card>
+        </Columns>
+      </Tab>
+    </Tabs>
+  </Accordion>
+  
+  <Accordion title="Offline Capabilities" icon="wifi-slash">
+    <Card title="Work Anywhere, Anytime" icon="globe" color="#4CAF50">
+      Full functionality even without internet connection
+    </Card>
+    
+    <AccordionGroup>
+      <Accordion title="Local Models" icon="server" defaultOpen>
+        <Steps>
+          <Step title="Download Models">
+            Download llamafile models for offline use
+          </Step>
+          <Step title="Install Locally">
+            Place in `~/.siya/local-models/`
+          </Step>
+          <Step title="Automatic Switching">
+            Siya switches to local models when offline
+          </Step>
+        </Steps>
+        
+        <Table>
+          <tr>
+            <th>Model</th>
+            <th>Size</th>
+            <th>Capabilities</th>
+          </tr>
+          <tr>
+            <td>Qwen 2.5 Coder</td>
+            <td>19GB</td>
+            <td>Excellent for coding</td>
+          </tr>
+          <tr>
+            <td>DeepSeek 33B</td>
+            <td>18GB</td>
+            <td>General + coding</td>
+          </tr>
+          <tr>
+            <td>Mistral 7B</td>
+            <td>4GB</td>
+            <td>Fast, efficient</td>
+          </tr>
+        </Table>
+      </Accordion>
+      
+      <Accordion title="Offline Features" icon="hard-drive">
+        <Columns cols={2}>
+          <Card title="Available Offline" icon="check" color="#4CAF50">
+            - Local file operations
+            - Code analysis
+            - Git operations
+            - Terminal commands
+            - Project management
+            - Memory persistence
+          </Card>
+          
+          <Card title="Requires Internet" icon="globe" color="#0000FF">
+            - Cloud model access
+            - Web search
+            - API integrations
+            - MCP servers (remote)
+            - Package installation
+            - Documentation fetch
+          </Card>
+        </Columns>
+      </Accordion>
+    </AccordionGroup>
+  </Accordion>
+</AccordionGroup>
+
+## Advanced Features
+
+<Card title="Power User Features" icon="rocket" color="#9C27B0">
+  Advanced capabilities for maximum productivity
+</Card>
+
+<Tabs>
+  <Tab title="Multi-Window">
+    <Card title="Work on Multiple Projects Simultaneously" icon="clone" color="#0000FF">
+      Open multiple Siya windows for different contexts
+    </Card>
+    
+    <Frame caption="Multi-window workflow management">
+      ```mermaid
+      graph TB
+          subgraph "Multi-Window System"
+              Main[Main Window<br/>Project A]
+              
+              subgraph "Additional Windows"
+                  W1[Window 2<br/>Project B]
+                  W2[Window 3<br/>Research]
+                  W3[Floating<br/>Reference]
+              end
+              
+              subgraph "Window Features"
+                  Sync[Sync Settings]
+                  Isolate[Isolated Context]
+                  Share[Share Results]
+              end
+              
+              subgraph "Management"
+                  Switcher[Window Switcher<br/>⌘ + `]
+                  Arrange[Auto-Arrange]
+                  Save[Save Layout]
+              end
+          end
+          
+          Main --> W1 & W2 & W3
+          W1 & W2 & W3 --> Sync & Isolate & Share
+          Sync & Isolate & Share --> Switcher
+          Switcher --> Arrange & Save
+          
+          style Main fill:#0000FF,stroke:#fff,color:#fff
+          style W3 fill:#9C27B0,stroke:#fff,color:#fff
+      ```
+    </Frame>
+    
+    **Use Cases:**
+    - Frontend + Backend development
+    - Documentation + Implementation
+    - Multiple client projects
+    - Research + Development
+  </Tab>
+  
+  <Tab title="Quick Commands">
+    <Card title="Command Palette" icon="terminal" color="#4CAF50">
+      Access any feature instantly with the command palette
+    </Card>
+    
+    <Steps>
+      <Step title="Open Palette">
+        Press `⌘ + Shift + P` to open command palette
+      </Step>
+      <Step title="Search Commands">
+        Type to filter through all available commands
+      </Step>
+      <Step title="Execute">
+        Press Enter to run the selected command
+      </Step>
+    </Steps>
+    
+    <CodeGroup>
+      ```text Productivity Commands
+      > Clear memory
+      > Switch to project...
+      > Change model...
+      > Toggle floating mode
+      > Export conversation
+      > Show memory stats
+      ```
+      
+      ```text Development Commands
+      > Run tests
+      > Format code
+      > Git commit
+      > Deploy to staging
+      > Generate documentation
+      > Search codebase
+      ```
+      
+      ```text System Commands
+      > Check for updates
+      > View logs
+      > Reset settings
+      > Backup conversations
+      > Import settings
+      > Show shortcuts
+      ```
+    </CodeGroup>
+  </Tab>
+  
+  <Tab title="Automation">
+    <Card title="Desktop-Specific Automations" icon="robot" color="#9C27B0">
+      Powerful automation features unique to desktop
+    </Card>
+    
+    <AccordionGroup>
+      <Accordion title="AppleScript Integration" icon="apple" defaultOpen>
+        ```applescript
+        -- Control Siya from AppleScript
+        tell application "Siya"
+            activate
+            new chat with prompt "Generate a test file"
+            wait for completion
+            get last response
+        end tell
+        ```
+        
+        **Use Cases:**
+        - Integrate with other Mac apps
+        - Create custom workflows
+        - Automate repetitive tasks
+        - Build Shortcuts actions
+      </Accordion>
+      
+      <Accordion title="URL Schemes" icon="link">
+        ```text
+        # Open Siya with prompt
+        siya://chat?prompt=Help%20me%20debug%20this
+        
+        # Open specific project
+        siya://project?path=/Users/me/myproject
+        
+        # Execute command
+        siya://command?action=clear-memory
+        ```
+        
+        <Tip>
+          Use URL schemes from Alfred, Raycast, or Shortcuts
+        </Tip>
+      </Accordion>
+      
+      <Accordion title="Services Menu" icon="cog">
+        Right-click any text in macOS and access Siya services:
+        - Explain this code
+        - Fix this error
+        - Translate to...
+        - Summarize text
+        - Generate tests
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
+</Tabs>
+
+## Settings & Preferences
+
+<Card title="Customize Every Aspect" icon="sliders" color="#9C27B0">
+  Comprehensive settings for personalizing your experience
+</Card>
+
+<Tabs>
+  <Tab title="General">
+    <AccordionGroup>
+      <Accordion title="Appearance" icon="palette" defaultOpen>
+        <Columns cols={2}>
+          <Card title="Theme Options" icon="paint-brush">
+            - **Auto**: Follow system
+            - **Light**: Always light
+            - **Dark**: Always dark
+            - **Custom**: Create your own
+          </Card>
+          
+          <Card title="UI Customization" icon="sliders">
+            - Font size: 12-24pt
+            - Font family selection
+            - Line height adjustment
+            - Sidebar width
+            - Transparency level
+          </Card>
+        </Columns>
+      </Accordion>
+      
+      <Accordion title="Behavior" icon="cog">
+        ```json
+        {
+          "behavior": {
+            "startup": {
+              "launchAtLogin": true,
+              "showWindow": false,
+              "restoreWindows": true
+            },
+            "window": {
+              "alwaysOnTop": false,
+              "hideOnDeactivate": false,
+              "minimizeToTray": true
+            },
+            "updates": {
+              "autoCheck": true,
+              "autoDownload": false,
+              "channel": "stable"
+            }
+          }
+        }
+        ```
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
+  
+  <Tab title="Privacy">
+    <Card title="Your Data, Your Control" icon="shield" color="#4CAF50">
+      Complete control over your privacy
+    </Card>
+    
+    <AccordionGroup>
+      <Accordion title="Data Storage" icon="database" defaultOpen>
+        <Info>
+          All data is stored locally on your Mac by default
+        </Info>
+        
+        **Local Storage Locations:**
+        - Conversations: `~/.siya/chats/`
+        - Settings: `~/.siya/config/`
+        - Models: `~/.siya/local-models/`
+        - Logs: `~/.siya/logs/`
+      </Accordion>
+      
+      <Accordion title="Privacy Options" icon="eye-slash">
+        <Table>
+          <tr>
+            <th>Feature</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>Telemetry</td>
+            <td>Off</td>
+            <td>Anonymous usage statistics</td>
+          </tr>
+          <tr>
+            <td>Crash Reports</td>
+            <td>Ask</td>
+            <td>Send crash reports to improve</td>
+          </tr>
+          <tr>
+            <td>Clipboard Monitor</td>
+            <td>Off</td>
+            <td>Watch clipboard for code</td>
+          </tr>
+          <tr>
+            <td>Cloud Sync</td>
+            <td>Off</td>
+            <td>Sync settings across devices</td>
+          </tr>
+        </Table>
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
+  
+  <Tab title="Performance">
+    <Card title="Optimize for Your System" icon="gauge" color="#FF9800">
+      Fine-tune performance settings
+    </Card>
+    
+    <CodeGroup>
+      ```json Memory Settings
+      {
+        "performance": {
+          "memory": {
+            "maxHeap": "4GB",
+            "maxContext": "150000",
+            "aggressiveGC": false,
+            "preloadModels": true
+          }
+        }
+      }
+      ```
+      
+      ```json GPU Settings
+      {
+        "performance": {
+          "gpu": {
+            "enabled": true,
+            "device": "auto",
+            "memoryFraction": 0.8,
+            "powerMode": "auto"
+          }
+        }
+      }
+      ```
+      
+      ```json Network Settings
+      {
+        "performance": {
+          "network": {
+            "timeout": 30000,
+            "retries": 3,
+            "concurrent": 5,
+            "cache": true
+          }
+        }
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+## Keyboard Shortcuts
+
+<Card title="Master Siya with Keyboard Shortcuts" icon="keyboard" color="#0000FF">
+  Complete list of keyboard shortcuts for maximum efficiency
+</Card>
+
+<Tabs>
+  <Tab title="Essential">
+    <Table>
+      <tr>
+        <th>Action</th>
+        <th>Shortcut</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Toggle Siya</td>
+        <td>`⌘ + Shift + S`</td>
+        <td>Show/hide main window</td>
+      </tr>
+      <tr>
+        <td>New Chat</td>
+        <td>`⌘ + N`</td>
+        <td>Start new conversation</td>
+      </tr>
+      <tr>
+        <td>Clear Memory</td>
+        <td>`⌘ + K`</td>
+        <td>Clear current context</td>
+      </tr>
+      <tr>
+        <td>Settings</td>
+        <td>`⌘ + ,`</td>
+        <td>Open preferences</td>
+      </tr>
+      <tr>
+        <td>Command Palette</td>
+        <td>`⌘ + Shift + P`</td>
+        <td>Quick command access</td>
+      </tr>
+    </Table>
+  </Tab>
+  
+  <Tab title="Navigation">
+    <Table>
+      <tr>
+        <th>Action</th>
+        <th>Shortcut</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Project Switcher</td>
+        <td>`⌘ + P`</td>
+        <td>Switch projects</td>
+      </tr>
+      <tr>
+        <td>Previous Chat</td>
+        <td>`⌘ + [`</td>
+        <td>Go to previous chat</td>
+      </tr>
+      <tr>
+        <td>Next Chat</td>
+        <td>`⌘ + ]`</td>
+        <td>Go to next chat</td>
+      </tr>
+      <tr>
+        <td>Search Chats</td>
+        <td>`⌘ + F`</td>
+        <td>Search in conversations</td>
+      </tr>
+      <tr>
+        <td>Jump to Input</td>
+        <td>`⌘ + /`</td>
+        <td>Focus chat input</td>
+      </tr>
+    </Table>
+  </Tab>
+  
+  <Tab title="Advanced">
+    <Table>
+      <tr>
+        <th>Action</th>
+        <th>Shortcut</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Floating Mode</td>
+        <td>`⌘ + Shift + F`</td>
+        <td>Toggle floating window</td>
+      </tr>
+      <tr>
+        <td>Export Chat</td>
+        <td>`⌘ + E`</td>
+        <td>Export conversation</td>
+      </tr>
+      <tr>
+        <td>Reload</td>
+        <td>`⌘ + R`</td>
+        <td>Reload interface</td>
+      </tr>
+      <tr>
+        <td>Developer Tools</td>
+        <td>`⌘ + Option + I`</td>
+        <td>Open dev tools</td>
+      </tr>
+      <tr>
+        <td>Quick Switch Model</td>
+        <td>`⌘ + M`</td>
+        <td>Change AI model</td>
+      </tr>
+    </Table>
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+<Card title="Quick Solutions to Common Issues" icon="wrench" color="#FF9800">
+  Get back to productivity quickly
+</Card>
+
+<AccordionGroup>
+  <Accordion title="Installation Issues" icon="exclamation-triangle" defaultOpen>
+    <Table>
+      <tr>
+        <th>Issue</th>
+        <th>Solution</th>
+      </tr>
+      <tr>
+        <td>"App is damaged" error</td>
+        <td>Right-click app, select Open, then click Open again</td>
+      </tr>
+      <tr>
+        <td>Can't move to Applications</td>
+        <td>Ensure you have admin privileges</td>
+      </tr>
+      <tr>
+        <td>Won't launch</td>
+        <td>Check macOS version (12.0+ required)</td>
+      </tr>
+      <tr>
+        <td>Permissions denied</td>
+        <td>Grant permissions in System Settings > Privacy</td>
+      </tr>
+    </Table>
+  </Accordion>
+  
+  <Accordion title="Performance Issues" icon="gauge">
+    <Steps>
+      <Step title="High Memory Usage">
+        - Clear memory with `⌘ + K`
+        - Reduce max context in settings
+        - Close unused windows
+      </Step>
+      
+      <Step title="Slow Responses">
+        - Check internet connection
+        - Switch to faster model
+        - Disable unnecessary features
+      </Step>
+      
+      <Step title="Crashes">
+        - Check crash logs in Console
+        - Reset settings to default
+        - Reinstall if persistent
+      </Step>
+    </Steps>
+  </Accordion>
+  
+  <Accordion title="Reset Options" icon="refresh">
+    <CodeGroup>
+      ```bash Reset Settings
+      # Reset all settings
+      rm -rf ~/.siya/config
+      
+      # Clear cache
+      rm -rf ~/.siya/cache
+      
+      # Full reset (backup first!)
+      rm -rf ~/.siya
+      ```
+      
+      ```bash Diagnostic Commands
+      # Check Siya version
+      /Applications/Siya.app/Contents/MacOS/Siya --version
+      
+      # Run diagnostics
+      /Applications/Siya.app/Contents/MacOS/Siya --diagnose
+      
+      # View logs
+      tail -f ~/.siya/logs/siya.log
+      ```
+    </CodeGroup>
+  </Accordion>
+</AccordionGroup>
+
+## Updates & Roadmap
+
+<Card title="Always Improving" icon="rocket" color="#4CAF50">
+  Regular updates with new features and improvements
+</Card>
+
+<Tabs>
+  <Tab title="Update System">
+    <Steps>
+      <Step title="Automatic Updates">
+        Siya checks for updates daily and notifies you
+      </Step>
+      <Step title="One-Click Install">
+        Updates download and install in the background
+      </Step>
+      <Step title="Release Notes">
+        View detailed changes before updating
+      </Step>
+    </Steps>
+    
+    <Info>
+      You can change update settings in Preferences > General
+    </Info>
+  </Tab>
+  
+  <Tab title="Coming Soon">
+    <Columns cols={2}>
+      <Card title="Next Release" icon="clock" color="#0000FF">
+        **Version 0.5.0**
+        - Windows support
+        - Touch Bar integration
+        - Voice input
+        - Plugin system
+        - Team collaboration
+      </Card>
+      
+      <Card title="Future Plans" icon="star" color="#9C27B0">
+        **On the Roadmap**
+        - iOS companion app
+        - Linux support
+        - Browser extension
+        - IDE plugins
+        - Cloud sync
+      </Card>
+    </Columns>
+  </Tab>
+</Tabs>
+
+## Summary
+
+<Card title="Your AI Development Companion" icon="trophy" color="#FFD700">
+  The Siya desktop application brings the full power of AI assistance to your Mac with a native, fast, and privacy-focused experience. With deep system integration, offline capabilities, and a beautiful interface, it's the perfect companion for modern software development.
+</Card>
+
+<Columns cols={2}>
+  <Card title="Download Now" icon="download" href="https://app.siya.com/join-waitlist.html">
+    Get started with Siya Desktop
+  </Card>
+  
+  <Card title="Model Selection" icon="brain" href="/siya-superagent/model-selection">
+    Choose the right AI model
+  </Card>
+</Columns>
+
+---
+
+*Native. Fast. Private. Powerful.*

@@ -1,0 +1,468 @@
+---
+title: "Model Selection & Local Models"
+description: "Choose from cutting-edge AI models including GPT-5, Claude 4, Gemini 2.5, and powerful local options"
+icon: "brain"
+---
+
+
+## Choose Your AI Model
+
+Siya provides flexibility to choose from multiple AI models based on your needs, preferences, and use cases. You can select from leading AI providers or even run models locally on your machine.
+
+## Available AI Models
+
+### Cloud-Based Models
+
+#### Anthropic Claude
+- **Claude Opus 4** - Most advanced reasoning and capabilities
+- **Claude Sonnet 4** - Balanced performance with enhanced speed
+- **Claude 3 Opus** - Previous generation, still highly capable
+- **Claude 3 Sonnet** - Fast and efficient
+- **Claude 3 Haiku** - Lightning fast for simple tasks
+
+#### OpenAI
+- **GPT-5** - Latest and most advanced model
+- **GPT-4 Turbo** - Advanced reasoning with faster responses
+- **GPT-4** - Powerful general-purpose model
+- **GPT-3.5 Turbo** - Fast and cost-effective
+
+#### Google
+- **Gemini 2.5 Pro** - Google's most advanced AI
+- **Gemini Pro** - Powerful multimodal capabilities
+- **Gemini Pro Vision** - Enhanced visual understanding
+- **PaLM 2** - Efficient for various tasks
+
+#### Others
+- **Mixtral** - Open-source alternative
+- **Llama 3** - Meta's latest model
+- **Command R+** - Cohere's flagship model
+- **Custom Models** - Via API endpoints
+
+### Local Models
+
+#### Popular Local Models
+- **Qwen** - Alibaba's powerful multilingual model
+- **DeepSeek** - Specialized for code and reasoning
+- **Llama 3** - Meta's open model (7B, 13B, 70B)
+- **Mistral** - Fast and efficient
+- **Phi-3** - Microsoft's compact model
+- **CodeLlama** - Specialized for programming
+- **Vicuna** - Fine-tuned for conversations
+- **WizardCoder** - Enhanced coding abilities
+- **Orca** - Reasoning-optimized
+- **Alpaca** - Instruction-following model
+
+## Selecting Your Model
+
+### Quick Selection
+
+Simply tell Siya which model you want to use:
+
+```
+"Switch to Claude Opus 4"
+"Use GPT-5 for this conversation"
+"Change to Gemini 2.5 Pro"
+"Use Qwen locally"
+"Switch to DeepSeek for coding"
+```
+
+### Via Preferences
+
+1. Open Siya → Preferences
+2. Navigate to AI Models tab
+3. Select your preferred:
+   - **Default Model** - For new conversations
+   - **Fallback Model** - If primary fails
+   - **Task-Specific Models** - Different models for different tasks
+
+### Per-Conversation
+
+You can change models mid-conversation:
+```
+"For this complex analysis, switch to Claude Opus 4"
+"Use GPT-5 for the creative writing"
+"Switch to DeepSeek for the code review"
+"Use local Qwen for privacy"
+```
+
+## Local Models with Llamafile
+
+### What are Local Models?
+
+Local models run entirely on your machine, providing:
+- **Privacy** - Data never leaves your device
+- **No Internet Required** - Work offline
+- **No API Costs** - Free after download
+- **Fast Response** - No network latency
+- **Customization** - Fine-tune for your needs
+
+### Setting Up Local Models
+
+#### Method 1: Ask Siya (Easiest)
+
+Simply tell Siya:
+```
+"Install Qwen as a local model"
+"Set up DeepSeek locally for coding"
+"Download and configure Llama 3 13B"
+"Help me install the latest local models"
+```
+
+Siya will:
+1. Download the appropriate llamafile
+2. Place it in `~/.siya/local-models/`
+3. Configure it for use
+4. Verify it works correctly
+
+#### Method 2: Manual Installation
+
+1. **Download a Llamafile**
+   - Visit model repositories (Hugging Face, official sites)
+   - Choose based on your hardware capabilities
+   - Download the `.llamafile` version
+
+2. **Place in Local Models Folder**
+   ```bash
+   # Navigate to Siya's local models directory
+   cd ~/.siya/local-models/
+   
+   # Copy your llamafile here
+   cp ~/Downloads/model.llamafile .
+   
+   # Make it executable
+   chmod +x model.llamafile
+   ```
+
+3. **Configure in Siya**
+   - Siya will auto-detect new models
+   - Or manually refresh model list
+
+### Recommended Local Models
+
+**For General Use**:
+- **Qwen 7B/14B** - Excellent multilingual support
+- **Llama 3 8B** - Well-rounded performance
+- **Mistral 7B** - Fast and capable
+- **Phi-3 Mini** - Runs on modest hardware
+
+**For Coding**:
+- **DeepSeek Coder** - Specialized for programming
+- **CodeLlama 13B** - Strong code generation
+- **WizardCoder** - Python specialist
+- **StarCoder** - Multi-language support
+
+**For Specific Tasks**:
+- **Qwen-VL** - Vision and language tasks
+- **DeepSeek-Math** - Mathematical reasoning
+- **Orca 2** - Complex reasoning
+- **Vicuna 13B** - Conversational AI
+
+### Hardware Requirements
+
+**Minimum Requirements**:
+- 8GB RAM for 7B models
+- 16GB RAM for 13B models
+- 32GB RAM for 30B+ models
+- 64GB+ RAM for 70B models
+
+**Recommended**:
+- Apple Silicon (M1/M2/M3) for best performance
+- 16GB+ RAM
+- SSD storage for model files
+- GPU acceleration when available
+
+## Model Selection Strategy
+
+### When to Use Each Model Type
+
+#### Claude (Anthropic)
+**Best for**:
+- Complex reasoning and analysis
+- Long-form content creation
+- Nuanced understanding
+- Technical documentation
+- Research tasks
+
+**Choose**:
+- Opus 4 for cutting-edge capabilities
+- Sonnet 4 for balanced speed/performance
+- Haiku for quick, simple responses
+
+#### GPT (OpenAI)
+**Best for**:
+- Creative writing
+- General knowledge queries
+- Code generation
+- Versatile tasks
+- Latest features with GPT-5
+
+**Choose**:
+- GPT-5 for most advanced features
+- GPT-4 Turbo for production use
+- GPT-3.5 for speed/cost optimization
+
+#### Gemini (Google)
+**Best for**:
+- Multimodal tasks
+- Research and analysis
+- Integration with Google services
+- Visual understanding
+- Long context windows
+
+**Choose**:
+- Gemini 2.5 Pro for latest capabilities
+- Gemini Pro for stable performance
+- Gemini Vision for image tasks
+
+#### Local Models
+**Best for**:
+- Privacy-sensitive work
+- Offline usage
+- Cost savings
+- Specialized tasks
+- Custom fine-tuning
+
+**Choose**:
+- Qwen for multilingual needs
+- DeepSeek for coding
+- Llama 3 for general use
+- Smaller models for speed
+
+## Advanced Configuration
+
+### Model-Specific Settings
+
+Configure each model's behavior:
+
+```json
+{
+  "models": {
+    "claude-opus-4": {
+      "temperature": 0.7,
+      "maxTokens": 8192,
+      "topP": 0.9
+    },
+    "gpt-5": {
+      "temperature": 0.8,
+      "maxTokens": 16384,
+      "frequencyPenalty": 0.1
+    },
+    "gemini-2.5-pro": {
+      "temperature": 0.7,
+      "maxTokens": 32768,
+      "topK": 40
+    },
+    "local-qwen": {
+      "temperature": 0.6,
+      "threads": 8,
+      "contextSize": 8192,
+      "gpu": true
+    }
+  }
+}
+```
+
+### Task-Based Model Selection
+
+Automatically use different models for different tasks:
+
+```json
+{
+  "taskModels": {
+    "code_generation": "deepseek-coder",
+    "creative_writing": "gpt-5",
+    "data_analysis": "claude-opus-4",
+    "research": "gemini-2.5-pro",
+    "translation": "qwen-14b",
+    "quick_answers": "local-phi-3"
+  }
+}
+```
+
+### Fallback Configuration
+
+Set up automatic fallbacks:
+
+```json
+{
+  "modelFallbacks": {
+    "primary": "claude-opus-4",
+    "secondary": "gpt-5",
+    "tertiary": "gemini-2.5-pro",
+    "offline": "local-qwen"
+  }
+}
+```
+
+## Managing API Keys
+
+### Adding API Keys
+
+Ask Siya:
+```
+"Add my Anthropic API key"
+"Configure OpenAI access"
+"Set up Google AI credentials"
+```
+
+Or manually in Preferences:
+1. Go to Siya → Preferences → API Keys
+2. Enter keys for each provider
+3. Test connection
+4. Save securely
+
+### Security
+- Keys are encrypted locally
+- Never sent to Siya servers
+- Can be stored in system keychain
+- Support for environment variables
+
+## Cost Optimization
+
+### Model Pricing Awareness
+
+Siya shows estimated costs:
+- Per conversation
+- Per task
+- Monthly usage
+- By model type
+
+### Cost-Saving Tips
+
+1. **Use Appropriate Models**
+   - Don't use Opus 4 or GPT-5 for simple tasks
+   - Switch to cheaper models when possible
+   - Leverage local models for repetitive work
+
+2. **Smart Routing**
+   - Let Siya auto-select based on task
+   - Use fallbacks wisely
+   - Cache responses when appropriate
+
+3. **Local Model Strategy**
+   - Use for development/testing
+   - Offline work
+   - Privacy-sensitive tasks
+   - High-volume operations
+
+## Performance Comparison
+
+### Speed
+**Fastest to Slowest**:
+1. Local models (no network)
+2. Haiku / GPT-3.5 Turbo
+3. Sonnet 4 / Gemini Pro
+4. GPT-4 Turbo / Qwen API
+5. Claude Opus 4 / GPT-5 / Gemini 2.5 Pro
+
+### Capability
+**Most to Least Capable**:
+1. GPT-5 / Claude Opus 4
+2. Gemini 2.5 Pro
+3. GPT-4 Turbo / Claude Sonnet 4
+4. DeepSeek (for code) / Qwen 72B
+5. Local 30B+ models
+6. GPT-3.5 / Haiku / Local 7-13B
+
+### Cost
+**Most to Least Expensive**:
+1. GPT-5 / Claude Opus 4
+2. Gemini 2.5 Pro
+3. GPT-4 / Claude Sonnet 4
+4. GPT-4 Turbo
+5. Gemini Pro
+6. GPT-3.5 / Haiku
+7. Local models (free)
+
+## Troubleshooting
+
+### Model Not Available
+
+Ask Siya:
+```
+"Why can't I use Claude Opus 4?"
+"Help me access GPT-5"
+"Check my API key configuration"
+```
+
+### Local Model Issues
+
+Common fixes:
+```
+"Help me install Qwen locally"
+"Fix permissions for llamafile"
+"Why is DeepSeek running slowly?"
+"Optimize local model performance"
+```
+
+### Performance Problems
+
+Get help with:
+```
+"Which model is best for my task?"
+"Why are responses slow?"
+"How can I reduce costs?"
+"Optimize model selection for coding"
+```
+
+## Best Practices
+
+### Model Selection
+
+1. **Match Model to Task**
+   - Complex reasoning → Claude Opus 4 or GPT-5
+   - Code generation → DeepSeek or CodeLlama
+   - Quick answers → Haiku or local Phi-3
+   - Multilingual → Qwen models
+   - Research → Gemini 2.5 Pro
+
+2. **Consider Constraints**
+   - Budget limitations
+   - Speed requirements
+   - Privacy needs
+   - Internet availability
+   - Hardware capabilities
+
+3. **Experiment**
+   - Try different models
+   - Compare results
+   - Find your preferences
+   - Build model intuition
+
+### Local Model Tips
+
+1. **Start Smart**
+   - Begin with Qwen 7B or Mistral
+   - Test performance
+   - Scale up as needed
+
+2. **Optimize Setup**
+   - Use GPU acceleration
+   - Allocate sufficient RAM
+   - Close unnecessary apps
+   - Monitor temperatures
+
+3. **Model Selection**
+   - Qwen for general + multilingual
+   - DeepSeek for coding tasks
+   - Llama 3 for balanced performance
+   - Phi-3 for resource-constrained devices
+
+## Future Models
+
+Siya continuously adds support for new models:
+- Latest versions automatically available
+- New providers added regularly
+- Community model support
+- Custom model integration
+
+Stay updated by asking:
+```
+"What new models are available?"
+"Show me the latest model options"
+"Update my model list"
+```
+
+---
+
+*Choose the perfect AI model for your needs - from cutting-edge cloud models to powerful local options!*

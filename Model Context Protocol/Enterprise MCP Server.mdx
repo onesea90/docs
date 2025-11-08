@@ -1,0 +1,255 @@
+---
+title: 'Enterprise MCP Server'
+description: 'A comprehensive guide to building, customizing, and deploying secure, multi-tenant, and domain-agnostic MCP Servers.'
+---
+
+import { Tabs, Tab } from 'nextra/components'
+import { Callout } from 'nextra/components'
+
+# Architectural Blueprint
+
+This document provides the complete technical specification and architectural blueprint for the **Model Context Protocol (MCP) Server**. It is designed as a production-ready, multi-tenant template for creating domain-specific AI-powered services across various maritime applications (inclusive but not exhaustive), including **procurement, budgeting, technical surveys, planned maintenance (PMS), and defect management**.
+
+<img src="/assets/Untitled design-2.gif" alt="Enterprise MCP Server" width="720" />
+
+This guide is intended for software architects and developers responsible for deploying, maintaining, and extending the server for new business domains.
+
+## 1.0 Core Architectural Vision 🎯
+
+### 1.1 Purpose
+
+The MCP Server architecture provides a robust, scalable, and secure foundation for building AI-powered backend services. It enables a Large Language Model (LLM) to safely and effectively interact with your proprietary business data by exposing complex functionalities (like database queries and analytics) as simple, strongly-typed "tools."
+
+### 1.2 Scope
+
+This blueprint is designed to create servers that provide a standard suite of capabilities, regardless of the specific business domain:
+
+-   **Structured Data Search**: Tools for performing complex, filtered, and full-text searches across core business entities (e.g., purchase orders, survey reports, maintenance jobs, defect tickets).
+-   **Advanced Analytics**: A framework for creating tools that perform domain-specific calculations, such as budget variance, survey compliance rates, or mean-time-to-repair analytics.
+-   **Bulk Data Export**: Functionality for securely extracting complete data sets for specific assets or entities.
+-   **Secure Multi-Tenancy**: A critical security model ensuring that one client (company) can never access another client's data.
+-   **External API Integration**: Seamless connectivity with external enterprise systems including ERP platforms, financial databases, vendor management systems, and third-party APIs (Navtor & Stormglass) for real-time data synchronization and cross-platform operations.
+
+---
+
+## 2.0 System Architecture ⚙️
+
+The system is a TypeScript-based application following a layered architecture that ensures security, performance, and maintainability.
+
+
+
+### 2.1 High-Level Request Flow
+
+Every client request follows a standardized, secure path through the server, starting with authorization before any business logic is executed.
+
+
+### 2.2 Security: Multi-Tenant Data Isolation
+
+The cornerstone of the architecture is a multi-tenant security model that isolates data at **runtime**. This "Authorization at Boundary" pattern is the first step in handling any request and is essential for preventing data leakage between different companies using the server.
+
+To perform this validation at high speed, a three-tier cache is used. Before any tool is executed, the server validates that the primary entity being requested (e.g., a vessel's IMO, a survey ID, an equipment number) belongs to the client's company.
+
+<Callout type="info">
+**Why Runtime Validation?**
+Validating permissions at runtime, rather than build-time, is crucial for operational flexibility. Vessel ownership can change, temporary access may be granted, and development environments need to function without production data. A runtime check against a database source of truth (aggressively cached) provides both security and agility.
+</Callout>
+
+### 2.3 Data Layer: Dual-Database Strategy
+
+The architecture optimizes for both complex storage and high-speed search by using two types of databases.
+
+-   **MongoDB (Master Store)**: Acts as the primary database for all master data, configurations, and records that do not require millisecond-level search performance.
+-   **Typesense (Search Engine)**: An in-memory search engine that indexes the most frequently queried data. This allows for incredibly fast full-text search, filtering, and faceting, which powers all the tools defined within the framework.
+
+### 2.4 Maintainability: Automated Type Generation
+
+To ensure code quality and prevent bugs, the server follows a **Schema-Driven Development Pattern**, automatically generating TypeScript types from the tool definitions.
+
+-   **Single Source of Truth**: All tool schemas (their names, parameters, and descriptions) are defined in one place: `src/tools/schema.ts`.
+-   **Automated Generation**: A `prebuild` script reads these schemas and automatically creates the corresponding TypeScript interfaces in `src/types/generated.ts`. This guarantees that the business logic (handlers) always matches the tool definitions exposed to the LLM, catching any breaking changes at compile time.
+
+---
+
+## 3.0 Core Implementation Patterns 🛠️
+
+The architecture promotes organizing code by function and pattern, not just by data type. This leads to more reusable and maintainable code.
+
+### 3.1 Handler Architecture
+
+Handlers contain the core business logic that executes when a tool is called. They are organized into categories based on their implementation pattern.
+
+-   **`qaTools.ts`**: For complex analytics and calculations that often involve multiple data sources or significant computation (e.g., budget variance).
+-   **`universalTools.ts`**: For handling powerful, generic search queries against Typesense, translating natural language filters into structured API calls.
+-   **`searchTools.ts`**: For more specific, custom-coded queries that don't fit the universal search pattern.
+-   **`exportTools.ts`**: For logic related to bulk data extraction and formatting of large datasets.
+-   **`vendorTools.ts` (or `thirdPartyTools.ts`)**: For logic that interacts with external systems or specific master data collections like vendors.
+
+### 3.2 Tool Definition Patterns
+
+Instead of a fixed set of tools, the architecture defines patterns for creating tools that can be adapted to any domain.
+
+#### Universal Search Tools
+This is the most common pattern, providing a flexible search interface for any data collection indexed in Typesense.
+
+-   **Generic Form**: `universal_<entity>_search`
+-   **Examples**: `universal_purchase_search`, `universal_survey_search`, `universal_pms_job_search`.
+-   **Common Parameters**: These tools share a standard set of powerful parameters for querying:
+    -   `q`: Full-text search string.
+    -   `filter_by`: Precise filtering (e.g., `status:='Open' && priority:='High'`).
+    -   `sort_by`: Sorting results (e.g., `created_date:desc`).
+    -   `facet_by`: Grouping results by category.
+    -   `page` & `per_page`: Pagination.
+
+#### Analytical & Data Export Tools
+These tools encapsulate specific business logic or provide bulk data access.
+
+-   **Analytical Tools**: Perform calculations and return aggregated insights.
+    -   *Example (Purchasing)*: `get_monthly_opex_budget_variance`
+    -   *Example (PMS)*: `get_overdue_critical_maintenance_summary`
+-   **Data Export Tools**: Return a complete dataset for a given entity.
+    -   *Example (Purchasing)*: `get_complete_vessel_budget_data`
+    -   *Example (Defects)*: `get_all_defect_reports_for_vessel`
+
+---
+
+## 4.0 Getting Started: A Developer's Guide
+
+If your application needs to align with an **already-built server** (like the Purchase or PMS server), you do not need to build your own.
+
+**Who is this for?**: Developers building applications that need to query data from an established domain.
+-  Request API credentials for the appropriate environment (e.g., production, staging) through a proper configuration file.
+Below is a sample of server configuration json:
+
+```json
+{
+    "mcpServers": {
+        "purchase_budget_expense_tools": {
+            "command": "node",
+            "args": [
+              "dist/index.js"
+            ],
+            "cwd": "/path/to/your/mcp/server",
+            "env": {
+              "mongoUri": "mongodb://username:password@host:port/database?authSource=auth-db",
+              "dbName": "your-database-name",
+              "secondaryMongoUri": "mongodb://username:password@host:port/?authSource=auth-db",
+              "secondaryDbName": "secondary-db-name",
+              "mongodbEtlDevDataUri": "mongodb://username:password@host:port/?authSource=auth-db",
+              "mongodbEtlDevDataDbName": "etl-db-name",
+              "typesenseHost": "your-typesense-host.typesense.net",
+              "typesensePort": "443",
+              "typesenseProtocol": "https",
+              "typesenseApiKey": "your-typesense-api-key",
+              "cohereApiKey": "your-cohere-api-key",
+              "snapshotUrl": "https://your-api-domain.com/v1.0/vessel-info/qna-snapshot",
+              "jwtToken": "your-jwt-token-here",
+              "companyName": "your-company-name"
+            },
+            "description": "Purchase and budget management server handling requisitions, purchase orders, expenses, budgets, and vendor management with ERP access for data extraction",
+            "capabilities": [
+              "Purchase requisition tracking",
+              "Purchase order management",
+              "Budget variance analysis",
+              "Expense tracking and categorization",
+              "Urgent requisition monitoring",
+              "Vendor information management",
+              "Committed cost analysis",
+              "OPEX budget monitoring"
+            ]
+        }
+    }
+}
+```
+
+-  Integrate the MCP client into your application using the provided credentials.
+
+## 5.0 Testing and Validation 🧪
+
+The template includes a robust, dual-strategy testing infrastructure designed to ensure both logical correctness and protocol compliance.
+
+### 5.1 Testing Methodologies
+
+-   **Direct Handler Testing**: Executes handler functions directly, bypassing the MCP protocol. This is extremely fast and ideal for unit testing and rapid debugging during development.
+-   **MCP Protocol Testing**: Spins up a full server instance and communicates with it via a client. This end-to-end test validates the entire request/response lifecycle, including authorization, serialization, and protocol compliance.
+
+### 5.2 Test Execution and Configuration
+
+-   **Configuration**: All test cases, parameters, and settings are defined in `test/test-config.yaml`. This allows you to easily add new tests and enable or disable categories of tests without changing code.
+-   **Execution**: Simple npm scripts are used to run the tests.
+    ```bash
+    # Run fast, direct handler tests
+    npm run test:handlers
+
+    # Run full, end-to-end protocol compliance tests
+    npm run test:mcp
+
+    # Start the server for interactive testing with the MCP Inspector
+    npm test
+    ```
+
+<Callout type="warning">
+**Testing is Not Optional.** When customizing the server, you **must** update `test/test-config.yaml` with test cases for your new tools to ensure the stability and correctness of your implementation.
+</Callout>
+
+---
+
+## 6.0 Build and Deployment 🚀
+
+The project is configured for a straightforward build process and is ready for distribution as an NPM package.
+
+### 6.1 Build Process
+
+The build is handled by a single command:
+
+```bash
+npm run build
+```
+
+This command triggers a multi-step process defined in `package.json`:
+1.  **`prebuild`**: The type generation script runs, ensuring your TypeScript interfaces are in sync with your tool schemas.
+2.  **`build`**: The TypeScript compiler (`tsc`) transpiles the `src` directory into JavaScript in the `dist` directory.
+3.  **`copy-assets`**: A script copies non-code assets like your `.yaml` configuration files into the `dist` directory so they are included in the final package.
+
+### 6.2 Deployment as a Package
+
+The `package.json` is configured to be published to a registry like NPM. The `bin` field sets up a command-line executable, allowing users to run the server easily after installation.
+
+```json
+  "bin": {
+    "your-domain-mcp-server": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "README.md",
+    "install.js"
+  ]
+```
+
+Once published, a user can install and run your server globally with:
+```bash
+npm install -g your-domain-mcp-server
+your-domain-mcp-server
+```
+
+---
+
+## 7.0 Key Architectural Patterns Summarized
+
+This architecture is built on a set of reusable, enterprise-grade patterns. Understanding them is key to extending the server effectively.
+
+-   **Authorization at Boundary**: All requests are authorized before any other logic is performed. This is a critical security pattern that prevents accidental data access.
+-   **Schema-Driven Development**: Tool schemas (`schema.ts`) are the single source of truth. Types, interfaces, and even parts of the documentation are derived from them, ensuring consistency and reducing manual work.
+-   **Categorized Handler Architecture**: Business logic is grouped by *function pattern* (e.g., analytics, search, export) rather than by data entity. This improves code cohesion and reusability.
+-   **Three-Tier Caching**: A pattern for providing high-performance access to frequently needed data (like permissions) with graceful fallbacks to more persistent, slower sources.
+-   **Dual Testing Strategy**: Combining fast, direct handler tests for development with comprehensive, end-to-end protocol tests for integration ensures robust quality assurance.
+-   **Configuration Externalization**: Secrets and environment-specific settings are kept in `.env` files, while human-readable metadata (prompts, resources) is kept in `.yaml` files. This separates security concerns from application configuration.
+
+By adhering to these patterns, you can build new MCP servers that are secure, maintainable, and scalable from day one.
+
+
+
+
+
+
+

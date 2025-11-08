@@ -1,0 +1,68 @@
+/* Demo Pill Button Styles */
+
+/* Ensure pill buttons maintain their styling */
+[data-category] {
+  /* Base styles that should always be present */
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+@media (min-width: 768px) {
+  [data-category] {
+    padding: 0.5rem 1.5rem !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* Active button styles */
+[data-category].bg-black {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Dark mode active button */
+@media (prefers-color-scheme: dark) {
+  [data-category].bg-black.dark\:bg-white {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+}
+
+/* Inactive button styles */
+[data-category].bg-gray-100 {
+  background-color: #f3f4f6 !important;
+  color: #374151 !important;
+}
+
+/* Dark mode inactive button */
+@media (prefers-color-scheme: dark) {
+  [data-category].bg-gray-100.dark\:bg-gray-800 {
+    background-color: #1f2937 !important;
+    color: #d1d5db !important;
+  }
+}
+
+/* Hover effects for inactive buttons */
+[data-category].hover\:bg-gray-200:hover {
+  background-color: #e5e7eb !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-category].dark\:hover\:bg-gray-700:hover {
+    background-color: #374151 !important;
+  }
+}
+
+/* Remove any text underlines or decorations */
+[data-category]:hover {
+  text-decoration: none !important;
+  transform: translateY(-1px);
+}

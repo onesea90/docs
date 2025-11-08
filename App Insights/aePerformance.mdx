@@ -1,0 +1,221 @@
+---
+title: "Aux Engine Performance"
+description: ""
+icon: "gauge"
+---
+
+
+***
+
+## Marine Auxiliary Engine Performance – Methodology Guide
+
+This document explains how the AI-enhanced application evaluates a vessel's auxiliary engine performance using shop trial references and real-time operational data with intelligent diagnostic capabilities.
+
+### System Workflow Overview
+
+![Auxiliary Engine Performance Analysis Flowchart](/assets/AE_engine_performance_flowchart.png)
+
+The flowchart above illustrates the complete workflow of our AI-enhanced auxiliary engine performance monitoring system, from data collection through analysis to actionable insights.
+
+---
+
+### Data Sources and System Foundation
+- **Shop trial reference**: For each auxiliary engine, we maintain baseline performance values established during factory acceptance testing. These represent optimal engine behavior under standardized conditions when the engine was in reference condition.
+- **Real-time operational data**: For each selected month, we retrieve the vessel's recorded auxiliary engine operating data (fuel pump rack position, boost air pressure, turbocharger temperatures, exhaust temperature, maximum combustion pressure). These are the actual operational measurements.
+- **AI analysis database**: Comprehensive diagnostic results stored in MongoDB collections to eliminate redundant processing and provide instant retrieval of previously analyzed scenarios.
+
+---
+
+### Critical Parameters Assessment
+The auxiliary engine dashboard monitors six critical parameters:
+- Fuel Pump Rack Position
+- Boost Air Pressure
+- Turbocharger Inlet Temperature
+- Turbocharger Outlet Temperature  
+- Exhaust Gas Temperature
+- Maximum Combustion Pressure
+
+---
+
+### Shop Trial Reference Methodology
+- For each parameter, we retrieve the vessel's shop trial baseline value that represents expected performance under standard operating conditions.
+- These baselines serve as the gold standard for performance comparison.
+- All auxiliary engines of the same type maintain consistent shop trial references, ensuring standardized comparison across similar installations.
+
+---
+
+### Environmental Normalization (ISO Correction)
+
+To ensure valid comparison between operational data and the engine's baseline shop trial performance, measured values must be adjusted to standard ambient conditions. This normalization follows marine engineering standards for critical parameters.
+
+The primary variables considered for adjustment are:
+* **Charge Air Temperature ($T_{air}$)**
+* **Cooling Water Temperature ($T_{cooling}$)**
+* **Reference Temperature ($T_{ref} = 25°C$)**
+
+#### **Correction Model for Maximum Combustion Pressure ($P_{max}$)**
+The observed maximum combustion pressure is sensitive to temperature variations. The correction formula adjusts the observed value based on temperature deviations from the reference condition.
+
+$$P_{max,corrected} = P_{max,measured} + \Delta P_{air} + \Delta P_{cooling}$$
+
+Where:
+$$\Delta P_{air} = (T_{air} - T_{ref}) \times F_1 \times (K + \frac{P_{max,measured}}{10})$$
+$$\Delta P_{cooling} = (T_{cooling} - T_{ref}) \times F_2 \times (K + \frac{P_{max,measured}}{10})$$
+
+**Correction Constants:**
+* $K = 0.1$ (baseline correction factor)
+* $F_1 = 2.198 \times 10^{-3}$ (air temperature correction coefficient)
+* $F_2 = -0.810 \times 10^{-3}$ (cooling temperature correction coefficient)
+* $T_{ref} = 25.0°C$ (ISO reference temperature)
+
+#### **Correction Model for Boost Air Pressure ($P_{boost}$)**
+Similar correction methodology applies to boost air pressure with specialized coefficients:
+
+$$P_{boost,corrected} = P_{boost,measured} + \Delta P_{air,boost} + \Delta P_{cooling,boost}$$
+
+**Specialized Constants:**
+* $K_s = 0.1$ (boost pressure baseline factor)
+* $F_{1s} = 2.856 \times 10^{-3}$ (air temperature coefficient for boost pressure)
+* $F_{2s} = -2.220 \times 10^{-3}$ (cooling temperature coefficient for boost pressure)
+
+---
+
+### Performance Deviation Analysis
+For each parameter, we take the measured value (or ISO corrected value where applicable) and the shop trial baseline value. We then compute the percentage difference between the two, which we call the **deviation**.
+
+The formula used is:
+$$\text{Deviation} (\%) = \frac{\text{ISO Corrected Value} - \text{Shop Trial Value}}{\text{Shop Trial Value}} \times 100$$
+
+Color coding used throughout the application:
+- **Green**: within ±5% of reference (normal operation)
+- **Yellow**: between ±5% and ±10% deviation (caution - monitoring required)  
+- **Red**: beyond ±10% deviation (critical - immediate attention required)
+
+---
+
+### Parameter Card Information Display
+Each parameter card shows:
+- **ISO corrected value** (environmental correction applied for Pmax and Boost Air Pressure)
+- **Measured value** (raw operational measurement from engine sensors)
+- **Shop trial value** (expected baseline performance reference)
+- **Deviation** and color classification with directional indicators
+- **AI Insight** (intelligent diagnostic recommendation specific to the parameter)
+- A **performance chart**: measured vs. shop trial comparison visualization
+- A **trend chart** of deviation over time, with configurable date ranges
+
+---
+
+### AI-Enhanced Diagnostic System
+- **Individual Parameter Analysis**: Each parameter receives dedicated AI diagnostic analysis, providing concise technical insights (1-2 sentences) with contextual guidance.
+- **Comprehensive System Analysis**: Multi-parameter integration analyzes all six parameters simultaneously using 12 chart images (6 parameters × 2 chart types) to identify system-wide performance patterns and root causes.
+
+---
+
+### Trend Analysis and Historical Context
+The trend chart displays deviation percentages over configurable time ranges (6 months, 1 year, maximum history, or custom start/end), allowing identification of:
+- Performance degradation patterns indicating gradual drift from baseline values
+- Operational anomalies suggesting specific events or component failures
+- Maintenance effectiveness through performance improvements following interventions
+
+---
+
+### Operational Interpretation Guidance
+- **Parameter interdependencies**: Consider multiple parameters together for comprehensive assessment. For example, declining boost air pressure with increasing exhaust temperatures suggests turbocharger degradation.
+- **Trend context**: Historical patterns provide crucial context for current measurements and operational decisions.
+- **Environmental factors**: ISO corrections account for operational condition variations, ensuring accurate baseline comparison.
+
+---
+
+### Operational Response Protocols
+- **Red (>±10% deviation)**: Plan immediate investigation and corrective actions. Review corroborating parameters and recent trend direction. Schedule maintenance intervention.
+- **Yellow (±5% to ±10% deviation)**: Increase monitoring frequency. Schedule preventive maintenance or component inspection at next convenient opportunity.
+
+---
+
+### Methodology Summary
+1. Normalize current measurements to standard conditions using ISO corrections.
+2. Compare them against the vessel's own shop trial references.
+3. Classify the gap using marine engineering standard thresholds and display both current status and historical trends.
+4. Provide intelligent AI insights cached for efficiency and consistency.
+
+This approach transforms auxiliary engine monitoring from reactive manual interpretation to proactive automated analysis, supporting predictive maintenance strategies and operational reliability.
+
+---
+
+### Illustrated example: Boost Air Pressure Analysis
+
+![Auxiliary Engine Performance Dashboard](/assets/Boost_air_pressure_graph.png)
+
+What you are looking at in the dashboard above:
+- **Title**: Each parameter being assessed with clear identification.
+- **Four key metrics displayed**:
+  - *ISO Corrected Value*: Environmental correction applied where applicable.
+  - *Measured Value*: Raw operational measurement from engine sensors.
+  - *Shop Trial Value*: Expected baseline from factory acceptance testing.
+  - *Deviation*: Percentage difference with color coding and directional arrows.
+- **AI Insight Badge**: Intelligent diagnostic recommendation for each parameter.
+- **The charts**: Performance visualization showing measured vs. shop trial comparison and historical trend analysis.
+
+#### Deviation Calculation
+
+Using the boost air pressure example from the dashboard:
+	•	Measured Value = 1.80 bar
+	•	Shop Trial Value = 1.74 bar
+	•	Environmental Conditions: $T_{air} = 30°C$, $T_{cooling} = 26°C$
+
+ISO Correction Process:
+First, convert measured pressure to MPa: $P_{measured,MPa} = 1.80 / 10 = 0.18 \text{ MPa}$
+
+$\Delta P_{air,MPa} = (30-25) \times 2.856 \times 10^{-3} \times (0.1 + 0.18) = 0.004 \text{ MPa}$
+$\Delta P_{cooling,MPa} = (26-25) \times (-2.220 \times 10^{-3}) \times (0.1 + 0.18) = -0.00062 \text{ MPa}$
+$P_{corrected,MPa} = 0.18 + 0.004 - 0.00062 = 0.18338 \text{ MPa}$
+$P_{boost,corrected} = 0.18338 \times 10 = 1.88 \text{ bar}$
+
+Deviation Calculation:
+For parameters with ISO correction (boost air pressure and maximum combustion pressure), the system calculates deviation using the ISO corrected value against the shop trial baseline:
+$\text{Deviation} (\%) = \frac{\text{ISO Corrected Value} - \text{Shop Trial Value}}{\text{Shop Trial Value}} \times 100$
+$\text{Deviation} (\%) = \frac{1.88 - 1.74}{1.74} \times 100 = 8.05%$
+
+
+This is displayed as **8.05%** with an upward arrow indicating above reference, classified as **Yellow (Caution)** requiring monitoring and potential maintenance planning.
+
+AI Insight: “Boost air pressure is significantly above shop trial and trending further positive, suggesting possible over-fueling or turbocharger mismatch. Check turbocharger condition and verify fuel rack calibration for corrective action."
+
+---
+
+### Color coding and actions (applies to all parameters and trends)
+
+| Color | Deviation Range | Operational Meaning | Recommended Action |
+|:-----:|:----------------|:-------------------|:-------------------|
+| Green | within ±5% | Normal operation aligned with shop trial baseline | Continue routine monitoring; maintain current operational parameters |
+| Yellow | >±5% and ≤±10% | Noticeable deviation requiring attention | Increase monitoring frequency; plan preventive maintenance at next opportunity |
+| Red | >±10% | Significant deviation indicating potential issues | Prioritize investigation; implement corrective actions; monitor trend closely |
+
+**Note:** Direction of deviation varies in significance by parameter type. AI insights provide parameter-specific context for interpretation.
+
+---
+
+### Parameter reference guide (auxiliary engine specific)
+
+| Parameter | Unit | Comparison Baseline | Key Monitoring Points |
+|-----------|------|-------------------|---------------------|
+| **Fuel Pump Rack** | mm | Shop trial position at operating conditions | Rising trend may indicate increased fuel demand or injection system wear |
+| **Boost Air Pressure** | bar | ISO-corrected shop trial curve | Low values with temperature increases suggest turbocharger degradation |
+| **T/C Inlet Temperature** | °C | Shop trial baseline temperature | Elevated values affect combustion efficiency and indicate intake system issues |
+| **T/C Outlet Temperature** | °C | Shop trial reference temperature | Monitor with boost pressure for turbocharger performance assessment |
+| **Exhaust Temperature** | °C | Shop trial exhaust temperature | Rising trends indicate combustion efficiency changes or exhaust system issues |
+| **Max Combustion Pressure** | bar | ISO-corrected shop trial pressure | Critical for mechanical integrity; monitor with fuel rack position |
+
+---
+
+### How to read the trend charts
+- A **stable line near zero** means the parameter consistently performs like the shop trial reference.
+- A **gradual trending pattern** indicates systematic performance changes requiring attention.
+- **Sudden deviations** may indicate operational events or component failures requiring investigation.
+- **Seasonal patterns** should consider environmental factors and operational variations.
+
+---
+
+
+
+This methodology ensures reliable, efficient, and intelligent auxiliary engine performance monitoring that supports proactive maintenance strategies while optimizing operational costs and resource utilization.

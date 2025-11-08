@@ -1,0 +1,203 @@
+---
+title: 'Siya Memory Architecture'
+description: 'A detailed look into the memory management system for Siya AI agents, covering short-term and long-term memory, compaction, and retrieval mechanisms.'
+icon: 'clipboard-list'
+---
+
+## Abstract 
+
+This document details a sophisticated, hybrid memory architecture designed to empower AI agents with long-term, stateful, and verifiable knowledge, overcoming the context limitations of LLMs. By segregating memory into a token-efficient **Short-Term Working Memory** and a durable **Long-Term External Memory**, this system enables agents to engage in complex, multi-session tasks with high contextual fidelity. Key innovations include a real-time persistence model, proactive context compaction using citation-based summaries, and a unified graph database for both episodic and semantic recall. The result is an agent that transitions from a stateless instruction-follower to a stateful collaborator capable of complex reasoning, self-correction, and cumulative learning.
+
+## 1. Core Philosophy: A Hybrid Memory Model
+
+<Frame caption="Figure 1: A high-level overview of the memory architecture">
+  <img src="/techPaper/Memory/SiyaMemory.png" alt="High-level diagram of SIYA Memory Architecture" style={{ maxWidth: '100%', height: 'auto', borderRadius: '4px' }} />
+</Frame>
+
+The foundation of the architecture is a dual-memory system that mimics human cognitive processes, separating immediate tasks from a vast repository of past knowledge.
+
+- **Short-Term Working Memory:** This is the active, in-context memory payload sent to the LLM for each interaction turn. It is meticulously constructed to be token-efficient while providing maximum relevance for the immediate task. It is volatile and rebuilt during a process called **Memory Compaction**.
+
+- **Long-Term External Memory:** This is the agent's permanent, queryable knowledge base, stored externally in a graph database. It is not sent to the LLM by default but is accessible on-demand. It serves as the agent's source of truth, capturing every detail of its existence.
+
+---
+
+## 2. Short-Term Memory: Management & Construction
+
+Short-term working memory serves as the agent's immediate cognitive workspace—the carefully curated context that travels with each LLM invocation. Unlike the comprehensive long-term memory, short-term memory must be ruthlessly optimized for relevance and efficiency, containing only the essential information needed for the current interaction turn.
+
+**Why Short-Term Memory Matters:**
+- **Token Efficiency:** LLM context windows have strict limits; every token must provide maximum value.
+- **Cognitive Focus:** Too much information creates noise; too little creates blind spots.
+- **Real-Time Performance:** Context must be assembled quickly for responsive interactions.
+- **Cost Optimization:** Shorter contexts reduce computational and financial costs.
+
+The challenge lies in dynamically determining what constitutes "essential information" as conversations grow in complexity and length.
+
+<Frame caption="Figure 2: Short Term Memory Construction">
+  <img src="/techPaper/Memory/ShortTermMemory2.png" alt="Short Term Memory Construction" style={{ maxWidth: '100%', height: 'auto', borderRadius: '4px' }} />
+</Frame>
+
+### 2.1. The Compaction Triggering Mechanism
+
+Memory compaction is initiated automatically when the conversation context approaches its operational limits. The system monitors two key metrics: **Token Count** and **Payload Size**. The behavior at each threshold is designed to provide graceful degradation and proactive memory management.
+
+### 2.2. Intelligent Compaction Workflow
+
+When compaction is triggered, the system executes a sophisticated multi-stage process to intelligently reduce the context size while maintaining maximum relevance and creating direct, machine-readable links to the long-term memory.
+
+#### 2.2.1. Interaction Turn Summarization of Completed Exchanges
+
+The core of the compaction process involves summarizing past completed interaction turns with intelligent prioritization and citation.
+
+**Process Overview:**
+1. All past completed interaction turns are collected and passed to a specialized summarization LLM.
+2. Each interaction turn is annotated with its unique `episode_id` from the episodic memory.
+3. The LLM analyzes the conversation history, giving higher importance to:
+    - Critical decisions and outcomes from each interaction turn
+    - Code changes and technical solutions
+    - User preferences and requirements
+    - Error resolution and debugging insights
+4. Generic or less important information (casual conversation, repeated explanations) receives minimal or no representation.
+5. The LLM produces a narrative summary that **cites** the episodic IDs for important information.
+
+#### 2.2.2. Last Interaction Turn Synthesis (Not Summarization)
+
+The most recent completed interaction turn receives special treatment through synthesis rather than summarization:
+
+- **User Query Preservation:** The original user request is maintained verbatim to preserve intent.
+- **Agent Response Briefing:** The final agent response is condensed to capture key outcomes and decisions.
+- **Tool Call Intelligence:** An LLM intelligently captures:
+    - Which tools were used and why
+    - Critical outputs from tool responses
+    - Any errors or unexpected results
+    - State changes in the environment
+
+This synthesis ensures that the most recent context maintains higher fidelity than older summarized content.
+
+### 2.3. File Context Restoration
+
+To prevent the agent from losing awareness of the file system state within its short-term memory, a file restoration mechanism runs during compaction.
+
+#### 2.3.1. File Preservation Process
+
+- The system scans the **last 20 messages** of the pre-compaction history.
+- It identifies all `tool` messages with the name `Read` and caches their content, path, timestamp, and a `readCount`.
+
+#### 2.3.2. Intelligent File Restoration
+
+A heuristic-based selection process determines which files to restore into the new context:
+
+- **Filtering:** System-level files (e.g., `node_modules`, `.git`) are excluded.
+- **Prioritization:** Files are sorted by a score (`score = timestamp - (readCount * 1000)`) that prioritizes recency and penalizes redundancy.
+- **Budgeting & Caps:** The restoration is constrained by strict token and file count limits.
+- **Injection:** Selected files are re-injected into the new short-term memory as `tool` messages.
+
+### 2.4. Final Short-Term Memory Structure
+
+The reconstructed short-term working memory follows this precise structure:
+
+1. **Agent System Prompt** - Core instructions and capabilities
+2. **Assistant Message** - Contains the intelligent summary of past completed interaction turns with episodic citations
+3. **Last Interaction Turn Synthesis** - The synthesized (not summarized) most recent completed interaction turn
+4. **Restored File Information** - Selected file contents injected as `tool` messages
+5. **Verbatim Ongoing Interaction Turn Messages** - The current, in-progress conversation turns preserved exactly as they occurred
+
+This structure ensures maximum context efficiency while preserving the most critical information for continued operation.
+
+---
+
+## 3. Long-Term Memory: Real-Time Persistence & Storage
+
+<Frame caption="Figure 3: Long Term Memory Structure">
+  <img src="/techPaper/Memory/LongTermMemory2.png" alt="Long Term Memory Structure" style={{ maxWidth: '100%', height: 'auto', borderRadius: '4px' }} />
+</Frame>
+The external memory system forms the foundation of the agent's knowledge retention, implementing a unified graph database that captures both events and concepts with maximum fidelity. This dual-layered approach creates both a chronological record of interactions and a rich conceptual understanding that evolves over time.
+
+### 3.1. Real-Time Persistence: The Per-Turn Update
+
+To ensure maximum data fidelity and resilience, the agent's long-term memory is updated asynchronously after **every interaction turn**. This approach is architecturally superior to a batch-update model that only persists memory during compaction.
+
+| Feature                | **Per-Turn Update (Chosen Approach)** | Post-Compaction Update (Alternative)                                                  |
+| :--------------------- | :------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------ |
+| **Memory Freshness** | **High.** Long-term memory is always up-to-date, with only seconds of lag.       | **Low.** Significant memory lag exists between compactions, risking data loss.        |
+| **Data Durability** | **High.** A session crash results in the potential loss of only a single turn. 👍 | **Low.** A crash can wipe out the entire conversational history since the last compaction. |
+| **Architectural Design** | **Decoupled.** Knowledge persistence is separate from context management.       | **Coupled.** Creates an unnecessary dependency between two distinct processes.        |
+| **System Overhead** | **Constant & Low.** A continuous stream of small background jobs.               | **Bursty & High.** Long periods of idleness followed by intense processing spikes.    |
+
+This real-time persistence ensures that every observation, user instruction, and tool output is immediately captured as a distinct **episode** in the long-term memory graph.
+
+### 3.2. Episodic Memory Layer
+
+Episodic memory maintains verbatim interaction history for high-fidelity recall and citation resolution. Each interaction turn is stored as a discrete episode containing the original user query, references to all tools called with their execution sequence, the agent's final response, and the complete reasoning workflow from query to response.
+
+Each episode is enhanced with an AI-generated summary for quick reference and vector embeddings for semantic similarity search. Episodes are tagged with precise timestamps and session identifiers, enabling multiple retrieval patterns: direct lookup via episode ID for full interaction details, session-based queries for chronological episode sequences, temporal range queries for time-bounded searches, semantic search using query embeddings, and tool-based filtering for episodes involving specific tools.
+
+### 3.3. Semantic Memory Layer
+
+Semantic memory extracts entities and relationships from episodes to create queryable conceptual knowledge that transcends individual interactions.
+
+#### 3.3.1. Entity Extraction & Classification
+
+The system identifies and extracts three primary entity categories from each episode. Technical entities include files, functions, variables, APIs, libraries, configurations, and system components. Contextual entities capture user preferences, project requirements, domain concepts, and business logic. Behavioral entities encompass agent decisions, error patterns, debugging approaches, and solution methodologies.
+
+Each extracted entity maintains references to all episodes that mention it, along with session context information. This bidirectional linking enables rich retrieval capabilities where entities can be traced back to their source interactions.
+
+#### 3.3.2. Fact Generation & Relationship Mapping
+
+The system creates structured relationships between entities, capturing technical dependencies like function calls and module imports, contextual relationships such as user preferences and decision rationales, and behavioral patterns including problem-solution mappings and performance insights.
+
+Each fact maintains evidence links to supporting episodes and is tagged with session information, creating both session-scoped and cross-session knowledge networks.
+
+#### 3.3.3. Knowledge Integration & Deduplication
+
+As new episodes generate entities and facts, the system compares them with existing graph nodes to identify duplicates using similarity matching. Duplicate entities are merged while consolidating their episode references, and new facts either strengthen existing relationships or create novel connections.
+
+This process creates session-based knowledge for context-aware retrieval within specific conversations and general cross-session knowledge that enables learning transfer between different interactions. The system tracks temporal evolution of facts, maintaining confidence scores based on supporting evidence and preserving the complete provenance chain for verification.
+
+### 3.4. Infrastructure: Local Graph Database with Privacy Protection
+
+**Storage Technology:**
+- **Neo4j Graph Database:** Provides native graph storage and traversal capabilities optimized for complex relationship queries.
+- **Graffiti AI Integration:** Facilitates intelligent storage workflows and retrieval operations with LLM-powered graph interactions.
+- **Local Deployment:** The entire graph database resides on the user's local system, ensuring complete data sovereignty.
+
+**Privacy & Security Benefits:**
+- **Zero External Data Transfer:** All sensitive conversation data and extracted knowledge remains on the user's device.
+- **No Cloud Dependencies:** Long-term memory operations function independently of external services.
+- **User-Controlled Access:** Complete user control over data retention, deletion, and backup policies.
+- **Compliance Ready:** Meets strict privacy requirements for enterprise and sensitive use cases.
+
+This local-first approach eliminates privacy concerns while providing enterprise-grade knowledge management capabilities, making the system suitable for handling confidential information, proprietary code, and sensitive business discussions.
+
+---
+
+## 4. Retrieval via MCP
+
+While persistence happens within the agent's lifecycle, retrieval is an agent-driven process handled by a dedicated server.
+
+- **Trigger:** Retrieval is initiated autonomously by the agent whenever it determines that its short-term working memory is insufficient to accurately fulfill a user's request.
+
+- **Process:** The agent queries the `mcp_memory_search` server, which provides a set of tools for accessing the long-term memory graph. The retrieved information is then provided to the LLM as additional context to inform its next response before proceeding with the user's task.
+
+- **Tools:** The `mcp_memory_search` server has tools that can be used to perform functions such as:
+    - **Performing semantic searches on embedded episode summaries.** This is useful when the agent needs to recall a past conversation based on a conceptual query. For example: "Find the discussion we had about optimizing database queries."
+    - **Retrieving raw chronological history for specific sessions.** This is ideal for when the agent needs to review the exact sequence of events. For example: "Reconstruct the steps taken to resolve the deployment failure from yesterday's session."
+    - **Finding specific entities within the knowledge graph.** This allows the agent to look up specific, named items it has encountered before. For example: "Recall the file path and purpose of the `calculate_tax_liability` function we created."
+    - **Performing filtered searches for facts (relationships) connected to a specific node.** This is powerful for impact analysis. For example: "What other services are connected to the `InventoryItem` schema? What would be affected by a change?"
+
+- **Retrieval Scope:** Retrieval can be performed on a session-specific basis or across the agent's entire knowledge base, allowing for both focused and broad memory access.
+
+---
+
+## 5. Architectural Benefits & Agent Empowerment
+
+This high-fidelity memory architecture elevates the agent from a simple tool to a powerful collaborator.
+
+- **Verifiable High-Fidelity Recall:** The system is designed to preserve detail. By linking summaries to verbatim episodes, the agent can always trace a piece of information back to its source, preventing factual drift and enabling precise self-correction.
+- **True Long-Term Collaboration:** Complex, multi-day projects become feasible. The agent retains perfect memory of decisions, code, and user feedback from the very beginning of an engagement.
+- **Enhanced Reasoning & Meta-Cognition:** The agent can reason about its own history. It can analyze past errors by retrieving the exact sequence of events (episodic) and understand the impact of a change by traversing its knowledge graph of dependencies (semantic).
+- **Cumulative, Cross-Session Learning:** The semantic graph allows knowledge to transcend individual sessions. A solution developed for one project can be recalled and applied to another, allowing the agent to become genuinely more knowledgeable and efficient over time.
+- **Systemic Stability and Resilience:** The combination of proactive compaction and real-time persistence creates a robust system that avoids context-overload failures while protecting against data loss from unexpected interruptions.
+- **Context-Aware File Management:** The intelligent file restoration ensures that the agent maintains awareness of the current working environment, preventing the need to repeatedly re-read files and maintaining coding context across compactions.
+- **Intelligent Information Prioritization:** The two-tier retrieval system ensures optimal performance by using short-term memory for immediate needs while maintaining access to comprehensive historical knowledge when required.

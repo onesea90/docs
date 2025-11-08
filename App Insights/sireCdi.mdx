@@ -1,0 +1,194 @@
+---
+title: "SIRE CDI Inspection"
+description: ""
+author: "SIYA AI Development Team"
+date: "2025-08-14"
+tags: ["INSPECTION", "OCIMF", "CDI", "maritime", "compliance", "inspection-efficiency", "ai"]
+category: "Maritime Environmental Compliance"
+published: true
+icon: "calendar"
+---
+
+<Frame>
+<img src="/assets/sire_cdi_overview.png" />
+</Frame>
+
+*SIRE CDI System Overview - Complete workflow from CDI API Data and OCIMF Web Scraping through Backend Storage, Siya Analytics to Output delivery*
+
+## What is SIRE and CDI?
+
+**SIRE (Ship Inspection Report Programme)** <img src="/assets/ocimf-logo.jpg" alt="OCIMF Logo" style={{width: '60px', height: 'auto', display: 'inline-block', marginLeft: '10px', verticalAlign: 'middle'}} />
+
+SIRE is the world's leading vessel inspection database operated by OCIMF (Oil Companies International Marine Forum). SIRE provides comprehensive inspection reports for tankers, gas carriers, and offshore vessels, serving as the industry standard for vetting inspections. Major oil companies and charterers rely on SIRE data to assess vessel quality, safety standards, and operational capabilities before chartering decisions.
+
+![SIRE Vessel Interface](/assets/sire-vessel-interface.png)
+
+*SIRE Platform Interface - Vessel details showing inspection records, certificates, crew matrix, and PSC inspections with comprehensive tracking capabilities*
+
+**CDI (Chemical Distribution Institute)** <img src="/assets/cdi-logo-new.png" alt="CDI Logo" style={{width: '60px', height: 'auto', display: 'inline-block', marginLeft: '10px', verticalAlign: 'middle'}} />
+
+CDI (Chemical Distribution Institute) maintains specialized inspection standards for chemical carriers, focusing on the unique safety requirements of chemical transportation with extended validity periods and specialized compliance frameworks.
+
+![CDI Platform Interface](/assets/cdi-interface.png)
+
+*CDI Platform Interface - Ships and Reports database showing vessel inspection records with search filters, operator details, and inspection tracking capabilities*
+
+## Platform Overview
+
+Our platform **automatically aggregates, analyzes, and visualizes** vessel inspection data from OCIMF and CDI APIs, transforming complex regulatory data into actionable business intelligence for fleet operators, enabling optimized safety performance, regulatory compliance, and strategic decision-making.
+
+![SIRE CDI Streamlined Integration](/assets/sire_cdi_streamlined_integration.png)
+
+*Figure: SIRE CDI Implementation Overview - Streamlined architecture showing authentication, processing, and output systems*
+
+<details>
+<summary>Alternative Data Integration View</summary>
+
+![SIRE CDI Data Integration](/assets/sire_cdi_data_integration_colorful.png)
+
+*Alternative Figure: SIRE CDI Data Integration Overview - High-level view of data sources, processing, and outputs*
+
+</details>
+
+## System Architecture
+
+![Enhanced SIRE CDI Workflow](/assets/enhanced_sire_cdi_workflow.png)
+
+*SIRE CDI Maritime Inspection Intelligence Platform - Enhanced workflow showing Data Sources (OCIMF & CDI), AI-Powered Processing Engine, and Business Intelligence Dashboard*
+
+
+
+## Key Features
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', margin: '2rem 0'}}>
+  <div style={{background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)', padding: '1.5rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)'}}>
+    <h3 style={{color: '#1565c0', marginBottom: '1rem', fontSize: '1.2rem'}}>🔄 Real-Time Data Sync</h3>
+    <p style={{color: '#333', margin: '0', lineHeight: '1.6'}}>Continuous monitoring of OCIMF and CDI databases with intelligent API integration and automated error handling.</p>
+  </div>
+  
+  <div style={{background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%)', padding: '1.5rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)'}}>
+    <h3 style={{color: '#7b1fa2', marginBottom: '1rem', fontSize: '1.2rem'}}>📊 Interactive Analytics</h3>
+    <p style={{color: '#333', margin: '0', lineHeight: '1.6'}}>Highcharts visualizations with drill-down capabilities - click chapters to view detailed VIQ references and observations.</p>
+  </div>
+  
+  <div style={{background: 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)', padding: '1.5rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)'}}>
+    <h3 style={{color: '#2e7d32', marginBottom: '1rem', fontSize: '1.2rem'}}>🚢 Fleet Management</h3>
+    <p style={{color: '#333', margin: '0', lineHeight: '1.6'}}>Comprehensive fleet-wide analysis with SIRE/CDI comparison tables and validity tracking across all vessels.</p>
+  </div>
+  
+  <div style={{background: 'linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%)', padding: '1.5rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)'}}>
+    <h3 style={{color: '#ef6c00', marginBottom: '1rem', fontSize: '1.2rem'}}>✅ Compliance Tracking</h3>
+    <p style={{color: '#333', margin: '0', lineHeight: '1.6'}}>Automated validity tracking - SIRE (180 days) and CDI (365 days) with proactive overdue notifications.</p>
+  </div>
+</div>
+
+## Analysis Capabilities
+
+
+
+![Historical SIRE Observations](/assets/sire-historical-observations.png)
+
+*Figure 5: Historical SIRE Observations Analysis - OCIMF website data showing observations across various chapters with drillable sub-chapters and detailed inspection records*
+
+![SIRE Inspection Records](/assets/sire-inspection-records.png)
+
+*Figure 6: SIRE Inspection Records - Latest available data from OCIMF website showing inspection details, locations, and historical observations by category*
+
+### Fleet SIRE Analysis
+- Fleet-wide SIRE performance analytics
+- Statistical summaries by inspection chapter
+- Interactive drilldown charts with observation trends
+- Comparative performance benchmarking
+
+### Individual SIRE History
+- Complete inspection timeline
+- Multi-state processing (Published/Pending/Unprocessed)
+- Validity period calculations with renewal alerts
+- Direct links to official inspection reports
+
+### Individual CDI Analysis
+- CDI-specific observation tracking for chemical carriers
+- 365-day validity period management
+- Chapter-based performance analytics
+- Specialized chemical handling compliance
+
+### Fleet Comparison Dashboard
+**Interactive Combined Fleet Analysis**
+- Real-time interactive dashboard with filtering
+- Toggle between SIRE and CDI inspection views
+- Advanced filtering by compliance status (Overdue, Due Soon, Valid)
+- Search functionality with live results
+- Color-coded status indicators (Red: Overdue, Yellow: Due Soon, Green: Valid)
+- Responsive design with list and detailed cards view
+- Direct integration with S3-hosted dashboard components
+
+### Vessel Type Classification
+
+```mermaid
+graph TD
+    A[Vessel Input] --> B{Vessel Type Analysis}
+    
+    B -->|Tanker Categories| C[SIRE Applicable]
+    B -->|Chemical Carriers| D[SIRE + CDI Applicable]
+    B -->|Other Vessel Types| E[Not Applicable]
+    
+    C --> F[Process SIRE Data Only]
+    D --> G[Process Both Data Types]
+    E --> H[Generate N/A Response]
+    
+    F --> I[SIRE Components]
+    G --> J[Combined Components]
+    H --> K[N/A Message]
+    
+    subgraph "SIRE Applicable Types"
+        L[LNG CARRIERS<br/>LPG CARRIERS<br/>CRUDE OIL TANKERS<br/>PRODUCT TANKERS<br/>CHEMICAL CARRIERS<br/>GAS CARRIERS]
+    end
+    
+    subgraph "CDI Applicable Types"  
+        M[CHEMICAL CARRIERS<br/>CHEMICAL TANKERS<br/>CHEMICAL/PRODUCT TANKERS<br/>SPECIALIZED CHEMICAL VESSELS]
+    end
+    
+    style B fill:#e1f5fe
+    style C fill:#e8f5e8
+    style D fill:#e8f5e8
+    style E fill:#ffebee
+```
+
+## Compliance Calculations
+
+### SIRE Validity Logic:
+
+**Days Remaining** = (Last Inspection Date + 180 days) - Current Date
+
+**Status** = $\begin{cases}
+\text{Valid} & \text{if Days Remaining} > 30 \\
+\text{Due Soon} & \text{if } 0 \leq \text{Days Remaining} \leq 30 \\
+\text{Overdue} & \text{if Days Remaining} < 0 \\
+\text{Not Available} & \text{if no inspection data}
+\end{cases}$
+
+**Where:**
+- SIRE inspection validity period = 180 days from inspection date
+- Valid: More than 30 days remaining before expiry
+- Due Soon: Between 0-30 days remaining before expiry  
+- Overdue: Past the 180-day validity period
+
+### CDI Validity Logic:
+
+**Days Remaining** = (Last Inspection Date + 365 days) - Current Date
+
+**Status** = $\begin{cases}
+\text{Valid} & \text{if Days Remaining} > 60 \\
+\text{Due Soon} & \text{if } 0 \leq \text{Days Remaining} \leq 60 \\
+\text{Overdue} & \text{if Days Remaining} < 0 \\
+\text{Not Available} & \text{if no inspection data}
+\end{cases}$
+
+**Where:**
+
+**Where:**
+- CDI inspection validity period = 365 days from inspection date
+- Valid: More than 60 days remaining before expiry
+- Due Soon: Between 0-60 days remaining before expiry
+- Overdue: Past the 365-day validity period
+

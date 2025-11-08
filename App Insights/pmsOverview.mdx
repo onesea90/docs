@@ -1,0 +1,257 @@
+---
+title: "PMS Overview"
+subtitle: "Transforming Maritime Maintenance Management Through AI-Driven Data Integration"
+authors: ["Syia Technologies"]
+date: "2024"
+version: "1.0"
+classification: "Technical Module Overview"
+keywords: ["PMS", "Planned Maintenance", "Maritime Technology", "Predictive Analytics", "Fleet Management", "Equipment Monitoring"]
+"icon": "gauge"
+---
+
+The SYIA PMS Intelligence Platform revolutionizes maritime maintenance management by integrating advanced data analytics, machine learning algorithms, and real-time monitoring capabilities. Our comprehensive system transforms traditional maintenance workflows into intelligent, predictive operations that optimize fleet performance and reduce operational costs.
+
+<img src="/assets/pms_layout.png" />
+
+## Data Architecture & Integration Flow
+
+### Primary Data Integration Pipeline
+
+The SYIA PMS platform follows a robust data integration architecture that ensures secure, reliable, and real-time access to critical maintenance information.
+
+```mermaid
+flowchart TD
+    A[📊 ERP Software System] --> B[🔄 Data Extraction Layer]
+    B --> C[🗄️ Raw Data Database]
+    C --> D[💻 Python ETL Pipeline]
+    D --> E[🛡️ Secured MongoDB Storage]
+    E --> F[🤖 AI Analytics Engine]
+    F --> G[📈 PMS Intelligence Platform]
+    
+    G --> H1[📊 Real-time Dashboards]
+    G --> H2[🔔 Predictive Alerts]
+    G --> H3[📋 Maintenance Reports]
+    G --> H4[🎯 Performance Analytics]
+    
+    style A fill:#3498db,stroke:#2980b9,color:#fff
+    style F fill:#9b59b6,stroke:#8e44ad,color:#fff
+    style G fill:#3498db,stroke:#2980b9,color:#fff
+```
+
+**Key Integration Points:**
+
+- **ERP Systems**: Direct integration with maritime ERP and legacy PMS systems
+- **Data Security**: Enterprise-grade encryption and secure data transmission
+- **Real-time Processing**: Continuous data synchronization with minimal latency
+- **Scalable Architecture**: Cloud-native design supporting fleet expansion
+
+## ETL Processing Architecture
+
+### Comprehensive Data Transformation Pipeline
+
+Our advanced ETL pipeline processes complex maintenance data through multiple stages of validation, transformation, and enrichment to deliver actionable insights.
+
+```mermaid
+flowchart LR
+    subgraph EXTRACT ["EXTRACT PHASE"]
+        E1[SQL Server Queries]
+        E2[API Data Retrieval]
+        E3[File System Access]
+    end
+    
+    subgraph TRANSFORM ["TRANSFORM PHASE"]
+        T1[Data Validation]
+        T2[Equipment Categorization]
+        T3[Running Hours Calculation]
+        T4[Maintenance Scheduling]
+        T5[Performance Metrics]
+        T6[Anomaly Detection]
+    end
+    
+    subgraph LOAD ["LOAD PHASE"]
+        L1[MongoDB Collections]
+        L2[Indexed Storage]
+        L3[Real-time Streaming]
+        L4[Data Versioning]
+    end
+    
+    E1 --> T1
+    E2 --> T2
+    E3 --> T3
+    
+    T1 --> T5
+    T2 --> T5
+    T3 --> T6
+    T4 --> T6
+    
+    T5 --> L1
+    T6 --> L2
+    L1 --> L3
+    L2 --> L4
+    
+    style EXTRACT stroke:#c0392b,color:#000
+    style TRANSFORM stroke:#e67e22,color:#000
+    style LOAD stroke:#229954,color:#000
+```
+
+### Key Capabilities
+
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+  gap: '20px',
+  margin: '30px 0'
+}}>
+  <div style={{
+    background: '#f8f9fa',
+    padding: '20px',
+    borderRadius: '8px',
+    border: '2px solid #3498db'
+  }}>
+    <h4 style={{color: '#3498db', marginTop: '0'}}>🔧 Main Engine Analytics</h4>
+    <p>Real-time monitoring of main engine running hours, maintenance schedules, and performance metrics with predictive maintenance alerts.</p>
+  </div>
+  
+  <div style={{
+    background: '#f8f9fa',
+    padding: '20px',
+    borderRadius: '8px',
+    border: '2px solid #3498db'
+  }}>
+    <h4 style={{color: '#3498db', marginTop: '0'}}>⚡ Auxiliary Engine Management</h4>
+    <p>Comprehensive tracking of auxiliary engine operations, maintenance intervals, and efficiency optimization across the fleet.</p>
+  </div>
+  
+  <div style={{
+    background: '#f8f9fa',
+    padding: '20px',
+    borderRadius: '8px',
+    border: '2px solid #3498db'
+  }}>
+    <h4 style={{color: '#3498db', marginTop: '0'}}>🌊 Purifier System Control</h4>
+    <p>Advanced monitoring of purifier operations, cleaning cycles, and maintenance requirements with automated scheduling.</p>
+  </div>
+  
+  <div style={{
+    background: '#f8f9fa',
+    padding: '20px',
+    borderRadius: '8px',
+    border: '2px solid #3498db'
+  }}>
+    <h4 style={{color: '#3498db', marginTop: '0'}}>💨 Compressor Analytics</h4>
+    <p>Intelligent tracking of compressor performance, running hours, and maintenance needs with efficiency analysis.</p>
+  </div>
+</div>
+
+## Core PMS Modules
+
+### 1. Machinery Monitoring & Analytics
+
+**Comprehensive Equipment Intelligence:**
+- Real-time operational status monitoring across all critical machinery systems
+- Predictive maintenance scheduling based on equipment performance patterns
+- Advanced performance analytics with trend identification and forecasting
+- Automated alerting system for critical parameter deviations and maintenance requirements
+
+### 2. Equipment-Specific Intelligence
+
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gap: '20px',
+  margin: '25px 0'
+}}>
+  <div style={{
+    background: '#fff',
+    padding: '20px',
+    borderRadius: '8px',
+    border: '2px solid #3498db',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+  }}>
+    <h4 style={{color: '#3498db', marginTop: '0'}}>🔧 Operational Excellence</h4>
+    <ul style={{fontSize: '14px', lineHeight: '1.6'}}>
+      <li>Automated performance optimization</li>
+      <li>Intelligent maintenance scheduling</li>
+      <li>Resource allocation efficiency</li>
+      <li>Cost-effective operations management</li>
+    </ul>
+  </div>
+  
+  <div style={{
+    background: '#fff',
+    padding: '20px',
+    borderRadius: '8px',
+    border: '2px solid #3498db',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+  }}>
+    <h4 style={{color: '#3498db', marginTop: '0'}}>📊 Performance Analytics</h4>
+    <ul style={{fontSize: '14px', lineHeight: '1.6'}}>
+      <li>Real-time monitoring and diagnostics</li>
+      <li>Predictive failure analysis</li>
+      <li>Energy consumption optimization</li>
+      <li>Preventive maintenance strategies</li>
+    </ul>
+  </div>
+</div>
+
+### 3. Critical Spare Parts Management
+
+Our intelligent inventory management system ensures optimal spare parts availability while minimizing carrying costs:
+
+- **Predictive Ordering**: AI algorithms forecast spare parts requirements based on usage patterns
+- **Stock Optimization**: Dynamic inventory levels based on vessel routes and maintenance schedules
+- **Supplier Integration**: Automated procurement workflows with preferred suppliers
+- **Cost Analysis**: Comprehensive tracking of spare parts costs and usage efficiency
+
+### 4. Maintenance Job Orchestration
+
+**Job Summary Dashboard:**
+- Centralized view of all maintenance activities across the fleet
+- Resource allocation and scheduling optimization
+- Progress tracking with real-time status updates
+- Performance metrics and completion analytics
+
+**Maintenance Overview Intelligence:**
+- Fleet-wide maintenance status monitoring
+- Overdue item identification and prioritization
+- Maintenance cost analysis and budgeting
+- Regulatory compliance tracking
+
+## AI-Powered Analytics & Insights
+
+**Machine Learning Capabilities:**
+
+- **Pattern Recognition**: Advanced algorithms identify maintenance patterns and predict future requirements
+- **Anomaly Detection**: Real-time monitoring detects unusual equipment behavior before failures occur
+- **Optimization Algorithms**: AI-driven scheduling optimizes maintenance windows and resource allocation
+- **Performance Forecasting**: Predictive models estimate equipment lifespan and replacement timing
+
+### Key Performance Indicators
+
+**Operational Metrics:**
+- Equipment availability and uptime percentages
+- Maintenance cost per vessel and per equipment type
+- Mean time between failures (MTBF) analysis
+- Resource utilization and efficiency rates
+
+**Predictive Insights:**
+- Maintenance schedule optimization recommendations
+- Cost reduction opportunities identification
+- Risk assessment for critical equipment
+- Performance improvement suggestions
+
+## Integration Benefits
+
+### Operational Excellence
+
+- **Reduced Downtime**: Predictive maintenance reduces unplanned equipment failures.
+- **Cost Optimization**: Intelligent scheduling and inventory management optimize maintenance costs
+- **Compliance Assurance**: Automated tracking ensures regulatory compliance and certification requirements
+- **Resource Efficiency**: Optimized parts allocation improve operational efficiency
+
+### Strategic Advantages
+
+- **Data-Driven Decisions**: Comprehensive analytics support strategic fleet management decisions
+- **Scalable Platform**: Cloud-native architecture supports fleet expansion and growth
+- **Competitive Edge**: Advanced AI capabilities provide significant operational advantages
+- **Risk Mitigation**: Proactive maintenance reduces operational risks and insurance costs

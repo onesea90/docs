@@ -1,122 +1,166 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "SIYA",
   "colors": {
-    "primary": "#16A34A",
+    "primary": "#000000",
     "light": "#07C983",
-    "dark": "#15803D"
+    "dark": "#000000"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/assets/siya-logo.png",
+  "customScripts": [
+    "/script.js",
+    "/demo-filter-data.js",
+    "/demo-pill-buttons.css",
+    "/style.css",
+    "/dark-mode.css",
+    "/explore-siya-resources-style.css"
+  ],
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Home",
+        "pages": [
+          "home"
+        ]
+      },
+      {
+        "tab": "SIYA Agent",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "siya-superagent/introduction",
+              "siya-superagent/quick-start",
+              "siya-superagent/desktop-application",
+              "siya-superagent/model-selection",
+              "siya-superagent/performance-benchmarks"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Core Concepts",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "siya-superagent/execution-modes",
+              "siya-superagent/agent-system",
+              "siya-superagent/tools-capabilities",
+              "siya-superagent/planning-system",
+              "siya-superagent/memory-system"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Configuration & Integration",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "siya-superagent/configuration",
+              "siya-superagent/mcp-integration",
+              "siya-superagent/hooks-automation"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Advanced",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "siya-superagent/advanced-topics",
+              "siya-superagent/api-reference"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Data Insights",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "App Insights",
             "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "App Insights/etaDashboard",
+              "App Insights/budgetOverview",
+              "App Insights/surveyCertification",
+              "App Insights/pscInspection",
+              "App Insights/emissionMonitoring",
+              "App Insights/mePerformance",
+              "App Insights/aePerformance",
+              "App Insights/fuelOil",
+              "App Insights/lubeOil",
+              "App Insights/scavengeInspection",              
+              "App Insights/pmsOverview",
+              "App Insights/purchaseOverview",
+              "App Insights/defectsOverview",
+              "App Insights/sireCdi",
+              "App Insights/bwt",
+              "App Insights/tmsaCheck",
+              "App Insights/lsa",
+              "App Insights/ihm",
+              "App Insights/forms",
+              "App Insights/QNA Creation",
+              "App Insights/LO cost optimization",
+              "techPaper/UI Testing/ui_testing"
             ]
           }
         ]
+      },
+      {
+        "tab": "Case File System",
+            "pages": [
+              "techPaper/CaseFilesenterprise/casefileBlog"
+            ]
+    
+      },
+      {
+        "tab": "Memory Architecture",
+            "pages": [
+              "techPaper/Memory/SiyaMemory"
+            ]
+         
+      },
+      {
+        "tab": "Advanced RAG-Data Retrieval",
+            "pages": [
+              "techPaper/RAG/rag"
+            ]
+
+      },
+      {
+        "tab": "Updating Soon",
+            "pages": [
+              "research_paper/SIYA_multi_agent_system"
+            ]
+
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/assets/siya.avif",
+    "dark": "/assets/siya-white.png"
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
+  "links": [
+    { "label": "Research", "href": "https://siya.com/research" },
+    { "label": "Support", "href": "https://siya.com/support" },
+    { "label": "Discord", "href": "https://discord.gg/siya" },
+    { "label": "Login", "href": "https://app.siya.com/login.html" }
+  ],
+  "primary": {
+    "type": "button",
+    "label": "Sign Up",
+    "href": "https://app.siya.com/join-waitlist.html"
+  }
+},
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com",
+      "github": "https://github.com",
+      "linkedin": "https://linkedin.com/company"
     }
-  }
+
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/home"
+    }
+  ]
 }

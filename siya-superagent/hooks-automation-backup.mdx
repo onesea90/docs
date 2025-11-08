@@ -1,0 +1,484 @@
+---
+title: "Hooks Automation"
+description: "Automate workflows with event-driven hooks system"
+icon: "webhook"
+---
+
+
+## Automate and Customize Siya's Behavior
+
+Hooks allow you to run custom commands automatically when certain events occur in Siya. This powerful feature enables workflow automation, notifications, custom logging, and integration with external tools.
+
+## What are Hooks?
+
+Hooks are custom scripts or commands that execute automatically when specific events happen in Siya. They receive contextual information about the event and can perform any action you need.
+
+### Use Cases
+
+- **Notifications**: Alert when long-running tasks complete
+- **Logging**: Track tool usage or errors
+- **Automation**: Trigger external workflows
+- **Integration**: Connect with other tools and services
+- **Monitoring**: Track performance and usage
+- **Security**: Audit sensitive operations
+
+## Easy Hook Creation with Siya
+
+### Ask Siya to Create Hooks (Recommended)
+
+The easiest way to create hooks is to simply tell Siya what you want to achieve! Siya will automatically create the appropriate hook configuration for you.
+
+**Examples of what you can say:**
+
+```
+"Create a hook to notify me when any task completes"
+"Set up a hook to log all file operations"
+"Make a hook that commits changes to git after file edits"
+"Create a notification when memory compaction happens"
+"Set up a Slack notification for bash command executions"
+"Make a hook to backup files before they're edited"
+"Create a performance monitoring hook"
+```
+
+**Siya will:**
+1. Understand your requirement
+2. Determine the appropriate event to hook
+3. Create the command or script
+4. Configure the hook in the right settings file
+5. Test that it works correctly
+
+### Advanced Hook Requests
+
+You can be more specific with your requirements:
+
+```
+"Create a hook that sends a macOS notification with the tool name when any tool finishes"
+"Set up a hook to log all write-file operations to ~/siya-file-changes.log with timestamps"
+"Make a hook that runs my custom script at ~/scripts/process.sh after browser operations"
+"Create a hook that only triggers for production deployments and sends email notifications"
+```
+
+## Hook Events
+
+Siya supports the following hook events:
+
+### Tool-Related Events
+- **PreToolUse**: Fires before any tool is executed
+- **PostToolUse**: Fires after a tool completes execution
+
+### Notification Events
+- **Notification**: General notification events
+- **Stop**: When execution is stopped
+- **SubagentStop**: When a sub-agent is stopped
+
+### Memory Events
+- **PreCompact**: Before memory compacting begins
+- **PostCompact**: After memory compacting completes
+
+## Manual Configuration
+
+While asking Siya is the easiest method, you can also manually configure hooks through settings files in JSON format. Siya checks three locations in order:
+
+1. **User Settings**: `~/.config/siya/settings.json`
+2. **Project Settings**: `.siya/settings.json` (in current directory)
+3. **Local Settings**: `.siya/settings.local.json` (in current directory)
+
+Settings are merged, with local settings taking precedence over project settings, which take precedence over user settings.
+
+## Hook Configuration Structure
+
+### Basic Structure
+
+```json
+{
+  "hooks": {
+    "EventName": [
+      {
+        "matcher": {
+          "tools": ["tool-name"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "your-command-here"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Configuration Elements
+
+- **EventName**: The event that triggers the hook (e.g., "PostToolUse")
+- **matcher**: Optional conditions for when the hook should fire
+  - **tools**: Array of tool names to match
+- **hooks**: Array of commands to execute
+  - **type**: Currently only "command" is supported
+  - **command**: The shell command to run
+
+## Common Hook Examples
+
+### Example 1: Task Completion Notification
+
+**Ask Siya:**
+```
+"Create a notification when tasks complete"
+```
+
+**Or manually configure:**
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": {
+          "tools": ["task-complete"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Task completed!\" with title \"Siya\"'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Example 2: File Operation Logging
+
+**Ask Siya:**
+```
+"Log all file operations with timestamps"
+```
+
+**Or manually configure:**
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": {
+          "tools": ["write-file", "edit-file", "read-file"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$(date): File operation $toolName on $filePath\" >> ~/.siya/file-ops.log"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Example 3: Auto Git Commit
+
+**Ask Siya:**
+```
+"Automatically commit changes to git after editing files"
+```
+
+**Or manually configure:**
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": {
+          "tools": ["write-file", "edit-file"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd $(dirname \"$filePath\") && git add . && git commit -m \"Auto-commit: File modified by Siya\""
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Example 4: Performance Monitoring
+
+**Ask Siya:**
+```
+"Monitor memory compaction performance"
+```
+
+**Or manually configure:**
+```json
+{
+  "hooks": {
+    "PreCompact": [
+      {
+        "matcher": {},
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Memory compaction started at $(date)\" >> ~/.siya/performance.log"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": {},
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Memory compaction completed at $(date)\" >> ~/.siya/performance.log"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Example 5: Slack Integration
+
+**Ask Siya:**
+```
+"Send Slack notifications when bash commands are executed"
+```
+
+**Or manually configure:**
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": {
+          "tools": ["bash", "terminal"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Command executed: $toolName\"}' YOUR_SLACK_WEBHOOK_URL"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Popular Hook Requests
+
+### Notifications
+- "Notify me when long tasks finish"
+- "Send desktop alerts for errors"
+- "Email me daily summaries"
+- "Alert on specific tool usage"
+
+### Logging & Monitoring
+- "Track all API calls"
+- "Log execution times"
+- "Monitor resource usage"
+- "Create audit trails"
+
+### Automation
+- "Auto-save after edits"
+- "Backup before changes"
+- "Sync to cloud storage"
+- "Trigger CI/CD pipelines"
+
+### Integration
+- "Update Jira on task completion"
+- "Post to Discord channels"
+- "Send Teams notifications"
+- "Update status dashboards"
+
+## Context Data
+
+Hooks receive context information as JSON via stdin. The context includes:
+
+### Common Fields
+- **event**: The event name that triggered the hook
+- **timestamp**: ISO 8601 timestamp of the event
+
+### Tool-Related Fields (PreToolUse/PostToolUse)
+- **toolName**: Name of the tool being used
+- **toolArgs**: Arguments passed to the tool
+- **toolResult**: Result from the tool (PostToolUse only)
+
+### Example Context Data
+
+```json
+{
+  "event": "PostToolUse",
+  "timestamp": "2024-01-15T10:30:45.123Z",
+  "toolName": "write-file",
+  "toolArgs": {
+    "filePath": "/Users/john/project/README.md",
+    "content": "# My Project\n\nThis is my project."
+  },
+  "toolResult": "File written successfully"
+}
+```
+
+## Best Practices
+
+### 1. Start with Siya
+- Tell Siya what you want to achieve
+- Let Siya create the initial hook
+- Test and refine as needed
+- Ask Siya to modify if changes are needed
+
+### 2. Keep Commands Fast
+Hooks run synchronously, so long-running commands can slow down Siya. For lengthy operations:
+- Run commands in the background with `&`
+- Use a queue system
+- Trigger async workflows
+
+### 3. Use Appropriate Scope
+- **User Settings**: Personal preferences and workflows
+- **Project Settings**: Team-shared hooks for specific projects
+- **Local Settings**: Temporary or experimental hooks
+
+### 4. Security Considerations
+- Be cautious with hooks that execute commands
+- Validate input data before using it
+- Avoid exposing sensitive information
+- Use environment variables for secrets
+
+## Managing Hooks
+
+### View Current Hooks
+
+Ask Siya:
+```
+"Show me all configured hooks"
+"What hooks are currently active?"
+"List hooks for file operations"
+```
+
+### Modify Hooks
+
+Ask Siya:
+```
+"Disable the git commit hook"
+"Update the Slack webhook URL in my hooks"
+"Change the notification message for task completion"
+```
+
+### Remove Hooks
+
+Ask Siya:
+```
+"Remove all notification hooks"
+"Delete the file logging hook"
+"Clear all hooks in local settings"
+```
+
+## Troubleshooting
+
+### Get Help from Siya
+
+If hooks aren't working as expected:
+```
+"Help me debug why my hook isn't firing"
+"Check if my notification hook is configured correctly"
+"Test my file operation hook"
+"Show me the hook execution logs"
+```
+
+### Common Issues
+
+**Hooks Not Firing**
+- Ask Siya: "Why isn't my hook triggering?"
+- Check file locations and JSON syntax
+- Verify event names and tool matchers
+
+**Permission Errors**
+- Ask Siya: "Fix permission issues with my hook script"
+- Ensure scripts have execute permissions
+- Check file path accessibility
+
+**Command Failures**
+- Ask Siya: "Debug my hook command errors"
+- Test commands manually first
+- Check PATH and environment variables
+
+## Advanced Usage
+
+### Complex Workflows
+
+Ask Siya to create sophisticated hooks:
+```
+"Create a hook that backs up files before editing, logs the operation, and sends a notification"
+"Set up a workflow that triggers Jenkins builds when I commit code"
+"Make a hook system for tracking project time and generating reports"
+```
+
+### Custom Scripts
+
+Have Siya help you create custom scripts:
+```
+"Write a Python script for my hook that analyzes tool usage patterns"
+"Create a bash script that processes hook events and updates a dashboard"
+"Make a Node.js webhook handler for my hooks"
+```
+
+### Integration Patterns
+
+Get help with integrations:
+```
+"Connect my hooks to Zapier"
+"Integrate hooks with my company's monitoring system"
+"Set up hooks to work with our CI/CD pipeline"
+```
+
+## Examples Repository
+
+### Ask Siya for Examples
+
+```
+"Show me examples of notification hooks"
+"Give me templates for logging hooks"
+"What are some useful automation hooks?"
+"Show me enterprise integration hook patterns"
+```
+
+### Categories
+
+**Notifications**
+- Desktop alerts (macOS, Linux, Windows)
+- Email notifications
+- Chat integrations (Slack, Discord, Teams)
+- SMS and phone alerts
+
+**Automation**
+- Git workflows
+- Backup systems
+- File synchronization
+- Build triggers
+
+**Monitoring**
+- Performance tracking
+- Usage analytics
+- Error reporting
+- Cost tracking
+
+**Integration**
+- Issue tracking (Jira, GitHub)
+- CI/CD systems
+- Monitoring platforms
+- Custom APIs
+
+## Next Steps
+
+1. **Start Simple**: Ask Siya to create your first hook
+2. **Experiment**: Try different event types and commands
+3. **Build Workflows**: Combine multiple hooks
+4. **Share**: Help others with useful hook patterns
+
+---
+
+*Hooks - Let Siya create the automation you need, just describe what you want!*

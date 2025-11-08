@@ -1,0 +1,435 @@
+---
+title: "MCP Integration"
+description: "Extend Siya with Model Context Protocol servers"
+icon: "plug"
+---
+
+
+## Extend Siya with Model Context Protocol
+
+MCP (Model Context Protocol) servers allow you to extend Siya's capabilities with custom tools, integrations, and specialized services. By configuring MCP servers, you can connect Siya to databases, APIs, enterprise systems, and more.
+
+## How MCP Works in Siya
+
+### Access by Mode
+
+**Chat Mode**:
+- Direct MCP tool access through the main Siya agent
+- Dynamic capability discovery
+- Real-time integration with configured servers
+
+**Task Mode**:
+- Exclusive MCP access through the SWE Agent Module
+- Used for enterprise integrations and specialized operations
+- Enables extended software engineering capabilities
+
+## Easy Configuration Methods
+
+### Method 1: Ask Siya to Configure (Recommended)
+
+The easiest way to add MCP servers is to simply ask Siya! Siya can automatically configure MCP servers for you:
+
+**Using GitHub URL**:
+```
+"Configure the MCP server from https://github.com/modelcontextprotocol/servers/tree/main/src/postgres"
+```
+
+**Using Server Name**:
+```
+"Add the stock-market MCP server"
+"Configure the GitHub MCP server for me"
+"Set up the PostgreSQL MCP server"
+```
+
+**With Custom Settings**:
+```
+"Configure the stock market MCP server with my API key: abc123"
+"Add the Slack MCP server and use token xoxb-12345"
+```
+
+Siya will:
+1. Find the correct MCP server
+2. Determine required configuration
+3. Add it to your `siya-desktop-config.json`
+4. Set up any necessary API keys or tokens
+5. Verify the configuration works
+
+### Method 2: Manual Configuration
+
+You can also manually configure MCP servers by editing the configuration file:
+
+#### Configuration File Location
+
+MCP servers are configured through the `siya-desktop-config.json` file located in the Siya configuration directory:
+
+```
+~/.siya/siya-desktop-config.json
+```
+
+#### Configuration Structure
+
+The configuration file uses a simple JSON structure:
+
+```json
+{
+    "mcpServers": {
+        "server-name": {
+            "command": "command-to-run",
+            "args": ["array", "of", "arguments"],
+            "env": {
+                "OPTIONAL_ENV_VAR": "value"
+            },
+            "maskedFields": ["args.3"]
+        }
+    }
+}
+```
+
+## Adding MCP Servers
+
+### Automatic Configuration (Ask Siya)
+
+Simply tell Siya what you need:
+
+**Examples**:
+- "I need to connect to my PostgreSQL database"
+- "Add MCP server for stock market data"
+- "Configure GitHub integration"
+- "Set up the filesystem MCP server for /Users/myname/projects"
+
+Siya will guide you through any required setup, including:
+- API key configuration
+- Connection strings
+- Authentication tokens
+- Permission settings
+
+### Manual Configuration Steps
+
+1. **Navigate to the Siya folder**:
+   ```
+   cd ~/.siya
+   ```
+
+2. **Open or create the configuration file**:
+   ```
+   siya-desktop-config.json
+   ```
+
+3. **Add your MCP server configuration**
+
+4. **Save the file** - Siya will automatically detect and load the new configuration
+
+### Configuration Examples
+
+#### Stock Market Server
+```json
+{
+    "mcpServers": {
+        "stock-market": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "stock-market-mcp-server",
+                "--api-key",
+                "your-api-key-here",
+                "--non-interactive"
+            ],
+            "maskedFields": ["args.3"]
+        }
+    }
+}
+```
+
+#### Database Server
+```json
+{
+    "mcpServers": {
+        "postgres-db": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-postgres",
+                "postgresql://user:password@localhost/dbname"
+            ],
+            "maskedFields": ["args.2"]
+        }
+    }
+}
+```
+
+#### File System Server
+```json
+{
+    "mcpServers": {
+        "filesystem": {
+            "command": "node",
+            "args": ["./mcp-servers/filesystem/index.js"],
+            "env": {
+                "ROOT_DIR": "/Users/username/projects",
+                "ALLOWED_OPERATIONS": "read,write"
+            }
+        }
+    }
+}
+```
+
+#### Multiple Servers
+```json
+{
+    "mcpServers": {
+        "github": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-github"],
+            "env": {
+                "GITHUB_TOKEN": "ghp_your_token_here"
+            },
+            "maskedFields": ["env.GITHUB_TOKEN"]
+        },
+        "slack": {
+            "command": "npx",
+            "args": ["-y", "slack-mcp-server"],
+            "env": {
+                "SLACK_TOKEN": "xoxb-your-token"
+            },
+            "maskedFields": ["env.SLACK_TOKEN"]
+        },
+        "jira": {
+            "command": "python",
+            "args": ["./mcp-servers/jira/server.py"],
+            "env": {
+                "JIRA_URL": "https://company.atlassian.net",
+                "JIRA_EMAIL": "user@company.com",
+                "JIRA_TOKEN": "your-api-token"
+            },
+            "maskedFields": ["env.JIRA_TOKEN"]
+        }
+    }
+}
+```
+
+## Popular MCP Servers
+
+### Ask Siya to Configure These
+
+**Development Tools**:
+- "Add GitHub MCP server" - Repository management
+- "Configure GitLab integration" - Alternative to GitHub
+- "Set up Jira MCP server" - Issue tracking
+
+**Databases**:
+- "Add PostgreSQL MCP server" - Relational database
+- "Configure MySQL server" - Another SQL option
+- "Set up MongoDB MCP" - NoSQL database
+- "Add SQLite server" - Local database
+
+**Communication**:
+- "Configure Slack MCP server" - Team messaging
+- "Add Discord integration" - Community chat
+- "Set up email MCP server" - Email automation
+
+**File & Cloud**:
+- "Add filesystem MCP server" - Local file access
+- "Configure Google Drive MCP" - Cloud storage
+- "Set up Dropbox integration" - File sync
+
+**Data & APIs**:
+- "Add stock market MCP server" - Financial data
+- "Configure weather API server" - Weather data
+- "Set up news MCP server" - News aggregation
+
+**Enterprise**:
+- "Configure Salesforce MCP" - CRM integration
+- "Add SAP integration" - ERP system
+- "Set up Azure AD MCP" - Identity management
+
+## Configuration Options
+
+### Required Fields
+
+- **command**: The executable command to run the MCP server
+- **args**: Array of command-line arguments
+
+### Optional Fields
+
+- **env**: Environment variables for the server
+- **maskedFields**: Array of field paths to mask in logs (for sensitive data)
+  - Use dot notation: `"args.3"` masks the 4th argument
+  - Use for API keys, passwords, tokens
+
+### Security Best Practices
+
+1. **Let Siya Handle Secrets**: When asking Siya to configure, it will properly mask sensitive data
+2. **Mask Sensitive Data**: Always use `maskedFields` for API keys and passwords
+3. **Environment Variables**: Store sensitive data in environment variables when possible
+4. **File Permissions**: Ensure `siya-desktop-config.json` has appropriate permissions
+5. **Regular Updates**: Keep MCP servers updated for security patches
+
+## Using MCP in Siya
+
+### Chat Mode Usage
+
+Once configured, MCP tools are available directly:
+
+```
+"Use the stock market server to get AAPL stock price"
+"Query the postgres database for user statistics"
+"Create a GitHub issue for this bug"
+```
+
+### Task Mode Usage
+
+In Task Mode, the SWE Agent Module uses MCP for:
+- Database schema management
+- API integrations
+- Enterprise system connections
+- Custom tool operations
+
+## Troubleshooting
+
+### Server Not Loading
+
+1. **Ask Siya for Help**: "Help me debug my MCP server configuration"
+2. **Check Configuration Syntax**: Ensure valid JSON
+3. **Verify Command Path**: Make sure the command exists
+4. **Check Permissions**: Ensure Siya can execute the command
+5. **Review Logs**: Check Siya logs for error messages
+
+### Connection Issues
+
+1. **Network Access**: Ensure the server can reach required endpoints
+2. **Authentication**: Verify API keys and tokens are correct
+3. **Firewall**: Check firewall rules for blocked connections
+4. **Server Status**: Ensure the MCP server is running
+
+### Common Errors
+
+**"MCP server failed to start"**
+- Ask Siya: "Help me fix the MCP server startup error"
+- Check if the command is installed
+- Verify all required arguments are provided
+- Ensure environment variables are set
+
+**"Authentication failed"**
+- Ask Siya: "Update my MCP server authentication"
+- Double-check API keys and tokens
+- Ensure tokens haven't expired
+- Verify correct permissions
+
+**"Server timeout"**
+- Check network connectivity
+- Increase timeout in server configuration
+- Verify server endpoint is accessible
+
+## Best Practices
+
+### Getting Started
+
+1. **Start Simple**: Ask Siya to configure your first server
+2. **Test First**: Verify each server works before adding more
+3. **Document Usage**: Keep notes on what each server does
+4. **Regular Maintenance**: Update servers periodically
+
+### Organization
+
+1. **Naming Convention**: Use descriptive server names
+2. **Group Related Servers**: Organize by function or department
+3. **Document Configuration**: Keep notes on each server's purpose
+4. **Version Control**: Track configuration changes
+
+### Performance
+
+1. **Limit Active Servers**: Only configure needed servers
+2. **Monitor Resource Usage**: Some servers may be resource-intensive
+3. **Cache When Possible**: Reduce API calls with caching
+4. **Batch Operations**: Group related operations
+
+## Creating Custom MCP Servers
+
+### Basic Structure
+
+MCP servers follow a standard protocol:
+1. Accept JSON-RPC requests
+2. Provide tool definitions
+3. Execute tool calls
+4. Return structured results
+
+### Development Resources
+
+- MCP Protocol Specification
+- Server Development SDK
+- Example Implementations
+- Testing Framework
+
+### Quick Start
+
+Ask Siya to help you create a custom MCP server:
+```
+"Help me create a custom MCP server for my internal API"
+"Generate a template for an MCP server in Python"
+"Show me how to build an MCP server for my database"
+```
+
+## Advanced Configuration
+
+### Dynamic Configuration
+
+Some servers support dynamic configuration:
+
+```json
+{
+    "mcpServers": {
+        "multi-db": {
+            "command": "node",
+            "args": ["db-server.js"],
+            "env": {
+                "CONFIG_FILE": "./databases.json"
+            }
+        }
+    }
+}
+```
+
+### Conditional Loading
+
+Load servers based on environment:
+
+```json
+{
+    "mcpServers": {
+        "dev-tools": {
+            "command": "npx",
+            "args": ["dev-mcp-server"],
+            "env": {
+                "ENVIRONMENT": "development"
+            }
+        }
+    }
+}
+```
+
+## Tips and Tricks
+
+### Let Siya Do the Work
+
+1. **Discovery**: "What MCP servers are available for database connections?"
+2. **Configuration**: "Configure the best MCP server for working with Excel files"
+3. **Troubleshooting**: "My MCP server isn't working, can you help?"
+4. **Updates**: "Update all my MCP servers to the latest versions"
+
+### Common Requests
+
+- "Add all the MCP servers I might need for web development"
+- "Configure MCP servers for data science work"
+- "Set up enterprise integrations for my company"
+- "Show me what MCP servers are currently configured"
+
+## Next Steps
+
+1. **Ask Siya** to configure your first MCP server
+2. **Explore** available servers for your use case
+3. **Experiment** with different integrations
+4. **Build** custom servers for your specific needs
+
+---
+
+*Extend Siya's capabilities infinitely with MCP - Just ask, and Siya will configure it for you!*

@@ -1,0 +1,295 @@
+---
+title: "Execution Modes"
+description: "Master Siya's dual-mode architecture - Chat Mode for interaction, Task Mode for automation"
+icon: "toggle-on"
+---
+
+
+## Two Powerful Ways to Work with Siya
+
+Siya offers two distinct execution modes, each with its own architecture and strengths. Understanding these modes helps you choose the best approach for your specific needs.
+
+## Mode Overview
+
+### Chat Mode - Interactive Intelligence with Tools & Sub-Agents
+- **Architecture**: Siya agent with direct tool access + spawnable sub-agents
+- **Interaction**: Real-time conversation with immediate responses
+- **Flexibility**: Iterate, refine, and explore as you go
+- **Best For**: Learning, debugging, exploration, quick tasks
+
+### Task Mode - Autonomous Orchestration of Agent Modules  
+- **Architecture**: Siya orchestrator managing dedicated agent modules
+- **Execution**: Autonomous planning and execution
+- **Efficiency**: Optimized for complex, multi-step operations
+- **Best For**: Production work, complex projects, automation
+
+## Chat Mode Deep Dive
+
+### Architecture in Chat Mode
+
+When you select Chat Mode, Siya operates with:
+
+**Direct Tool Access**:
+- File operations (read, write, edit, multi-edit)
+- Search tools (glob, grep, semantic search)
+- Execution tools (bash, terminal)
+- Web tools (browser, search)
+- Planning tools (todo management)
+- MCP integration
+
+**Spawnable Sub-Agents**:
+- **SWE Agent** - For complex coding tasks
+- **Search Agent** - For research needs
+- **Browser Agent** - For web automation
+- **Automation Agent** - For workflow tasks
+
+**Key Features**:
+- Auto-compacting memory management
+- Context preservation across conversation
+- Multiple sub-agents can run in parallel
+- Real-time tool execution
+
+### When to Use Chat Mode
+
+**Perfect for:**
+- **Exploration** - "I want to understand how this works"
+- **Learning** - "Teach me about React hooks"
+- **Debugging** - "Help me fix this error"
+- **Iterative Work** - "Let's refine this solution"
+- **Quick Tasks** - "Format this JSON file"
+- **Interactive Development** - "Let's build this feature together"
+
+### How Chat Mode Works
+
+1. **You Ask** - Natural conversation style
+2. **Siya Analyzes** - Determines best approach
+3. **Tool Usage** - Direct execution for simple tasks
+4. **Sub-Agent Spawning** - For complex domain-specific needs
+5. **Interactive Response** - Real-time feedback
+6. **Iteration** - Refine based on results
+
+### Chat Mode Examples
+
+**Example 1: Quick Coding Help**
+```
+You: Create a Python function to validate email addresses
+Siya: I'll create a Python function for email validation using regex...
+[Uses tools directly to create and test the function]
+```
+
+**Example 2: Complex Research**
+```
+You: Research the best practices for microservices architecture
+Siya: I'll research microservices best practices for you...
+[Spawns Search Agent to gather comprehensive information]
+```
+
+**Example 3: Debugging Session**
+```
+You: My React app shows a white screen, help me debug
+Siya: Let me help you debug this issue. First, let's check...
+[Interactive debugging using tools and possibly SWE Agent]
+```
+
+## Task Mode Deep Dive
+
+### Architecture in Task Mode
+
+When you select Task Mode, Siya transforms into an orchestrator managing:
+
+**Dedicated Agent Modules**:
+- **Planning Module** - Strategic planning and coordination
+- **SWE Agent Module** - All software engineering (with MCP access)
+- **Browser Agent Module** - Web automation and scraping
+- **Search Agent Module** - Research and information gathering
+- **Automation Agent Module** - Complex workflow execution
+
+**Key Differences**:
+- No direct tool access (agents handle tools internally)
+- Autonomous coordination between modules
+- Comprehensive planning before execution
+- SWE module has exclusive MCP server access
+
+### When to Use Task Mode
+
+**Ideal for:**
+- **Complete Projects** - "Build a full-stack web application"
+- **Complex Analysis** - "Analyze this dataset and create a dashboard"
+- **Automation** - "Set up a CI/CD pipeline"
+- **Production Work** - "Refactor this codebase"
+- **Multi-Step Operations** - "Migrate database and update all services"
+- **Hands-Off Execution** - "Create a complete documentation site"
+
+### How Task Mode Works
+
+1. **You Define** - Clear requirements and goals
+2. **Planning Module** - Creates comprehensive strategy
+3. **Agent Coordination** - Modules work in parallel/sequence
+4. **Autonomous Execution** - No intervention needed
+5. **Progress Updates** - Stay informed of status
+6. **Complete Delivery** - Full solution provided
+
+### Task Mode Examples
+
+**Example 1: Application Development**
+```
+You: Build a task management web app with user authentication
+Planning Module: Creating comprehensive plan...
+[Orchestrates SWE, Browser, and other modules to build complete app]
+```
+
+**Example 2: Data Pipeline**
+```
+You: Create an automated data analysis pipeline for sales data
+Planning Module: Designing data pipeline architecture...
+[Coordinates modules to build end-to-end solution]
+```
+
+**Example 3: System Migration**
+```
+You: Migrate our Node.js app from Express to Fastify
+Planning Module: Analyzing migration requirements...
+[SWE module handles code changes with MCP integration support]
+```
+
+## Mode Comparison
+
+| Aspect | Chat Mode | Task Mode |
+|--------|-----------|-----------|
+| **Architecture** | Siya + Tools + Sub-Agents | Siya Orchestrator + Agent Modules |
+| **Interaction** | Interactive, conversational | Define requirements, autonomous execution |
+| **Tool Access** | Direct tool usage | Agents handle tools internally |
+| **MCP Access** | Available to main Siya | Exclusive to SWE module |
+| **Planning** | Incremental, as-needed | Comprehensive upfront planning |
+| **Execution** | Step-by-step with feedback | Autonomous end-to-end |
+| **Best For** | Exploration, learning, debugging | Production, complex projects |
+| **Response Time** | Immediate | Planning phase + execution |
+| **Flexibility** | High - change direction anytime | Lower - follows the plan |
+| **Memory** | Auto-compacting, conversational | Task-focused, efficient |
+
+## Choosing the Right Mode
+
+### Quick Decision Guide
+
+**Choose Chat Mode when:**
+- You're exploring or learning
+- Requirements might change
+- You want to see intermediate results
+- The task is relatively simple
+- You prefer interactive collaboration
+- You're debugging or troubleshooting
+
+**Choose Task Mode when:**
+- You have clear, complete requirements
+- The task involves multiple complex steps
+- You want hands-off execution
+- You need production-quality results
+- The project is well-defined
+- You're building something substantial
+
+### Mode Indicators
+
+Siya can help suggest the appropriate mode:
+
+**Chat Mode Signals:**
+- Questions: "How do I...?", "What is...?"
+- Exploration: "Let's explore...", "Show me..."
+- Debugging: "Fix this...", "Why is this...?"
+- Learning: "Teach me...", "Explain..."
+
+**Task Mode Signals:**
+- Commands: "Build...", "Create...", "Implement..."
+- Projects: "Develop a complete...", "Set up..."
+- Automation: "Automate...", "Configure..."
+- Clear specs: Detailed requirements provided
+
+## Advanced Mode Features
+
+### Chat Mode Advanced
+
+**Sub-Agent Management**:
+- Multiple agents can work in parallel
+- Agents share context and findings
+- Auto-compacting keeps memory efficient
+- Seamless handoffs between agents
+
+**Tool Chaining**:
+- Combine multiple tools efficiently
+- Pipeline operations together
+- Cache results for reuse
+- Optimize execution paths
+
+### Task Mode Advanced
+
+**Module Coordination**:
+- Parallel execution where possible
+- Intelligent dependency management
+- Resource optimization
+- Error recovery and retry logic
+
+**MCP Integration** (SWE Module):
+- Access to enterprise systems
+- Custom tool integration
+- Extended capabilities
+- Specialized operations
+
+## Memory and Context
+
+### Chat Mode Memory
+- Conversational context maintained
+- Auto-compacting for efficiency
+- Preference learning
+- Cross-agent knowledge sharing
+
+### Task Mode Memory
+- Task-focused context
+- Efficient state management
+- Progress tracking
+- Results aggregation
+
+## Performance Considerations
+
+### Chat Mode Performance
+- **Instant Start** - No planning overhead
+- **Flexible Resource Use** - Scales with needs
+- **Interactive Speed** - Real-time responses
+- **Memory Efficient** - Auto-compacting
+
+### Task Mode Performance
+- **Planning Investment** - Upfront time for strategy
+- **Optimized Execution** - Efficient resource use
+- **Parallel Processing** - Multiple modules working
+- **Consistent Quality** - Reliable results
+
+## Best Practices
+
+### For Chat Mode
+1. **Be Conversational** - Natural language works best
+2. **Iterate Freely** - Refine as you go
+3. **Provide Context** - Share relevant details
+4. **Save Progress** - Export important findings
+
+### For Task Mode
+1. **Be Comprehensive** - Include all requirements
+2. **Define Success** - Clear acceptance criteria
+3. **Trust the Process** - Let it work autonomously
+4. **Review Results** - Check the final output
+
+## Switching Between Modes
+
+While you typically choose a mode at the start, you can:
+1. Use Chat Mode to explore and define requirements
+2. Switch to Task Mode for implementation
+3. Return to Chat Mode for refinements
+4. Leverage both modes for optimal results
+
+## Next Steps
+
+- Try both modes with simple tasks first
+- Experiment to find your preference
+- Combine modes for complex projects
+- Master mode-specific features
+
+---
+
+*Master both modes to unlock Siya's full potential - Interactive intelligence or autonomous excellence, the choice is yours!*

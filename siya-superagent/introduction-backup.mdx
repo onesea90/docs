@@ -1,0 +1,264 @@
+---
+title: "Introduction to Siya"
+description: "Understand Siya's revolutionary dual-mode AI architecture and capabilities"
+icon: "house"
+---
+
+
+## Welcome to the Future of AI Assistance
+
+Siya represents a breakthrough in AI technology, featuring an adaptive multi-agent system that changes its architecture based on how you choose to work. Whether you prefer interactive collaboration or autonomous execution, Siya adjusts to deliver optimal results.
+
+## Why Siya?
+
+### The Challenge
+Modern tasks require diverse expertise and approaches. Traditional AI assistants often struggle with complex, multi-faceted challenges that span different domains. Users need both interactive assistance for exploration and autonomous execution for well-defined tasks.
+
+### The Solution
+Siya solves this with two distinct execution modes:
+- **Chat Mode**: Interactive assistance with tools and spawnable sub-agents
+- **Task Mode**: Autonomous orchestration of specialized agent modules
+
+This dual-mode architecture ensures you always have the right approach for your needs.
+
+## System Architecture
+
+### High-Level Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         SIYA SYSTEM                              │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────────┐                    ┌──────────────────┐   │
+│  │   Chat Mode     │                    │   Task Mode      │   │
+│  │                 │                    │                  │   │
+│  │  ┌───────────┐  │                    │  ┌────────────┐  │   │
+│  │  │   SIYA    │  │                    │  │    SIYA    │  │   │
+│  │  │   Agent   │  │                    │  │Orchestrator│  │   │
+│  │  └─────┬─────┘  │                    │  └──────┬─────┘  │   │
+│  │        │        │                    │         │        │   │
+│  │  ┌─────┴─────┐  │                    │  ┌──────┴──────┐ │   │
+│  │  │   Tools   │  │                    │  │   Agent     │ │   │
+│  │  │     +     │  │                    │  │  Modules    │ │   │
+│  │  │Sub-Agents │  │                    │  │             │ │   │
+│  │  └───────────┘  │                    │  └─────────────┘ │   │
+│  └─────────────────┘                    └──────────────────┘   │
+│                                                                  │
+├─────────────────────────────────────────────────────────────────┤
+│                    SHARED INFRASTRUCTURE                         │
+│  ┌────────────┐  ┌────────────┐  ┌────────────┐  ┌──────────┐ │
+│  │   Memory   │  │    MCP     │  │   Hooks    │  │Workspace │ │
+│  │   System   │  │Integration │  │   System   │  │ Manager  │ │
+│  └────────────┘  └────────────┘  └────────────┘  └──────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Chat Mode Architecture
+
+```
+                          ┌─────────────┐
+                          │    User     │
+                          └──────┬──────┘
+                                 │
+                          ┌──────┴──────┐
+                          │ Siya Agent  │
+                          │  (Main AI)  │
+                          └──────┬──────┘
+                                 │
+                ┌────────────────┼────────────────┐
+                │                │                │
+         ┌──────┴──────┐  ┌──────┴──────┐  ┌────┴─────┐
+         │Direct Tools │  │ Sub-Agents  │  │   MCP    │
+         │             │  │(Spawnable)  │  │  Tools   │
+         ├─────────────┤  ├─────────────┤  └──────────┘
+         │• Read/Write │  │• SWE Agent  │
+         │• Search     │  │• Search     │
+         │• Execute    │  │• Browser    │
+         │• Web Tools  │  │• Automation │
+         │• Planning   │  └─────────────┘
+         └─────────────┘
+                │                │
+         ┌──────┴──────┐  ┌──────┴──────┐
+         │Auto-Compact │  │   Shared    │
+         │   Memory    │  │   Memory    │
+         └─────────────┘  └─────────────┘
+```
+
+### Task Mode Architecture
+
+```
+                          ┌─────────────┐
+                          │    User     │
+                          └──────┬──────┘
+                                 │
+                          ┌──────┴──────┐
+                          │    Siya     │
+                          │Orchestrator │
+                          └──────┬──────┘
+                                 │
+         ┌───────────┬───────────┼───────────┬───────────┐
+         │           │           │           │           │
+   ┌─────┴─────┐ ┌──┴───┐ ┌─────┴─────┐ ┌──┴───┐ ┌─────┴─────┐
+   │ Planning  │ │ SWE  │ │  Browser  │ │Search│ │Automation │
+   │  Module   │ │Module│ │  Module   │ │Module│ │  Module   │
+   └─────┬─────┘ └──┬───┘ └─────┬─────┘ └──┬───┘ └─────┬─────┘
+         │          │           │           │           │
+         │      ┌───┴───┐       │           │           │
+         │      │  MCP  │       │           │           │
+         │      │Access │       │           │           │
+         │      └───────┘       │           │           │
+         │                      │           │           │
+         └──────────┬───────────┴───────────┴───────────┘
+                    │
+              ┌─────┴─────┐
+              │  Shared   │
+              │  Memory   │
+              └───────────┘
+```
+
+## Core Architecture Components
+
+### 1. Siya Agent (Chat Mode)
+The main AI agent that:
+- Processes user requests interactively
+- Has direct access to all tools
+- Can spawn specialized sub-agents
+- Manages conversation context
+- Utilizes auto-compacting memory
+
+### 2. Siya Orchestrator (Task Mode)
+The coordination layer that:
+- Analyzes complex requirements
+- Creates execution plans
+- Manages agent modules
+- Monitors progress
+- Delivers complete solutions
+
+### 3. Memory System
+Advanced memory management featuring:
+- **Auto-Compacting**: Efficient token usage
+- **Shared Memory**: Inter-agent communication
+- **Context Preservation**: Maintains conversation state
+- **Workspace Isolation**: Project-specific memory
+
+### 4. MCP Integration
+Model Context Protocol support enabling:
+- Database connections
+- API integrations
+- Enterprise system access
+- Custom tool development
+- Extended capabilities
+
+### 5. Hooks System
+Event-driven automation allowing:
+- Custom notifications
+- Workflow triggers
+- External integrations
+- Performance monitoring
+- Security auditing
+
+## Data Flow Diagrams
+
+### Chat Mode Data Flow
+
+```
+User Input → Siya Agent → Decision Engine
+                              ↓
+                    ┌─────────┴─────────┐
+                    │                   │
+              Direct Tool          Spawn Sub-Agent
+                    │                   │
+                    ↓                   ↓
+              Execute Tool         Sub-Agent Process
+                    │                   │
+                    └─────────┬─────────┘
+                              ↓
+                         Update Memory
+                              ↓
+                      Generate Response
+                              ↓
+                          User Output
+```
+
+### Task Mode Data Flow
+
+```
+User Requirements → Siya Orchestrator → Planning Module
+                                            ↓
+                                    Create Execution Plan
+                                            ↓
+                                    ┌───────┴────────┐
+                                    │                │
+                            Allocate to Modules  Dependency
+                                    │             Analysis
+                                    ↓                │
+                            ┌───────┴────────┐       │
+                            │                │       │
+                        Parallel         Sequential  │
+                        Execution        Execution   │
+                            │                │       │
+                            └───────┬────────┘       │
+                                    ↓                │
+                                Progress Monitoring ←┘
+                                    ↓
+                              Result Aggregation
+                                    ↓
+                              Complete Solution
+```
+
+## Event System Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Event System                          │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  Tool Events          Memory Events      System Events  │
+│  ┌────────────┐      ┌─────────────┐   ┌────────────┐ │
+│  │PreToolUse  │      │PreCompact   │   │Stop        │ │
+│  │PostToolUse │      │PostCompact  │   │SubagentStop│ │
+│  └──────┬─────┘      └──────┬──────┘   └─────┬──────┘ │
+│         │                   │                 │         │
+│         └───────────────────┼─────────────────┘         │
+│                             ↓                           │
+│                      ┌──────────────┐                   │
+│                      │ Hook Manager │                   │
+│                      └──────┬───────┘                   │
+│                             ↓                           │
+│                      ┌──────────────┐                   │
+│                      │Execute Hooks │                   │
+│                      └──────────────┘                   │
+└─────────────────────────────────────────────────────────┘
+```
+
+## Technology Stack
+
+### Core Technologies
+- **Runtime**: Node.js with TypeScript
+- **AI Models**: Multiple LLM providers (Anthropic, OpenAI, etc.)
+- **Desktop**: Tauri framework for native apps
+- **Memory**: Advanced token management with compression
+- **Integration**: MCP protocol for extensibility
+
+### Architecture Patterns
+- **Modular Design**: Loosely coupled components
+- **Event-Driven**: Hook system for automation
+- **Adaptive**: Mode-based architecture switching
+- **Scalable**: Parallel processing capabilities
+- **Extensible**: Plugin-ready architecture
+
+## Getting Started
+
+Ready to experience Siya? Here's how to begin:
+
+1. **Download** - Get the Siya macOS app
+2. **Install** - Simple drag-and-drop installation
+3. **Choose Your Mode** - Select Chat or Task mode
+4. **Start Working** - Experience AI that adapts to you
+
+Continue to the [Quick Start Guide](./quick-start.mdx) to begin your journey with Siya.
+
+---
+
+*Siya - Adaptive AI that works the way you do.*
